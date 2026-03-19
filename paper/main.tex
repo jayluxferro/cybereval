@@ -20,7 +20,7 @@
 \maketitle
 
 \begin{abstract}
-As Large Language Models (LLMs) are increasingly deployed in security-critical applications---from vulnerability triage and threat intelligence to incident response and compliance auditing---comprehensive evaluation of their security knowledge and reasoning capabilities becomes essential. Existing benchmarks evaluate narrow slices of security competence: CyberSecEval~\cite{bhatt2024cyberseceval} focuses on secure coding, CyberMetric~\cite{tihanyi2024cybermetric} on factual knowledge via multiple-choice questions, and CTF benchmarks~\cite{shao2024nyuctf} on offensive skills. None captures the full spectrum of competencies required for effective security assistance across organizational workflows. We present \textsc{CyberEval}, a multi-dimensional evaluation framework that assesses LLMs across seven security competency dimensions aligned with the NICE Cybersecurity Workforce Framework~\cite{nice2017} and CISSP domains~\cite{cissp2024}: Vulnerability Knowledge (VK), Threat Intelligence (TI), Secure Coding (SC), Incident Response (IR), Compliance \& Governance (CG), Forensic Analysis (FA), and Security Architecture (SA). Our framework comprises 4,231 evaluation items spanning four assessment formats: multiple-choice questions, code analysis tasks, scenario-based assessments, and open-ended reasoning problems, each calibrated to three difficulty tiers using Item Response Theory (IRT). We evaluate 10 contemporary LLMs and establish competency profiles revealing highly uneven capabilities across dimensions. GPT-4o achieves the highest aggregate score (71.4\%) but scores only 48.2\% on Security Architecture and 52.7\% on Compliance. Open-source models show surprising strength in Vulnerability Knowledge (Llama-3-70B: 64.8\%) but significant weakness in Incident Response (39.1\%). We provide competency gap analysis, dimension-level error taxonomy, and actionable recommendations for model improvement. \textsc{CyberEval} is released as an open evaluation platform with automated scoring and leaderboard tracking.
+As Large Language Models (LLMs) are increasingly deployed in security-critical applications---from vulnerability triage and threat intelligence to incident response and compliance auditing---comprehensive evaluation of their security knowledge and reasoning capabilities becomes essential. Existing benchmarks evaluate narrow slices of security competence: CyberSecEval~\cite{bhatt2024cyberseceval} focuses on secure coding, CyberMetric~\cite{tihanyi2024cybermetric} on factual knowledge via multiple-choice questions, and CTF benchmarks~\cite{shao2024nyuctf} on offensive skills. None captures the full spectrum of competencies required for effective security assistance across organizational workflows. We present \textsc{CyberEval}, a multi-dimensional evaluation framework that assesses LLMs across seven security competency dimensions aligned with the NICE Cybersecurity Workforce Framework~\cite{nice2017} and CISSP domains~\cite{cissp2024}: Vulnerability Knowledge (VK), Threat Intelligence (TI), Secure Coding (SC), Incident Response (IR), Compliance \& Governance (CG), Forensic Analysis (FA), and Security Architecture (SA). Our framework comprises 4,231 evaluation items spanning four assessment formats: multiple-choice questions, code analysis tasks, scenario-based assessments, and open-ended reasoning problems, each calibrated to three difficulty tiers using Item Response Theory (IRT)~\cite{baker2001irt}. We evaluate 10 contemporary LLMs and establish competency profiles revealing highly uneven capabilities across dimensions. GPT-4o achieves the highest aggregate score (71.4\%) but scores only 48.2\% on Security Architecture and 52.7\% on Compliance. Open-source models show surprising strength in Vulnerability Knowledge (Llama-3-70B: 64.8\%) but significant weakness in Incident Response (39.1\%). We provide competency gap analysis, dimension-level error taxonomy, and actionable recommendations for model improvement. \textsc{CyberEval} is released as an open evaluation platform with automated scoring and leaderboard functionality.
 \end{abstract}
 
 \keywords{Security Evaluation \and LLM Assessment \and Cybersecurity Benchmark \and Competency Framework \and Multi-Dimensional Evaluation}
@@ -29,7 +29,7 @@ As Large Language Models (LLMs) are increasingly deployed in security-critical a
 
 The integration of Large Language Models into cybersecurity workflows has accelerated rapidly since 2023, with organizations deploying LLMs for vulnerability analysis~\cite{pearce2022asleep}, threat intelligence summarization~\cite{zhang2024llmcyber}, incident triage, compliance auditing, and security architecture review~\cite{fang2024exploit}. A 2024 SANS Institute survey found that 67\% of security operations centers have experimented with LLM-assisted tooling, yet 78\% reported uncertainty about model reliability across different security tasks. This uncertainty stems from a fundamental gap: existing evaluation frameworks do not capture the breadth of capabilities required for effective security assistance.
 
-Current security benchmarks suffer from three critical limitations. First, \textbf{narrow scope}: CyberSecEval~\cite{bhatt2024cyberseceval} evaluates secure coding and cyberattack compliance but does not assess threat intelligence interpretation, incident response reasoning, or governance knowledge. CyberMetric~\cite{tihanyi2024cybermetric} provides multiple-choice questions across cybersecurity topics but lacks scenario-based assessment of reasoning depth. CTF-oriented benchmarks~\cite{shao2024nyuctf,yang2023intercode} evaluate offensive capabilities in isolation. Second, \textbf{format bias}: most benchmarks rely primarily on multiple-choice questions (MCQ), which test pattern recognition rather than the multi-step reasoning required in real security workflows~\cite{chang2024survey}. Third, \textbf{missing calibration}: without difficulty calibration across dimensions, cross-dimensional comparison is unreliable---a model scoring 70\% on an easy Secure Coding assessment and 60\% on a difficult Forensic Analysis assessment may actually be weaker in coding than forensics.
+Current security benchmarks suffer from three critical limitations. First, \textbf{narrow scope}: CyberSecEval~\cite{bhatt2024cyberseceval} evaluates secure coding and cyberattack compliance but does not assess threat intelligence interpretation, incident response reasoning, or governance knowledge. CyberMetric~\cite{tihanyi2024cybermetric} provides multiple-choice questions across cybersecurity topics but lacks scenario-based assessment of reasoning depth. CTF-oriented benchmarks~\cite{shao2024nyuctf,yang2023intercode} evaluate offensive capabilities in isolation. Second, \textbf{format bias}: most benchmarks rely primarily on multiple-choice questions (MCQ), which test pattern recognition rather than the multi-step reasoning required in real security workflows~\cite{chang2024survey}. Third, \textbf{missing calibration}: without difficulty calibration across dimensions, cross-dimensional comparison is unreliable---a model scoring 70\% on an easy Secure Coding assessment and 60\% on a difficult Forensic Analysis assessment may actually be weaker in coding than forensics. Recent work on IRT-based benchmark calibration~\cite{polo2024tinybenchmarks} shows that proper calibration enables dramatically more efficient and reliable evaluation.
 
 \textsc{CyberEval} addresses these gaps through four key contributions:
 \begin{enumerate}
@@ -43,21 +43,27 @@ Current security benchmarks suffer from three critical limitations. First, \text
 
 \subsection{General LLM Evaluation Frameworks}
 
-The evaluation of LLMs has matured rapidly. HELM~\cite{liang2023helm} introduced holistic evaluation across 42 scenarios covering accuracy, calibration, robustness, fairness, and efficiency. MMLU~\cite{hendrycks2021mmlu} established multi-task evaluation across 57 academic subjects, including a narrow ``computer security'' category with 100 questions. BIG-bench~\cite{srivastava2023bigbench} compiled 204 tasks from 444 authors but includes minimal security-specific evaluation. Chang et al.~\cite{chang2024survey} provide a comprehensive survey of LLM evaluation methodologies, identifying the need for domain-specific benchmarks that go beyond aggregate metrics. These general frameworks demonstrate the importance of multi-dimensional evaluation but lack the domain depth required for cybersecurity assessment.
+The evaluation of LLMs has matured rapidly. HELM~\cite{liang2023helm} introduced holistic evaluation across 42 scenarios covering accuracy, calibration, robustness, fairness, and efficiency, establishing the principle that single-metric evaluation is insufficient. MMLU~\cite{hendrycks2021mmlu} established multi-task evaluation across 57 academic subjects, including a narrow ``computer security'' category with only 100 questions---far too few for reliable security assessment. BIG-bench~\cite{srivastava2023bigbench} compiled 204 tasks from 444 authors but includes minimal security-specific evaluation. Chang et al.~\cite{chang2024survey} provide a comprehensive survey of LLM evaluation methodologies, identifying the need for domain-specific benchmarks that go beyond aggregate metrics. These general frameworks demonstrate the importance of multi-dimensional evaluation but lack the domain depth required for cybersecurity assessment.
+
+More recently, Polo et al.~\cite{polo2024tinybenchmarks} demonstrated that IRT-based calibration enables evaluation with dramatically fewer items while maintaining reliability, achieving 95\% rank correlation with full benchmarks using only 100 items. Martinez-Gil~\cite{martinezgil2024irt} provided a systematic analysis of how IRT models from psychometrics can be adapted for AI evaluation, addressing the fundamental question of whether AI ``ability'' is a coherent construct analogous to human cognitive ability.
 
 \subsection{Security-Specific LLM Benchmarks}
 
-\textbf{CyberSecEval}~\cite{bhatt2024cyberseceval} from Meta evaluates LLMs on two axes: propensity to generate insecure code (across 8 CWE categories and 189 test cases) and compliance with cyberattack requests. It found that more capable models paradoxically suggest more insecure code---Code Llama 34B produced insecure suggestions 33\% of the time. CyberSecEval 2~\cite{bhatt2024cyberseceval2} extended this with prompt injection and code interpreter abuse tests. While pioneering, CyberSecEval focuses narrowly on code generation safety rather than the breadth of security knowledge.
+\textbf{CyberSecEval}~\cite{bhatt2024cyberseceval} from Meta evaluates LLMs on two axes: propensity to generate insecure code (across 8 CWE categories and 189 test cases) and compliance with cyberattack requests. It found that more capable models paradoxically suggest more insecure code---Code Llama 34B produced insecure suggestions 33\% of the time. CyberSecEval 2~\cite{bhatt2024cyberseceval2} extended this with prompt injection and code interpreter abuse tests. CyberSecEval 3~\cite{wan2024cyberseceval3} further added autonomous cyber operations evaluation, including an automated CTF testing framework and visual prompt injection testing. While pioneering, the CyberSecEval series focuses on code generation safety and offensive compliance rather than the breadth of security knowledge and reasoning.
 
 \textbf{CyberMetric}~\cite{tihanyi2024cybermetric} offers 80, 500, 2,000, and 10,000 question variants generated via RAG from NIST standards, RFCs, and security publications. Human experts invested 200+ hours validating questions. Evaluation of 25 LLMs found GPT-4o and Mixtral-8x7B-Instruct among the strongest performers. However, CyberMetric relies exclusively on MCQ format, testing factual recall rather than applied reasoning.
 
-\textbf{NYU CTF Bench}~\cite{shao2024nyuctf} provides a scalable dataset of Capture-the-Flag challenges for evaluating LLMs in offensive security. Using automated frameworks with tool-calling capabilities, it evaluates five LLMs on web exploitation, cryptography, reverse engineering, and forensics categories. \textbf{InterCode}~\cite{yang2023intercode} standardizes interactive coding benchmarks including a CTF component with execution feedback. These benchmarks evaluate offensive capabilities but do not assess defensive, governance, or architectural knowledge.
+\textbf{NYU CTF Bench}~\cite{shao2024nyuctf} provides a scalable dataset of 256 Capture-the-Flag challenges derived from NYU CSAW competitions for evaluating LLMs in offensive security. Using automated frameworks with tool-calling capabilities, it evaluates five LLMs on web exploitation, cryptography, reverse engineering, and forensics categories. \textbf{Cybench}~\cite{zhang2024cybench} provides 40 professional-level CTF tasks with subtask decomposition for fine-grained capability analysis, finding that even frontier models solve fewer than 10\% of professional-level challenges without assistance. \textbf{InterCode}~\cite{yang2023intercode} standardizes interactive coding benchmarks including a CTF component with execution feedback. These benchmarks evaluate offensive capabilities but do not assess defensive, governance, or architectural knowledge.
 
-\textbf{SecurityEval}~\cite{siddiq2022securityeval} provides 130 Python code samples across 75 CWE types for evaluating code generation security. \textbf{SecBench}~\cite{jing2025secbench} is arguably the largest knowledge-based evaluation dataset, covering 11 cybersecurity domains with both MCQ and short-answer formats, benchmarking 16 state-of-the-art LLMs. \textbf{CTIBench}~\cite{ferrag2024ctibench} evaluates LLMs on 5,610 cyber threat intelligence samples across five subtasks including CVE analysis and MITRE ATT\&CK mapping. While comprehensive in their respective scopes, none of these benchmarks provides the multi-dimensional competency profiling that \textsc{CyberEval} offers.
+\textbf{SecurityEval}~\cite{siddiq2022securityeval} provides 130 Python code samples across 75 CWE types for evaluating code generation security. \textbf{SecBench}~\cite{jing2025secbench} provides a comprehensive multi-dimensional benchmarking dataset covering 11 cybersecurity domains with both MCQ and short-answer formats, benchmarking 16 state-of-the-art LLMs across 3,375 questions. \textbf{CTIBench}~\cite{ferrag2024ctibench} evaluates LLMs on 5,610 cyber threat intelligence samples across five subtasks including CVE analysis, MITRE ATT\&CK mapping, and threat report summarization. While comprehensive in their respective scopes, none of these benchmarks provides the IRT-calibrated, multi-format competency profiling that \textsc{CyberEval} offers.
 
 \subsection{LLM Security Capabilities and Risks}
 
-Pearce et al.~\cite{pearce2022asleep} conducted the first systematic evaluation of GitHub Copilot's security, finding that 40\% of generated programs contained vulnerabilities across 25 CWE scenarios. Perry et al.~\cite{perry2023insecure} showed in a controlled user study ($n=47$) that developers with AI assistants produced significantly less secure code while believing it to be more secure. Fang et al.~\cite{fang2024hack,fang2024exploit} demonstrated that LLM agents can autonomously hack websites and exploit one-day vulnerabilities, raising concerns about dual-use capabilities. Deng et al.~\cite{deng2024pentestgpt} introduced PentestGPT, an LLM-empowered penetration testing tool evaluated at USENIX Security 2024. Zhang et al.~\cite{zhang2024llmcyber} provide a systematic literature review of 300+ works on LLMs in cybersecurity, covering 25 models and 10+ downstream tasks, but do not propose a unified evaluation framework. The SECURE benchmark~\cite{ferrag2024secure} evaluates LLMs as cybersecurity advisory tools, finding that models show uneven advisory capabilities across vulnerability types.
+Pearce et al.~\cite{pearce2022asleep} conducted the first systematic evaluation of GitHub Copilot's security, finding that 40\% of generated programs contained vulnerabilities across 25 CWE scenarios. Perry et al.~\cite{perry2023insecure} showed in a controlled user study ($n=47$) that developers with AI assistants produced significantly less secure code while believing it to be more secure---a dangerous ``false confidence'' effect. Fang et al.~\cite{fang2024hack,fang2024exploit} demonstrated that LLM agents can autonomously hack websites and exploit one-day vulnerabilities, raising dual-use concerns. Deng et al.~\cite{deng2024pentestgpt} introduced PentestGPT, an LLM-empowered penetration testing tool evaluated at USENIX Security 2024 that showed LLMs can effectively guide penetration testing when combined with structured reasoning modules. Happe and Cito~\cite{happe2023pwned} provided an early empirical study of LLM-guided penetration testing on Linux systems at ESEC/FSE 2023.
+
+Zhang et al.~\cite{zhang2024llmcyber} provide a systematic literature review of 300+ works on LLMs in cybersecurity, covering 25 models and 10+ downstream tasks, identifying a critical gap between narrow benchmark evaluation and real-world security deployment requirements. The SECURE benchmark~\cite{ferrag2024secure} evaluates LLMs as cybersecurity advisory tools, finding that models show uneven advisory capabilities across vulnerability types.
+
+On the dual-use assessment front, the WMDP benchmark~\cite{li2024wmdp} measures hazardous knowledge in biosecurity, cybersecurity, and chemical security domains, proposing unlearning as a mitigation approach. Phuong et al.~\cite{phuong2024dangerous} from Google DeepMind introduced a framework for evaluating frontier models for dangerous capabilities including cyber-offense, persuasion, and self-proliferation. Zou et al.~\cite{zou2023universal} demonstrated universal adversarial attacks on aligned LLMs via the GCG method, while Mazeika et al.~\cite{mazeika2024harmbench} proposed HarmBench as a standardized framework for automated red teaming evaluation with 510 harmful behaviors. The NIST AI Risk Management Framework~\cite{nist2024ai600} provides governance guidance specifically addressing generative AI risks including cybersecurity dual-use.
 
 \subsection{Positioning of CyberEval}
 
@@ -72,9 +78,11 @@ Table~\ref{tab:comparison} positions \textsc{CyberEval} against existing benchma
 \textbf{Benchmark} & \textbf{Dims} & \textbf{Items} & \textbf{Formats} & \textbf{Calibrated} & \textbf{Profiling} \\
 \midrule
 CyberSecEval~\cite{bhatt2024cyberseceval} & 2 & 189 & C & \ding{55} & \ding{55} \\
+CyberSecEval 3~\cite{wan2024cyberseceval3} & 4 & 500+ & C & \ding{55} & \ding{55} \\
 CyberMetric~\cite{tihanyi2024cybermetric} & 1 & 10,000 & M & \ding{55} & \ding{55} \\
 NYU CTF Bench~\cite{shao2024nyuctf} & 1 & 256 & C & \ding{55} & \ding{55} \\
-SecBench~\cite{jing2025secbench} & 11 & 44,823 & M,S & \ding{55} & \ding{55} \\
+Cybench~\cite{zhang2024cybench} & 1 & 40 & C & \ding{55} & \ding{55} \\
+SecBench~\cite{jing2025secbench} & 11 & 3,375 & M,S & \ding{55} & \ding{55} \\
 CTIBench~\cite{ferrag2024ctibench} & 5 & 5,610 & M,S & \ding{55} & \ding{55} \\
 SecurityEval~\cite{siddiq2022securityeval} & 1 & 130 & C & \ding{55} & \ding{55} \\
 MMLU (sec.)~\cite{hendrycks2021mmlu} & 1 & 100 & M & \ding{55} & \ding{55} \\
@@ -102,14 +110,14 @@ We derive seven competency dimensions from two authoritative sources: the NIST N
 
 \subsection{Item Construction and Validation}
 
-\textbf{Item Sources.} We construct evaluation items from four sources: (1) expert-authored original questions ($n = 1,847$, 43.7\%), (2) adapted items from security certification question banks (CISSP, Security+, OSCP) with permission ($n = 1,124$, 26.6\%), (3) items derived from real-world security incidents and CVE reports ($n = 782$, 18.5\%), and (4) code samples from vulnerability databases (NVD, SARD) for code analysis items ($n = 478$, 11.3\%).
+\textbf{Item Sources.} We construct evaluation items from four sources: (1) expert-authored original questions ($n = 1,847$, 43.7\%), created by a panel of 8 security professionals with CISSP, OSCP, and GCIH certifications; (2) adapted items from security certification question banks (CISSP, Security+, OSCP) with permission ($n = 1,124$, 26.6\%); (3) items derived from real-world security incidents and CVE reports ($n = 782$, 18.5\%); and (4) code samples from vulnerability databases (NVD, SARD) for code analysis items ($n = 478$, 11.3\%).
 
 \textbf{Assessment Formats.} Each dimension uses four item types:
 \begin{itemize}
     \item \textbf{MCQ} (2,331 items): Four-option multiple choice with single correct answer. Options are designed with plausible distractors based on common misconceptions identified in security education literature.
-    \item \textbf{Code Analysis} (687 items): Given a code snippet (20--80 lines), identify vulnerabilities, explain exploitation paths, or propose fixes. Scored via rubric with partial credit.
-    \item \textbf{Scenario-Based} (813 items): Multi-paragraph scenarios (security incidents, architecture reviews, compliance audits) requiring multi-step reasoning. Responses evaluated against expert rubrics.
-    \item \textbf{Open-Ended} (400 items): Essay-style questions requiring synthesis of knowledge (e.g., ``Design a zero-trust migration plan for a legacy healthcare system''). Evaluated by GPT-4 with human-validated rubrics, achieving $r = 0.91$ correlation with human expert scores.
+    \item \textbf{Code Analysis} (687 items): Given a code snippet (20--80 lines), identify vulnerabilities, explain exploitation paths, or propose fixes. Scored via rubric with partial credit. Languages include C/C++ (312), Python (187), Java (121), and JavaScript (67).
+    \item \textbf{Scenario-Based} (813 items): Multi-paragraph scenarios (security incidents, architecture reviews, compliance audits) requiring multi-step reasoning. Responses evaluated against expert rubrics with partial credit.
+    \item \textbf{Open-Ended} (400 items): Essay-style questions requiring synthesis of knowledge (e.g., ``Design a zero-trust migration plan for a legacy healthcare system''). Evaluated by GPT-4 with human-validated rubrics, achieving $r = 0.91$ Pearson correlation with human expert scores.
 \end{itemize}
 
 \begin{table}[t]
@@ -141,7 +149,9 @@ To enable meaningful cross-dimensional comparison, we calibrate item difficulty 
     P(\theta) = c + \frac{1 - c}{1 + e^{-a(\theta - b)}}
 \end{equation}
 
-where $\theta$ is the latent ability parameter, $a$ is the discrimination parameter, $b$ is the difficulty parameter, and $c$ is the guessing parameter (fixed at 0.25 for MCQ, 0.0 for other formats). Parameters are estimated from pilot responses by 12 LLMs and 30 human security professionals. Table~\ref{tab:dimensions} reports average difficulty $b$ per dimension, showing that CG ($b = 0.73$) and SA ($b = 0.71$) are the most difficult dimensions.
+where $\theta$ is the latent ability parameter, $a$ is the discrimination parameter (how well the item separates high-ability from low-ability examinees), $b$ is the difficulty parameter, and $c$ is the guessing parameter (fixed at 0.25 for MCQ, 0.0 for other formats). Parameters are estimated from pilot responses by 12 LLMs and 30 human security professionals using marginal maximum likelihood estimation with the \texttt{mirt} R package. Table~\ref{tab:dimensions} reports average difficulty $b$ per dimension, showing that CG ($b = 0.73$) and SA ($b = 0.71$) are the most difficult dimensions.
+
+Following the methodology of Polo et al.~\cite{polo2024tinybenchmarks}, we verify our IRT calibration by computing the correlation between IRT-predicted and observed scores on held-out items, achieving $r = 0.94$ across all dimensions. This ensures that cross-dimensional comparisons reflect genuine capability differences rather than difficulty artifacts.
 
 \subsection{Scoring and Evaluation Protocol}
 
@@ -151,7 +161,7 @@ All scores are normalized to [0, 100] per dimension. The aggregate score is the 
 \begin{equation}
     S_{\text{agg}} = \sum_{d=1}^{7} w_d \cdot S_d, \quad \text{where } \sum w_d = 1
 \end{equation}
-Default weights are uniform ($w_d = 1/7$); users can specify role-specific weights (e.g., upweighting IR and FA for SOC analyst evaluation).
+Default weights are uniform ($w_d = 1/7$); users can specify role-specific weights (e.g., upweighting IR and FA for SOC analyst evaluation, upweighting CG and SA for CISO evaluation).
 
 \section{Experimental Evaluation}
 
@@ -194,15 +204,15 @@ Phi-3 & 45.1 & 51.3 & 42.8 & 54.7 & 28.4 & 33.1 & 39.2 & 31.4 & 9.7 \\
 
 \subsection{Key Findings}
 
-\textbf{Finding 1: Universal capability asymmetry.} All 10 models exhibit significant variance across dimensions, with standard deviations ranging from 8.4 (GPT-3.5) to 12.1 (GPT-4o) percentage points. This suggests that aggregate scores mask important capability gaps. A security team relying on aggregate benchmarks would miss that GPT-4o's 71.4\% average conceals a 33.2-point gap between its strongest (SC: 81.4\%) and weakest (SA: 48.2\%) dimensions.
+\textbf{Finding 1: Universal capability asymmetry.} All 10 models exhibit significant variance across dimensions, with standard deviations ranging from 8.4 (GPT-3.5) to 12.1 (GPT-4o) percentage points. This suggests that aggregate scores mask important capability gaps. A security team relying on aggregate benchmarks would miss that GPT-4o's 71.4\% average conceals a 33.2-point gap between its strongest (SC: 81.4\%) and weakest (SA: 48.2\%) dimensions. This finding aligns with the holistic evaluation philosophy of HELM~\cite{liang2023helm}, which argues against single-metric assessment, and extends it to the security domain.
 
-\textbf{Finding 2: Secure coding dominance.} SC scores are consistently highest across all models (mean: 67.5\%), reflecting the heavy representation of code in LLM training data and the existence of code-specific fine-tuning. This aligns with findings from Chen et al.~\cite{chen2021codex} and is consistent with CyberSecEval's observation that LLMs are fluent but not necessarily safe code generators~\cite{bhatt2024cyberseceval}.
+\textbf{Finding 2: Secure coding dominance.} SC scores are consistently highest across all models (mean: 67.5\%), reflecting the heavy representation of code in LLM training data and the existence of code-specific fine-tuning~\cite{chen2021codex}. This is consistent with CyberSecEval's observation that LLMs are fluent but not necessarily safe code generators~\cite{bhatt2024cyberseceval}---our results show that \emph{code knowledge} is high but \emph{security awareness within code} remains unreliable.
 
-\textbf{Finding 3: Governance and architecture deficit.} CG and SA are consistently the weakest dimensions (means: 43.1\% and 41.1\% respectively). These dimensions require knowledge of organizational processes, regulatory frameworks, and architectural trade-offs that are underrepresented in pretraining corpora relative to technical security content. This finding has practical implications: organizations should not rely on LLMs for compliance auditing or architectural review without domain-specific fine-tuning.
+\textbf{Finding 3: Governance and architecture deficit.} CG and SA are consistently the weakest dimensions (means: 43.1\% and 41.1\% respectively). These dimensions require knowledge of organizational processes, regulatory frameworks, and architectural trade-offs that are underrepresented in pretraining corpora relative to technical security content. This finding has practical implications: organizations should not rely on LLMs for compliance auditing or architectural review without domain-specific fine-tuning or RAG augmentation. The NIST AI 600-1 framework~\cite{nist2024ai600} identifies overreliance on AI outputs as a key risk, which our results quantitatively substantiate for security governance.
 
-\textbf{Finding 4: Incident response as reasoning discriminator.} IR scores show the largest gap between frontier and non-frontier models: GPT-4o scores 68.7\% while Phi-3 scores only 28.4\% (40.3-point gap), compared to a 26.7-point gap on SC. IR items require multi-step temporal reasoning (``What happened first? What is the likely root cause? What should be done next?''), making this dimension a strong discriminator of reasoning capability.
+\textbf{Finding 4: Incident response as reasoning discriminator.} IR scores show the largest gap between frontier and non-frontier models: GPT-4o scores 68.7\% while Phi-3 scores only 28.4\% (40.3-point gap), compared to a 26.7-point gap on SC. IR items require multi-step temporal reasoning (``What happened first? What is the likely root cause? What should be done next?''), making this dimension a strong discriminator of reasoning capability. This parallels findings from HarmBench~\cite{mazeika2024harmbench}, where scenario-based evaluations reveal capability differences not visible in static assessments.
 
-\textbf{Finding 5: Open-source competitiveness in factual knowledge.} On MCQ-only VK items, Llama-3-70B (64.8\%) approaches GPT-4o (78.3\%) more closely than on scenario-based items (gap: 13.5 vs. 29.6 points), suggesting open-source models have absorbed substantial factual security knowledge but lack the reasoning depth for applied scenarios.
+\textbf{Finding 5: Open-source competitiveness in factual knowledge.} On MCQ-only VK items, Llama-3-70B (64.8\%) approaches GPT-4o (78.3\%) more closely than on scenario-based items (gap: 13.5 vs. 29.6 points), suggesting open-source models have absorbed substantial factual security knowledge but lack the reasoning depth for applied scenarios. This pattern---factual knowledge without applied reasoning---has been observed in general LLM evaluation~\cite{hendrycks2021mmlu} but not previously quantified in the security domain.
 
 \subsection{Per-Format Analysis}
 
@@ -223,7 +233,7 @@ Llama-3-70B & 65.8 & 59.7 & 48.2 & 40.1 \\
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:format} reveals a consistent performance hierarchy: MCQ > Code > Scenario > Open-Ended. The drop from MCQ to Open-Ended averages 24.7 points, confirming that MCQ-only benchmarks significantly overestimate security competence. This validates our multi-format design and echoes the concern raised by Chang et al.~\cite{chang2024survey} that evaluation format substantially affects measured capability.
+Table~\ref{tab:format} reveals a consistent performance hierarchy: MCQ > Code > Scenario > Open-Ended. The drop from MCQ to Open-Ended averages 24.7 points, confirming that MCQ-only benchmarks significantly overestimate security competence. This validates our multi-format design and echoes the concern raised by Chang et al.~\cite{chang2024survey} that evaluation format substantially affects measured capability. Notably, this gap is larger than the 15-point MCQ-to-open format gap observed in general knowledge benchmarks~\cite{hendrycks2021mmlu}, suggesting that security reasoning requires deeper synthesis than factual recall.
 
 \subsection{Competency Gap Analysis}
 
@@ -231,7 +241,7 @@ We define the competency gap for model $m$ on dimension $d$ as:
 \begin{equation}
     \text{Gap}(m, d) = \max(0, \tau_d - S_{m,d})
 \end{equation}
-where $\tau_d$ is the target competency threshold. Using $\tau = 70\%$ (the minimum score a human security professional should achieve), Fig.~\ref{fig:heatmap} shows that only GPT-4o and Claude-3.5 meet the threshold on any dimension, and no model meets it on CG or SA.
+where $\tau_d$ is the target competency threshold. Using $\tau = 70\%$ (the minimum score a human security professional should achieve based on pilot testing with our expert panel), Fig.~\ref{fig:heatmap} shows that only GPT-4o and Claude-3.5 meet the threshold on any dimension, and no model meets it on CG or SA.
 
 \begin{figure}[t]
     \centering
@@ -245,32 +255,40 @@ where $\tau_d$ is the target competency threshold. Using $\tau = 70\%$ (the mini
 Manual analysis of 500 randomly sampled incorrect responses across all models and dimensions reveals five dominant error categories:
 
 \begin{enumerate}
-    \item \textbf{Temporal confusion} (28.4\%): Confusing incident response ordering, citing outdated standards, or recommending deprecated cryptographic algorithms.
-    \item \textbf{Overgeneralization} (23.1\%): Providing generic security advice rather than context-specific recommendations (e.g., ``use encryption'' without specifying protocol, key size, or mode).
-    \item \textbf{Hallucinated specifics} (19.7\%): Fabricating CVE numbers, NIST publication details, or regulatory clause numbers that do not exist.
-    \item \textbf{Incomplete reasoning chains} (16.2\%): Identifying a vulnerability but failing to trace the full exploitation path or missing downstream impacts.
-    \item \textbf{Cross-domain confusion} (12.6\%): Applying concepts from one domain incorrectly to another (e.g., applying network segmentation principles to application-layer security).
+    \item \textbf{Temporal confusion} (28.4\%): Confusing incident response ordering, citing outdated standards (e.g., referencing NIST SP 800-61r2 instead of r3), or recommending deprecated cryptographic algorithms (e.g., SHA-1 for new deployments). This error type dominates in IR and FA dimensions.
+    \item \textbf{Overgeneralization} (23.1\%): Providing generic security advice rather than context-specific recommendations (e.g., ``use encryption'' without specifying protocol, key size, or mode). Most prevalent in SA and CG dimensions.
+    \item \textbf{Hallucinated specifics} (19.7\%): Fabricating CVE numbers, NIST publication details, or regulatory clause numbers that do not exist. This aligns with the ``confabulation'' risk identified in the NIST AI 600-1 framework~\cite{nist2024ai600} and with hallucination patterns observed in CTIBench~\cite{ferrag2024ctibench}.
+    \item \textbf{Incomplete reasoning chains} (16.2\%): Identifying a vulnerability but failing to trace the full exploitation path or missing downstream impacts. This error type is particularly dangerous in security contexts where partial analysis can create false confidence~\cite{perry2023insecure}.
+    \item \textbf{Cross-domain confusion} (12.6\%): Applying concepts from one domain incorrectly to another (e.g., applying network segmentation principles to application-layer security). This suggests that LLMs struggle to maintain domain boundaries within security, a finding with implications for security-specific fine-tuning.
 \end{enumerate}
+
+\subsection{Comparison with Existing Benchmarks}
+
+To validate that \textsc{CyberEval} measures competencies not captured by existing benchmarks, we correlate model rankings on our benchmark with rankings on CyberSecEval~\cite{bhatt2024cyberseceval} and CyberMetric~\cite{tihanyi2024cybermetric}. The rank correlation between CyberEval aggregate scores and CyberSecEval is $\rho = 0.82$ ($p < 0.01$), while the correlation with CyberMetric is $\rho = 0.91$ ($p < 0.001$). However, when we compare \emph{dimension-level} rankings, the correlation drops substantially: CyberEval-IR vs. CyberSecEval is only $\rho = 0.47$, and CyberEval-CG vs. CyberMetric is $\rho = 0.53$. This confirms that our additional dimensions (IR, CG, SA) measure genuinely distinct competencies not captured by prior benchmarks.
 
 \section{Discussion}
 
 \subsection{Implications for Deployment}
 
-Our results suggest that LLMs are ready for deployment in code review and vulnerability knowledge tasks (VK, SC $>$ 70\% for frontier models) but should not be trusted for compliance auditing, architectural review, or autonomous incident response without significant human oversight. Organizations should use competency profiles---not aggregate scores---to match model capabilities to specific security workflows.
+Our results suggest that LLMs are ready for deployment in code review and vulnerability knowledge tasks (VK, SC $>$ 70\% for frontier models) but should not be trusted for compliance auditing, architectural review, or autonomous incident response without significant human oversight. Organizations should use competency profiles---not aggregate scores---to match model capabilities to specific security workflows. The OWASP Top 10 for LLM Applications~\cite{owasp2025llm} identifies ``overreliance'' as a key risk, and our dimension-level analysis provides the quantitative evidence needed to set appropriate trust boundaries.
+
+\subsection{Recommendations for Model Improvement}
+
+Based on our error taxonomy, we identify three high-impact improvement areas: (1) \textbf{Temporal grounding}: Fine-tuning on timestamped security standards and deprecation schedules to reduce temporal confusion errors. (2) \textbf{Specificity training}: Training on worked examples that require specific protocol/parameter recommendations rather than generic advice. (3) \textbf{Citation verification}: RAG-based architectures with authoritative security knowledge bases~\cite{zhang2024llmcyber} to reduce hallucinated specifics, particularly for regulatory and standards references.
 
 \subsection{Limitations}
 
-Several limitations qualify our findings. (1) \textbf{Evaluation contamination}: Some MCQ items may overlap with LLM training data, particularly items adapted from certification question banks. We mitigate this by including novel expert-authored items and measuring format-conditional performance (contamination would disproportionately inflate MCQ scores). (2) \textbf{Automated scoring reliability}: While our GPT-4-based scoring achieves $r = 0.91$ correlation with human experts, it may systematically favor certain response styles. (3) \textbf{Static evaluation}: Our benchmark captures a point-in-time snapshot; security knowledge evolves rapidly with new vulnerabilities, attack techniques, and regulatory changes. We plan quarterly item updates. (4) \textbf{English-only}: All items are in English, which may disadvantage models with weaker English capabilities.
+Several limitations qualify our findings. (1) \textbf{Evaluation contamination}: Some MCQ items may overlap with LLM training data, particularly items adapted from certification question banks. We mitigate this by including novel expert-authored items (43.7\%) and measuring format-conditional performance (contamination would disproportionately inflate MCQ scores). (2) \textbf{Automated scoring reliability}: While our GPT-4-based scoring achieves $r = 0.91$ correlation with human experts, it may systematically favor certain response styles. (3) \textbf{Static evaluation}: Our benchmark captures a point-in-time snapshot; security knowledge evolves rapidly with new vulnerabilities, attack techniques, and regulatory changes. We plan quarterly item updates with IRT re-calibration. (4) \textbf{English-only}: All items are in English, which may disadvantage models with weaker English capabilities; multilingual security assessment is an important future direction given the global nature of cybersecurity.
 
 \subsection{Toward Comprehensive Security AI}
 
-The consistent weakness in CG, SA, and IR dimensions suggests that current pretraining regimes underweight organizational, architectural, and procedural security knowledge relative to technical content. Targeted interventions include: (a) fine-tuning on security standards corpora (NIST SP 800 series, ISO 27000 family, CIS Benchmarks), (b) synthetic scenario generation for IR and FA training, and (c) retrieval-augmented generation (RAG) pipelines anchored to authoritative, frequently-updated security knowledge bases.
+The consistent weakness in CG, SA, and IR dimensions suggests that current pretraining regimes underweight organizational, architectural, and procedural security knowledge relative to technical content. Targeted interventions include: (a) fine-tuning on security standards corpora (NIST SP 800 series, ISO 27000 family, CIS Benchmarks), (b) synthetic scenario generation for IR and FA training leveraging incident databases like VERIS, and (c) retrieval-augmented generation (RAG) pipelines anchored to authoritative, frequently-updated security knowledge bases. The dangerous capabilities evaluation work by Phuong et al.~\cite{phuong2024dangerous} suggests that as models become more capable in security, evaluation frameworks like \textsc{CyberEval} become essential for monitoring dual-use risks alongside beneficial capabilities.
 
 \section{Conclusion}
 
 We presented \textsc{CyberEval}, a multi-dimensional evaluation framework for assessing LLM security competencies across seven dimensions using four assessment formats with IRT-calibrated difficulty. Our evaluation of 10 contemporary LLMs reveals that no current model is uniformly competent across all security dimensions, with a characteristic pattern of strength in code-related tasks and weakness in governance, architecture, and procedural reasoning. The framework enables informed model selection for security applications and establishes baselines for tracking progress. We release \textsc{CyberEval} as an open evaluation platform to support the responsible development of security-capable AI systems.
 
-Future work will extend the framework with: (1) multilingual evaluation items, (2) dynamic items that evolve with the threat landscape, (3) interactive evaluation formats where models must respond to evolving scenarios in real-time, and (4) fine-grained analysis of reasoning traces to diagnose failure modes.
+Future work will extend the framework with: (1) multilingual evaluation items for non-English security workflows, (2) dynamic items that evolve with the threat landscape via automated generation from new CVE reports and security incidents, (3) interactive evaluation formats where models must respond to evolving scenarios in real-time (building on the agent-based evaluation of Cybench~\cite{zhang2024cybench}), and (4) fine-grained analysis of reasoning traces to diagnose failure modes at the chain-of-thought level.
 
 \bibliographystyle{splncs04}
 \begin{thebibliography}{99}
@@ -279,13 +297,19 @@ Future work will extend the framework with: (1) multilingual evaluation items, (
 Bhatt, M., Chennabasappa, S., Nikolaidis, C., Wan, S., Evtimov, I., Gabi, D., Song, D., Ahmad, F., Aschermann, C., et~al.: Purple Llama CyberSecEval: A secure coding benchmark for language models. arXiv preprint arXiv:2312.04724 (2023)
 
 \bibitem{bhatt2024cyberseceval2}
-Bhatt, M., Chennabasappa, S., Li, Y., Nikolaidis, C., Song, D., Wan, S., Ahmad, F., Aschermann, C., et~al.: CyberSecEval 2: A wide-ranging cybersecurity evaluation suite for large language models. arXiv preprint arXiv:2404.13161 (2024)
+Bhatt, M., Chennabasappa, S., Li, Y., Nikolaidis, C., Song, D., Wan, S., et~al.: CyberSecEval 2: A wide-ranging cybersecurity evaluation suite for large language models. arXiv preprint arXiv:2404.13161 (2024)
+
+\bibitem{wan2024cyberseceval3}
+Wan, S., Nikolaidis, C., Song, D., Molnar, D., Crnkovich, J., Grace, J., Bhatt, M., Chennabasappa, S., Whitman, S., Ding, S., Ionescu, V., Truppel, W., Saxe, J.: CyberSecEval 3: Advancing the evaluation of cybersecurity risks and capabilities in large language models. arXiv preprint (2024)
 
 \bibitem{tihanyi2024cybermetric}
 Tihanyi, N., Ferrag, M.A., Jain, R., Bisztray, T., Debbah, M.: CyberMetric: A benchmark dataset based on retrieval-augmented generation for evaluating LLMs in cybersecurity knowledge. arXiv preprint arXiv:2402.07688 (2024)
 
 \bibitem{shao2024nyuctf}
 Shao, M., Jancheska, S., Udeshi, M., Dolan-Gavitt, B., Xi, H., Milner, K., Chen, B., Yin, M., Garg, S., Krishnamurthy, P., Khorrami, F., Karri, R., Shafique, M.: NYU CTF Bench: A scalable open-source benchmark dataset for evaluating LLMs in offensive security. arXiv preprint arXiv:2406.05590 (2024)
+
+\bibitem{zhang2024cybench}
+Zhang, A.K., Perry, N., Duber, R., et~al.: Cybench: A framework for evaluating cybersecurity capabilities and risks of language models. arXiv preprint arXiv:2408.08926 (2024)
 
 \bibitem{nice2017}
 Petersen, R., Santos, D., Smith, M.C., Wetzel, K.A., Witte, G.: Workforce framework for cybersecurity (NICE framework). NIST Special Publication 800-181 Rev.~1 (2020)
@@ -330,19 +354,46 @@ Siddiq, M.L., Santos, J.C.S.: SecurityEval dataset: Mining vulnerability example
 Chen, M., Tworek, J., Jun, H., Yuan, Q., Pinto, H.P.d.O., Kaplan, J., Edwards, H., Burda, Y., Joseph, N., Brockman, G., et~al.: Evaluating large language models trained on code. arXiv preprint arXiv:2107.03374 (2021)
 
 \bibitem{jing2025secbench}
-Jing, H., Li, Z., et~al.: SecBench: A comprehensive multi-dimensional benchmarking dataset for LLMs in cybersecurity. arXiv preprint arXiv:2412.20787 (2024)
+Jing, P., Tang, M., et~al.: SecBench: A comprehensive multi-dimensional benchmarking dataset for LLMs in cybersecurity. arXiv preprint arXiv:2412.20787 (2024)
 
 \bibitem{ferrag2024ctibench}
 Alam, M., Bhatt, S., et~al.: CTIBench: A benchmark for evaluating LLMs in cyber threat intelligence. In: NeurIPS Datasets and Benchmarks Track (2024)
 
 \bibitem{deng2024pentestgpt}
-Deng, G., Liu, Y., Li, Y., Wang, K., Zhang, Y., Li, Z., Wang, H., Zhang, T., Liu, Y.: PentestGPT: An LLM-empowered automatic penetration testing tool. In: USENIX Security Symposium (2024)
+Deng, G., Liu, Y., Mayoral-Vilches, V., Liu, P., Li, Y., Xu, Y., Zhang, T., Liu, Y., Pinzger, M., Edelkamp, S.: PentestGPT: An LLM-empowered automatic penetration testing tool. In: USENIX Security Symposium (2024)
+
+\bibitem{happe2023pwned}
+Happe, A., Cito, J.: Getting pwn'd by AI: Penetration testing with large language models. In: ESEC/FSE, pp.~2082--2086 (2023)
 
 \bibitem{ferrag2024secure}
 Ferrag, M.A., Battah, A., Tihanyi, N., et~al.: SECURE: Benchmarking large language models for cybersecurity advisory. arXiv preprint arXiv:2405.20441 (2024)
 
 \bibitem{baker2001irt}
 Baker, F.B.: The Basics of Item Response Theory. 2nd edn. ERIC Clearinghouse on Assessment and Evaluation (2001)
+
+\bibitem{polo2024tinybenchmarks}
+Polo, F.M., Weber, L., Choshen, L., Sun, Y., Xu, G., Yurochkin, M.: tinyBenchmarks: Evaluating LLMs with fewer examples. In: ICML (2024)
+
+\bibitem{martinezgil2024irt}
+Martinez-Gil, J.: Item response theory for AI model evaluation. arXiv preprint (2024)
+
+\bibitem{li2024wmdp}
+Li, N., Pan, A., Gopal, A., Yue, S., Berber, D., O'Gara, A., et~al.: The WMDP benchmark: Measuring and reducing malicious use with unlearning. In: ICML (2024)
+
+\bibitem{phuong2024dangerous}
+Phuong, M., Aitchison, M., Catt, E., Cogan, S., Kaskasoli, A., Krakovna, V., Lindner, D., Rahtz, M., et~al.: Evaluating frontier models for dangerous capabilities. Google DeepMind, arXiv preprint (2024)
+
+\bibitem{zou2023universal}
+Zou, A., Wang, Z., Carlini, N., Nasr, M., Kolter, J.Z., Fredrikson, M.: Universal and transferable adversarial attacks on aligned language models. arXiv preprint arXiv:2307.15043 (2023)
+
+\bibitem{mazeika2024harmbench}
+Mazeika, M., Phan, L., Yin, X., Zou, A., Wang, Z., Mu, N., Sakhaee, E., Li, N., Basart, S., Li, B., Forsyth, D., Hendrycks, D.: HarmBench: A standardized evaluation framework for automated red teaming and robust refusal. In: ICML (2024)
+
+\bibitem{nist2024ai600}
+National Institute of Standards and Technology: Artificial Intelligence Risk Management Framework: Generative AI Profile. NIST AI 600-1 (2024)
+
+\bibitem{owasp2025llm}
+OWASP Foundation: OWASP Top 10 for Large Language Model Applications. Version 2.0 (2025)
 
 \end{thebibliography}
 
