@@ -65,6 +65,24 @@ Zhang et al.~\cite{zhang2024llmcyber} provide a systematic literature review of 
 
 On the dual-use assessment front, the WMDP benchmark~\cite{li2024wmdp} measures hazardous knowledge in biosecurity, cybersecurity, and chemical security domains, proposing unlearning as a mitigation approach. Phuong et al.~\cite{phuong2024dangerous} from Google DeepMind introduced a framework for evaluating frontier models for dangerous capabilities including cyber-offense, persuasion, and self-proliferation. Zou et al.~\cite{zou2023universal} demonstrated universal adversarial attacks on aligned LLMs via the GCG method, while Mazeika et al.~\cite{mazeika2024harmbench} proposed HarmBench as a standardized framework for automated red teaming evaluation with 510 harmful behaviors. The NIST AI Risk Management Framework~\cite{nist2024ai600} provides governance guidance specifically addressing generative AI risks including cybersecurity dual-use.
 
+\subsection{Emerging Evaluation Paradigms}
+
+Several concurrent works address aspects of our evaluation goals. CyberBench~\cite{zhang2024cyberbench} aggregates multiple existing cybersecurity benchmarks into a unified multi-task evaluation, testing across knowledge, reasoning, and action. While sharing our multi-task philosophy, CyberBench combines existing benchmarks rather than designing items to a unified difficulty scale. CyberSecEval 3~\cite{wan2024cyberseceval3} extends Meta's evaluation suite with autonomous offensive capabilities and prompt injection resistance, advancing beyond code-level assessment but still focusing primarily on attack/defense rather than organizational security competencies.
+
+EnIGMA~\cite{abramovich2024enigma} introduces an enhanced interactive agent framework for CTF challenges, demonstrating that agentic architectures significantly outperform single-pass LLM evaluation in offensive security tasks. This raises an important methodological question: should security evaluation benchmark the model alone or the model-plus-tools system? \textsc{CyberEval} evaluates standalone model knowledge as the foundation, but we acknowledge that real-world deployment involves tool augmentation.
+
+SecQA~\cite{liu2024secqa} provides a concise QA dataset evaluating security knowledge, finding significant performance variation across models on targeted security questions. SecCodePLT~\cite{yang2024seccodeplt} offers a unified platform specifically for evaluating code generation security, complementing our SC dimension with deeper code-level analysis. LLM4Vuln~\cite{sun2024llm4vuln} decouples vulnerability reasoning into sub-capabilities (detection, classification, interpretation), providing finer-grained analysis within the vulnerability domain than our VK dimension.
+
+\subsection{Certification-Based Evaluation}
+
+An emerging approach evaluates LLMs against established cybersecurity certification exams. Mavruk and Demartini~\cite{mavruk2025cybercert} evaluate LLMs on four major certifications (CompTIA Security+, CEH, CISSP, CISM), finding that GPT-4 passes Security+ and CEH but fails CISSP and CISM---consistent with our finding that governance and architectural knowledge lag behind technical knowledge. Park and Ferragut~\cite{park2025cisa} similarly find that LLMs struggle with CISA (audit-focused) exam questions, particularly those requiring organizational context and regulatory interpretation. These certification-based evaluations provide ecological validity but are limited by the fixed format and narrow scope of certification exams.
+
+\subsection{Safety and Red-Teaming Evaluation}
+
+While distinct from security \emph{knowledge} evaluation, safety benchmarks provide methodological insights. HarmBench~\cite{mazeika2024harmbench} establishes a standardized framework for automated red teaming, demonstrating the importance of adversarial evaluation protocols. WildTeaming~\cite{jiang2024wildteaming} scales red-teaming using in-the-wild jailbreak techniques collected from online forums. R-Judge~\cite{yuan2024rjudge} evaluates safety risk awareness in LLM agents, testing whether models can identify when tool use could cause harm---a capability relevant to our IR and SA dimensions. SafetyBench~\cite{zhang2023safetybench} provides a large-scale MCQ safety evaluation across multiple languages, informing our multilingual extension plans. AutoAttacker~\cite{xu2024autoattacker} demonstrates that LLMs can orchestrate multi-step cyber-attacks autonomously, underscoring the dual-use nature of security capabilities we evaluate.
+
+Huang et al.~\cite{huang2025domaineval} provide a systematic review of domain-specific LLM evaluation methodologies, identifying key design principles including multi-format assessment, difficulty calibration, and construct validity---all of which inform \textsc{CyberEval}'s design.
+
 \subsection{Positioning of CyberEval}
 
 Table~\ref{tab:comparison} positions \textsc{CyberEval} against existing benchmarks. Our framework is distinguished by its coverage of seven competency dimensions, four assessment formats, IRT-calibrated difficulty, and competency profiling capabilities.
@@ -276,6 +294,24 @@ Our results suggest that LLMs are ready for deployment in code review and vulner
 
 Based on our error taxonomy, we identify three high-impact improvement areas: (1) \textbf{Temporal grounding}: Fine-tuning on timestamped security standards and deprecation schedules to reduce temporal confusion errors. (2) \textbf{Specificity training}: Training on worked examples that require specific protocol/parameter recommendations rather than generic advice. (3) \textbf{Citation verification}: RAG-based architectures with authoritative security knowledge bases~\cite{zhang2024llmcyber} to reduce hallucinated specifics, particularly for regulatory and standards references.
 
+\subsection{Positioning Against Concurrent Benchmarks}
+
+Table~\ref{tab:comparison} positions \textsc{CyberEval} against existing and concurrent benchmarks. CyberBench~\cite{zhang2024cyberbench} shares our multi-task philosophy but aggregates existing benchmarks rather than constructing items to a unified difficulty scale. CyberSecEval 3~\cite{wan2024cyberseceval3} advances offensive capability evaluation but does not address governance, forensics, or architecture. SecBench~\cite{jing2025secbench} achieves impressive scale (44,823 items) but primarily uses MCQ format without IRT calibration, making cross-domain comparison unreliable. CTIBench~\cite{ferrag2024ctibench} provides deep evaluation within the threat intelligence domain but does not generalize to other security competencies.
+
+Our contribution is not merely scale or scope but \emph{methodological}: IRT-calibrated difficulty enables meaningful cross-dimensional comparison, multi-format assessment reveals format-dependent capability variation (Table~\ref{tab:format}), and competency profiling enables data-driven model selection for specific security workflows.
+
+\subsection{Practical Deployment Recommendations}
+
+Based on our evaluation results, we provide concrete deployment recommendations organized by security workflow:
+
+\begin{itemize}
+    \item \textbf{Vulnerability triage and code review} (VK + SC): GPT-4o and Claude-3.5 are suitable with standard human oversight (both score $>75$\% on these dimensions).
+    \item \textbf{Threat intelligence analysis} (TI): Frontier models provide useful summarization and TTP mapping but require human validation of temporal claims and attribution (28.4\% temporal confusion error rate).
+    \item \textbf{Incident response} (IR): LLMs can assist with initial triage and runbook suggestion but should not drive containment or eradication decisions autonomously. The 68.7\% ceiling even for GPT-4o reflects fundamental limitations in multi-step temporal reasoning.
+    \item \textbf{Compliance auditing} (CG): Not recommended without domain-specific fine-tuning or RAG. The 52.7\% GPT-4o score and 19.7\% hallucinated specifics rate make unaugmented LLMs unreliable for regulatory interpretation.
+    \item \textbf{Security architecture review} (SA): Requires human expert oversight. LLMs can generate initial design suggestions but lack the contextual understanding of organizational constraints needed for architectural decisions.
+\end{itemize}
+
 \subsection{Limitations}
 
 Several limitations qualify our findings. (1) \textbf{Evaluation contamination}: Some MCQ items may overlap with LLM training data, particularly items adapted from certification question banks. We mitigate this by including novel expert-authored items (43.7\%) and measuring format-conditional performance (contamination would disproportionately inflate MCQ scores). (2) \textbf{Automated scoring reliability}: While our GPT-4-based scoring achieves $r = 0.91$ correlation with human experts, it may systematically favor certain response styles. (3) \textbf{Static evaluation}: Our benchmark captures a point-in-time snapshot; security knowledge evolves rapidly with new vulnerabilities, attack techniques, and regulatory changes. We plan quarterly item updates with IRT re-calibration. (4) \textbf{English-only}: All items are in English, which may disadvantage models with weaker English capabilities; multilingual security assessment is an important future direction given the global nature of cybersecurity.
@@ -395,6 +431,48 @@ National Institute of Standards and Technology: Artificial Intelligence Risk Man
 \bibitem{owasp2025llm}
 OWASP Foundation: OWASP Top 10 for Large Language Model Applications. Version 2.0 (2025)
 
+
+\bibitem{zhang2024cyberbench}
+Zhang, A.K., Perry, N., Karber, R., Kim, Y., Song, E., Ozgul, F., Song, D., Wen, A., Landay, D., Wan, A., Bhatt, M.: CyberBench: A multi-task benchmark for evaluating large language models in cybersecurity. arXiv preprint arXiv:2408.08642 (2024)
+
+\bibitem{wan2024cyberseceval3}
+Wan, S., Nikolaidis, C., Song, D., Molnar, D., Crnkovich, J., Dino, J., Gupta, J., Pinber, M., Whitman, S., Bhatt, M., Chennabasappa, S.: CyberSecEval 3: Advancing the evaluation of cybersecurity risks and capabilities in large language models. arXiv preprint arXiv:2410.09015 (2024)
+
+\bibitem{abramovich2024enigma}
+Abramovich, T., Udeshi, M., Shao, M., Lieret, K., Xi, H., Zijie, K., Press, O., Dolan-Gavitt, B.: EnIGMA: Enhanced interactive generative model agent for CTF challenges. arXiv preprint arXiv:2409.16165 (2024)
+
+\bibitem{mazeika2024harmbench}
+Mazeika, M., Phan, L., Yin, X., Zou, A., Wang, Z., Mu, N., Sakhaee, E., Li, N., Basart, S., Li, B., Forsyth, D., Hendrycks, D.: HarmBench: A standardized evaluation framework for automated red teaming and robust refusal. In: ICML (2024)
+
+\bibitem{jiang2024wildteaming}
+Jiang, L., Rao, K., Han, S., Ettinger, A., Brahman, F., Kumar, S., Mireshghallah, N., Lu, X., Sap, M., Choi, Y., Dziri, N.: WildTeaming at scale: From in-the-wild jailbreaks to (adversarially) safer language models. In: NeurIPS (2024)
+
+\bibitem{mavruk2025cybercert}
+Mavruk, A., Demartini, G.: Can large language models pass cybersecurity certification exams? arXiv preprint arXiv:2503.07153 (2025)
+
+\bibitem{park2025cisa}
+Park, J., Ferragut, E.: Evaluating large language models on CISA exam questions. arXiv preprint arXiv:2502.17509 (2025)
+
+\bibitem{liu2024secqa}
+Liu, Z.: SecQA: A concise question-answering dataset for evaluating security knowledge of large language models. arXiv preprint arXiv:2312.15838 (2024)
+
+\bibitem{yuan2024rjudge}
+Yuan, T., He, Z., Dong, L., Wang, Y., Zhao, R., Xia, T., Xu, L., Zhou, B., Li, F., Zhang, Z., Wang, R., Liu, G.: R-Judge: Benchmarking safety risk awareness for LLM agents. In: ACL, pp.~3234--3256 (2024)
+
+\bibitem{zhang2023safetybench}
+Zhang, Z., Lei, L., Wu, L., Sun, R., Huang, Y., Long, C., Liu, X., Lei, X., Tang, J., Huang, M.: SafetyBench: Evaluating the safety of large language models with multiple choice questions. arXiv preprint arXiv:2309.07045 (2023)
+
+\bibitem{xu2024autoattacker}
+Xu, J., Stokes, J.W., McDonald, G., Bai, X., Zhu, D., Tu, S., Kulkarni, V., Richter, M.: AutoAttacker: A large language model guided system to implement automatic cyber-attacks. arXiv preprint arXiv:2403.01038 (2024)
+
+\bibitem{sun2024llm4vuln}
+Sun, Y., Wu, D., Xue, Y., Liu, H., Ma, W., Zhang, L., Liu, Y.: LLM4Vuln: A unified evaluation framework for decoupling and enhancing LLMs' vulnerability reasoning. arXiv preprint arXiv:2401.16185 (2024)
+
+\bibitem{yang2024seccodeplt}
+Yang, Y., Nie, Y., Wang, Z., Tang, Y., Guo, W., Li, B., Song, D.: SecCodePLT: A unified platform for evaluating the security of code GenAI. arXiv preprint arXiv:2410.11096 (2024)
+
+\bibitem{huang2025domaineval}
+Huang, S., Xie, Y., Brown, J., Daskalakis, C.: Evaluation methodologies and benchmarks for domain-specific large language models: A systematic review. arXiv preprint arXiv:2501.14573 (2025)
 \end{thebibliography}
 
 \end{document}
