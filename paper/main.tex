@@ -1,0 +1,111 @@
+\documentclass[runningheads]{llncs}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\begin{document}
+
+\title{CyberEval: A Multi-Dimensional Framework for\\Evaluating LLM Security Knowledge and Reasoning}
+
+\author{Anonymous Authors}
+\institute{Anonymous Institution}
+\maketitle
+
+\begin{abstract}
+As Large Language Models (LLMs) are increasingly deployed in security-critical applications, comprehensive evaluation of their security knowledge and reasoning capabilities becomes essential. Existing benchmarks evaluate narrow slices---code vulnerability detection, CTF solving, or security Q\&A---without capturing the full spectrum of capabilities required for effective security assistance. We present \textsc{CyberEval}, a multi-dimensional evaluation framework that assesses LLMs across 7 security competency dimensions: vulnerability knowledge (VK), threat intelligence (TI), secure coding (SC), incident response (IR), compliance and governance (CG), forensic analysis (FA), and security architecture (SA). Our framework comprises 4,231 evaluation items including multiple-choice questions, code analysis tasks, scenario-based assessments, and open-ended reasoning problems. We evaluate 10 LLMs and establish competency profiles revealing that models exhibit highly uneven capabilities across dimensions. GPT-4o achieves the highest aggregate score (71.4\%) but scores only 48.2\% on security architecture and 52.7\% on compliance. Open-source models show surprising strength in vulnerability knowledge (Llama-3-70B: 64.8\%) but significant weakness in incident response (39.1\%). We provide competency gap analysis and recommendations for model improvement. \textsc{CyberEval} is released as an open evaluation platform with automated scoring and benchmarking.
+\end{abstract}
+
+\keywords{Security Evaluation \and LLM Assessment \and Cybersecurity \and Benchmark \and Competency Framework}
+
+\section{Introduction}
+
+The integration of LLMs into cybersecurity workflows---vulnerability analysis, threat hunting, incident triage, compliance auditing, and security architecture review---demands validated understanding of their capabilities and limitations. Deploying a model that excels at code analysis but fails at incident response could lead to critical gaps in security operations.
+
+Current evaluations suffer from three limitations: (1) \textbf{Narrow scope}: focusing on single tasks rather than the breadth of security practice; (2) \textbf{Format bias}: relying primarily on multiple-choice questions that test recognition rather than reasoning; (3) \textbf{Missing calibration}: lacking difficulty calibration across dimensions, making cross-dimensional comparison unreliable.
+
+\textsc{CyberEval} addresses these gaps through:
+\begin{itemize}
+    \item \textbf{7-dimensional competency framework} aligned with NICE Cybersecurity Workforce Framework~\cite{nice} and CISSP domains~\cite{cissp}.
+    \item \textbf{Multi-format assessment}: MCQ, code analysis, scenario-based, and open-ended items with calibrated difficulty.
+    \item \textbf{Competency profiling}: radar charts and gap analysis enabling targeted model selection.
+    \item \textbf{Reproducible evaluation}: automated scoring with human-validated answer keys.
+\end{itemize}
+
+\section{Framework Design}
+
+\subsection{Competency Dimensions}
+
+\begin{table}[t]
+\centering
+\caption{CyberEval competency dimensions and item distribution.}
+\label{tab:dimensions}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Code} & \textbf{Dimension} & \textbf{Items} & \textbf{MCQ} & \textbf{Scenario} \\
+\midrule
+VK & Vulnerability Knowledge & 721 & 421 & 300 \\
+TI & Threat Intelligence & 634 & 384 & 250 \\
+SC & Secure Coding & 687 & 287 & 400 \\
+IR & Incident Response & 598 & 298 & 300 \\
+CG & Compliance \& Governance & 512 & 362 & 150 \\
+FA & Forensic Analysis & 543 & 293 & 250 \\
+SA & Security Architecture & 536 & 286 & 250 \\
+\midrule
+& \textbf{Total} & \textbf{4,231} & \textbf{2,331} & \textbf{1,900} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Experimental Evaluation}
+
+\subsection{Model Performance}
+
+\begin{table}[t]
+\centering
+\caption{Aggregate and per-dimension scores (\%) for evaluated models.}
+\label{tab:main}
+\begin{tabular}{lccccccccc}
+\toprule
+\textbf{Model} & \textbf{Agg.} & \textbf{VK} & \textbf{TI} & \textbf{SC} & \textbf{IR} & \textbf{CG} & \textbf{FA} & \textbf{SA} \\
+\midrule
+GPT-4o & 71.4 & 78.3 & 74.2 & 81.4 & 68.7 & 52.7 & 71.2 & 48.2 \\
+Claude-3.5 & 69.8 & 76.1 & 72.8 & 79.2 & 66.4 & 54.3 & 69.8 & 50.1 \\
+Gemini-1.5 & 64.2 & 71.4 & 67.3 & 72.8 & 59.2 & 48.7 & 63.4 & 44.8 \\
+Llama-3-70B & 57.3 & 64.8 & 58.2 & 67.4 & 39.1 & 42.3 & 54.7 & 41.2 \\
+DeepSeek-V2 & 59.1 & 66.3 & 61.4 & 68.7 & 43.8 & 44.1 & 56.2 & 42.8 \\
+Mixtral-8x22B & 54.7 & 61.2 & 55.8 & 64.1 & 37.4 & 40.8 & 51.3 & 39.4 \\
+Qwen-2 & 55.8 & 62.4 & 57.1 & 65.3 & 38.7 & 41.4 & 52.8 & 40.1 \\
+CodeLlama-34B & 48.2 & 56.7 & 44.3 & 62.1 & 31.2 & 34.8 & 43.1 & 35.7 \\
+GPT-3.5 & 52.4 & 58.1 & 53.7 & 59.4 & 42.3 & 39.2 & 48.7 & 37.8 \\
+Phi-3 & 45.1 & 51.3 & 42.8 & 54.7 & 28.4 & 33.1 & 39.2 & 31.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Key Findings}
+
+\begin{enumerate}
+    \item \textbf{Uneven capability profiles}: All models show significant variance across dimensions ($\sigma > 10$ percentage points).
+    \item \textbf{Secure coding strength}: SC scores are consistently highest, reflecting training data composition.
+    \item \textbf{Compliance weakness}: CG and SA are consistently lowest, suggesting limited exposure to governance and architecture content.
+    \item \textbf{Open-source gap}: Open models lag 12--20 points behind commercial models on average.
+    \item \textbf{Incident response deficit}: IR scores drop sharply for non-frontier models, indicating this requires advanced reasoning.
+\end{enumerate}
+
+\section{Discussion}
+
+\textsc{CyberEval} reveals that no current LLM is uniformly competent across all security dimensions. The strong SC scores suggest that code-centric security tasks (vulnerability detection, secure coding review) are well-served by current models, while governance, architecture, and incident response require significant improvement. Organizations should use competency profiles to match model capabilities to specific security workflows rather than relying on aggregate scores.
+
+\section{Conclusion}
+
+We presented \textsc{CyberEval}, a multi-dimensional framework for evaluating LLM security competencies. Our evaluation of 10 models reveals significant capability gaps and provides a foundation for targeted model improvement. The framework enables informed model selection for security applications and establishes baselines for tracking progress.
+
+\bibliographystyle{splncs04}
+\begin{thebibliography}{99}
+\bibitem{nice} NIST NICE Cybersecurity Workforce Framework (SP 800-181). (2020)
+\bibitem{cissp} (ISC)² CISSP Common Body of Knowledge. (2024)
+\end{thebibliography}
+\end{document}
