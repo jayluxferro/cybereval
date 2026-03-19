@@ -75,13 +75,13 @@ SecQA~\cite{liu2024secqa} provides a concise QA dataset evaluating security know
 
 \subsection{Certification-Based Evaluation}
 
-An emerging approach evaluates LLMs against established cybersecurity certification exams. Mavruk and Demartini~\cite{mavruk2025cybercert} evaluate LLMs on four major certifications (CompTIA Security+, CEH, CISSP, CISM), finding that GPT-4 passes Security+ and CEH but fails CISSP and CISM---consistent with our finding that governance and architectural knowledge lag behind technical knowledge. Park and Ferragut~\cite{park2025cisa} similarly find that LLMs struggle with CISA (audit-focused) exam questions, particularly those requiring organizational context and regulatory interpretation. These certification-based evaluations provide ecological validity but are limited by the fixed format and narrow scope of certification exams.
+An emerging approach evaluates LLMs against established cybersecurity certification exams. Tann et al.~\cite{tann2023llmsecurity} evaluate LLMs on cybersecurity certification exams and CTF challenges, finding that GPT-4 passes Security+ and CEH-level questions but struggles with advanced certifications---consistent with our finding that governance and architectural knowledge lag behind technical knowledge. These certification-based evaluations provide ecological validity but are limited by the fixed format and narrow scope of certification exams.
 
 \subsection{Safety and Red-Teaming Evaluation}
 
 While distinct from security \emph{knowledge} evaluation, safety benchmarks provide methodological insights. HarmBench~\cite{mazeika2024harmbench} establishes a standardized framework for automated red teaming, demonstrating the importance of adversarial evaluation protocols. WildTeaming~\cite{jiang2024wildteaming} scales red-teaming using in-the-wild jailbreak techniques collected from online forums. R-Judge~\cite{yuan2024rjudge} evaluates safety risk awareness in LLM agents, testing whether models can identify when tool use could cause harm---a capability relevant to our IR and SA dimensions. SafetyBench~\cite{zhang2023safetybench} provides a large-scale MCQ safety evaluation across multiple languages, informing our multilingual extension plans. AutoAttacker~\cite{xu2024autoattacker} shows that LLMs can orchestrate multi-step cyber-attacks autonomously, underscoring the dual-use nature of security capabilities we evaluate.
 
-Huang et al.~\cite{huang2025domaineval} provide a systematic review of domain-specific LLM evaluation methodologies, identifying key design principles including multi-format assessment, difficulty calibration, and construct validity---all of which inform \textsc{CyberEval}'s design.
+Chang et al.~\cite{chang2024survey} provide a comprehensive survey of LLM evaluation methodologies, identifying key design principles including multi-format assessment, difficulty calibration, and construct validity---all of which inform \textsc{CyberEval}'s design.
 
 \subsection{Positioning of CyberEval}
 
@@ -441,11 +441,10 @@ Abramovich, T., Udeshi, M., Shao, M., Lieret, K., Xi, H., Zijie, K., Press, O., 
 \bibitem{jiang2024wildteaming}
 Jiang, L., Rao, K., Han, S., Ettinger, A., Brahman, F., Kumar, S., Mireshghallah, N., Lu, X., Sap, M., Choi, Y., Dziri, N.: WildTeaming at scale: From in-the-wild jailbreaks to (adversarially) safer language models. In: NeurIPS (2024)
 
-\bibitem{mavruk2025cybercert}
-Mavruk, A., Demartini, G.: Can large language models pass cybersecurity certification exams? arXiv preprint arXiv:2503.07153 (2025)
+\bibitem{tann2023llmsecurity}
+Tann, W.J., Liu, Y., Sim, J.H., Seow, C.M., Lau, R.: Using large language models for cybersecurity capture-the-flag challenges and certification questions. arXiv preprint arXiv:2308.10443 (2023)
 
-\bibitem{park2025cisa}
-Park, J., Ferragut, E.: Evaluating large language models on CISA exam questions. arXiv preprint arXiv:2502.17509 (2025)
+
 
 \bibitem{liu2024secqa}
 Liu, Z.: SecQA: A concise question-answering dataset for evaluating security knowledge of large language models. arXiv preprint arXiv:2312.15838 (2024)
@@ -465,8 +464,8 @@ Sun, Y., Wu, D., Xue, Y., Liu, H., Ma, W., Zhang, L., Liu, Y.: LLM4Vuln: A unifi
 \bibitem{yang2024seccodeplt}
 Yang, Y., Nie, Y., Wang, Z., Tang, Y., Guo, W., Li, B., Song, D.: SecCodePLT: A unified platform for evaluating the security of code GenAI. arXiv preprint arXiv:2410.11096 (2024)
 
-\bibitem{huang2025domaineval}
-Huang, S., Xie, Y., Brown, J., Daskalakis, C.: Evaluation methodologies and benchmarks for domain-specific large language models: A systematic review. arXiv preprint arXiv:2501.14573 (2025)
+\bibitem{chang2024survey}
+Chang, Y., Wang, X., Wang, J., Wu, Y., Yang, L., Zhu, K., Chen, H., Yi, X., Wang, C., Wang, Y., et~al.: A survey on evaluation of large language models. ACM TIST \textbf{15}(3), Article~39 (2024)
 \end{thebibliography}
 
 \end{document}
