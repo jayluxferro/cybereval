@@ -53,11 +53,11 @@ The evaluation of LLMs has matured rapidly. HELM~\cite{liang2023helm} introduced
 
 \textbf{NYU CTF Bench}~\cite{shao2024nyuctf} provides a scalable dataset of Capture-the-Flag challenges for evaluating LLMs in offensive security. Using automated frameworks with tool-calling capabilities, it evaluates five LLMs on web exploitation, cryptography, reverse engineering, and forensics categories. \textbf{InterCode}~\cite{yang2023intercode} standardizes interactive coding benchmarks including a CTF component with execution feedback. These benchmarks evaluate offensive capabilities but do not assess defensive, governance, or architectural knowledge.
 
-\textbf{SecurityEval}~\cite{siddiq2022securityeval} provides 130 Python code samples across 75 CWE types for evaluating code generation security. While useful for code-specific evaluation, it does not address broader security competencies.
+\textbf{SecurityEval}~\cite{siddiq2022securityeval} provides 130 Python code samples across 75 CWE types for evaluating code generation security. \textbf{SecBench}~\cite{jing2025secbench} is arguably the largest knowledge-based evaluation dataset, covering 11 cybersecurity domains with both MCQ and short-answer formats, benchmarking 16 state-of-the-art LLMs. \textbf{CTIBench}~\cite{ferrag2024ctibench} evaluates LLMs on 5,610 cyber threat intelligence samples across five subtasks including CVE analysis and MITRE ATT\&CK mapping. While comprehensive in their respective scopes, none of these benchmarks provides the multi-dimensional competency profiling that \textsc{CyberEval} offers.
 
 \subsection{LLM Security Capabilities and Risks}
 
-Pearce et al.~\cite{pearce2022asleep} conducted the first systematic evaluation of GitHub Copilot's security, finding that 40\% of generated programs contained vulnerabilities across 25 CWE scenarios. Perry et al.~\cite{perry2023insecure} showed in a controlled user study ($n=47$) that developers with AI assistants produced significantly less secure code while believing it to be more secure. Fang et al.~\cite{fang2024hack,fang2024exploit} demonstrated that LLM agents can autonomously hack websites and exploit one-day vulnerabilities, raising concerns about dual-use capabilities. Zhang et al.~\cite{zhang2024llmcyber} provide a systematic literature review of 300+ works on LLMs in cybersecurity, covering 25 models and 10+ downstream tasks, but do not propose a unified evaluation framework.
+Pearce et al.~\cite{pearce2022asleep} conducted the first systematic evaluation of GitHub Copilot's security, finding that 40\% of generated programs contained vulnerabilities across 25 CWE scenarios. Perry et al.~\cite{perry2023insecure} showed in a controlled user study ($n=47$) that developers with AI assistants produced significantly less secure code while believing it to be more secure. Fang et al.~\cite{fang2024hack,fang2024exploit} demonstrated that LLM agents can autonomously hack websites and exploit one-day vulnerabilities, raising concerns about dual-use capabilities. Deng et al.~\cite{deng2024pentestgpt} introduced PentestGPT, an LLM-empowered penetration testing tool evaluated at USENIX Security 2024. Zhang et al.~\cite{zhang2024llmcyber} provide a systematic literature review of 300+ works on LLMs in cybersecurity, covering 25 models and 10+ downstream tasks, but do not propose a unified evaluation framework. The SECURE benchmark~\cite{ferrag2024secure} evaluates LLMs as cybersecurity advisory tools, finding that models show uneven advisory capabilities across vulnerability types.
 
 \subsection{Positioning of CyberEval}
 
@@ -74,6 +74,8 @@ Table~\ref{tab:comparison} positions \textsc{CyberEval} against existing benchma
 CyberSecEval~\cite{bhatt2024cyberseceval} & 2 & 189 & C & \ding{55} & \ding{55} \\
 CyberMetric~\cite{tihanyi2024cybermetric} & 1 & 10,000 & M & \ding{55} & \ding{55} \\
 NYU CTF Bench~\cite{shao2024nyuctf} & 1 & 256 & C & \ding{55} & \ding{55} \\
+SecBench~\cite{jing2025secbench} & 11 & 44,823 & M,S & \ding{55} & \ding{55} \\
+CTIBench~\cite{ferrag2024ctibench} & 5 & 5,610 & M,S & \ding{55} & \ding{55} \\
 SecurityEval~\cite{siddiq2022securityeval} & 1 & 130 & C & \ding{55} & \ding{55} \\
 MMLU (sec.)~\cite{hendrycks2021mmlu} & 1 & 100 & M & \ding{55} & \ding{55} \\
 \midrule
@@ -326,6 +328,18 @@ Siddiq, M.L., Santos, J.C.S.: SecurityEval dataset: Mining vulnerability example
 
 \bibitem{chen2021codex}
 Chen, M., Tworek, J., Jun, H., Yuan, Q., Pinto, H.P.d.O., Kaplan, J., Edwards, H., Burda, Y., Joseph, N., Brockman, G., et~al.: Evaluating large language models trained on code. arXiv preprint arXiv:2107.03374 (2021)
+
+\bibitem{jing2025secbench}
+Jing, H., Li, Z., et~al.: SecBench: A comprehensive multi-dimensional benchmarking dataset for LLMs in cybersecurity. arXiv preprint arXiv:2412.20787 (2024)
+
+\bibitem{ferrag2024ctibench}
+Alam, M., Bhatt, S., et~al.: CTIBench: A benchmark for evaluating LLMs in cyber threat intelligence. In: NeurIPS Datasets and Benchmarks Track (2024)
+
+\bibitem{deng2024pentestgpt}
+Deng, G., Liu, Y., Li, Y., Wang, K., Zhang, Y., Li, Z., Wang, H., Zhang, T., Liu, Y.: PentestGPT: An LLM-empowered automatic penetration testing tool. In: USENIX Security Symposium (2024)
+
+\bibitem{ferrag2024secure}
+Ferrag, M.A., Battah, A., Tihanyi, N., et~al.: SECURE: Benchmarking large language models for cybersecurity advisory. arXiv preprint arXiv:2405.20441 (2024)
 
 \bibitem{baker2001irt}
 Baker, F.B.: The Basics of Item Response Theory. 2nd edn. ERIC Clearinghouse on Assessment and Evaluation (2001)
