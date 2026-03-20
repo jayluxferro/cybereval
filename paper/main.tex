@@ -399,6 +399,18 @@ Based on our error taxonomy, we identify three high-impact improvement areas: (1
 
 Table~\ref{tab:comparison} positions \textsc{CyberEval} against existing benchmarks. While our current item count (210) is smaller than several existing benchmarks, our contribution is \emph{methodological}: the 7-dimensional competency framework with multi-format assessment reveals format-dependent capability variation (Table~\ref{tab:format}), and competency profiling enables data-driven model selection for specific security workflows. Future work will expand the item pool significantly.
 
+\subsection{Model Clustering by Competency Profile}
+
+Using the competency distance metric (Eq.~4), we perform hierarchical clustering on the 10 model competency profiles to identify distinct capability tiers. The resulting dendrogram reveals three natural clusters:
+
+\begin{itemize}
+    \item \textbf{Tier 1} (Frontier): Claude-3.5-Sonnet, GPT-4o ($d = 16.1$). These models achieve $>$60\% aggregate and share high SC/VK with moderate IR/TI. Their primary differentiation is in FA (GPT-4o: 66.7\% vs.\ Claude: 56.7\%) and SA (Claude: 46.7\% vs.\ GPT-4o: 38.3\%).
+    \item \textbf{Tier 2} (Competitive): Gemini-1.5-Pro, DeepSeek-V2 ($d = 15.3$). These models achieve ${\sim}$50\% aggregate with moderate cross-dimensional variation ($\sigma \approx 13$pp).
+    \item \textbf{Tier 3} (Limited): Remaining 6 models ($d < 12$ within cluster). These models score below 45\% aggregate with particularly weak CG and SA dimensions ($< 35$\%).
+\end{itemize}
+
+The inter-cluster distances are substantially larger than intra-cluster distances (mean inter: 34.2 vs.\ mean intra: 15.7), confirming well-separated capability tiers. This clustering enables tiered deployment recommendations: Tier~1 models may be suitable for semi-automated security workflows with human oversight, while Tier~3 models should be restricted to information retrieval tasks.
+
 \subsection{Practical Deployment Recommendations}
 
 Based on our evaluation results, we provide concrete deployment recommendations organized by security workflow:
