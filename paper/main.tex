@@ -10,6 +10,7 @@
 \usepackage{subcaption}
 \usepackage{multirow}
 \usepackage{pifont}
+\usepackage{enumitem}
 
 \begin{document}
 
@@ -67,7 +68,7 @@ On the dual-use assessment front, the WMDP benchmark~\cite{li2024wmdp} measures 
 
 \subsection{Emerging Evaluation Paradigms}
 
-Several concurrent works address aspects of our evaluation goals. CyberBench~\cite{zhang2024cyberbench} aggregates multiple existing cybersecurity benchmarks into a unified multi-task evaluation, testing across knowledge, reasoning, and action. While sharing our multi-task philosophy, CyberBench combines existing benchmarks rather than designing items to a unified difficulty scale. CyberSecEval 3~\cite{wan2024cyberseceval3} extends Meta's evaluation suite with autonomous offensive capabilities and prompt injection resistance, advancing beyond code-level assessment but still focusing primarily on attack/defense rather than organizational security competencies.
+Several concurrent works address aspects of our evaluation goals. CyberBench~\cite{zhang2024cyberbench} aggregates multiple existing cybersecurity benchmarks into a unified multi-task evaluation, testing across knowledge, reasoning, and action. While sharing our multi-task philosophy, CyberBench combines existing benchmarks rather than designing items to a unified difficulty scale. CyberLLMBench~\cite{xu2025cyberllmbench} addresses the informativeness gap in cybersecurity evaluation datasets, arguing that existing benchmarks fail to capture the complexity of real-world cybersecurity knowledge---a concern we share and address through multi-format assessment. CyberSecEval 3~\cite{wan2024cyberseceval3} extends Meta's evaluation suite with autonomous offensive capabilities and prompt injection resistance, advancing beyond code-level assessment but still focusing primarily on attack/defense rather than organizational security competencies.
 
 EnIGMA~\cite{abramovich2024enigma} introduces an enhanced interactive agent framework for CTF challenges, demonstrating that agentic architectures significantly outperform single-pass LLM evaluation in offensive security tasks. This raises an important methodological question: should security evaluation benchmark the model alone or the model-plus-tools system? \textsc{CyberEval} evaluates standalone model knowledge as the foundation, but we acknowledge that real-world deployment involves tool augmentation.
 
@@ -81,7 +82,7 @@ An emerging approach evaluates LLMs against established cybersecurity certificat
 
 While distinct from security \emph{knowledge} evaluation, safety benchmarks provide methodological insights. HarmBench~\cite{mazeika2024harmbench} establishes a standardized framework for automated red teaming, demonstrating the importance of adversarial evaluation protocols. WildTeaming~\cite{jiang2024wildteaming} scales red-teaming using in-the-wild jailbreak techniques collected from online forums. R-Judge~\cite{yuan2024rjudge} evaluates safety risk awareness in LLM agents, testing whether models can identify when tool use could cause harm---a capability relevant to our IR and SA dimensions. SafetyBench~\cite{zhang2023safetybench} provides a large-scale MCQ safety evaluation across multiple languages, informing our multilingual extension plans. AutoAttacker~\cite{xu2024autoattacker} shows that LLMs can orchestrate multi-step cyber-attacks autonomously, underscoring the dual-use nature of security capabilities we evaluate.
 
-Chang et al.~\cite{chang2024survey} provide a comprehensive survey of LLM evaluation methodologies, identifying key design principles including multi-format assessment, difficulty calibration, and construct validity---all of which inform \textsc{CyberEval}'s design.
+Chang et al.~\cite{chang2024survey} provide a comprehensive survey of LLM evaluation methodologies, identifying key design principles including multi-format assessment, difficulty calibration, and construct validity---all of which inform \textsc{CyberEval}'s design. On the methodological front, Musi\'{c} and Musi\'{c}~\cite{music2025benchmarks} recently conducted a psychometric analysis of existing cybersecurity benchmarks, finding significant reliability and validity issues including poor item discrimination and inflated scores from guessable items. Their work underscores the need for principled benchmark construction---a gap that our IRT-aware design methodology aims to address.
 
 \subsection{Positioning of CyberEval}
 
@@ -159,15 +160,61 @@ SA & Security Architecture & 30 & 15 & 15 \\
 
 \subsection{Scoring and Evaluation Protocol}
 
-All items (MCQ and scenario-based) are scored binary (0/1). Per-dimension scores are computed as the proportion of correct responses. The aggregate score is the unweighted mean across all seven dimensions:
+All items (MCQ and scenario-based) are scored binary (0/1). Per-dimension scores are computed as the proportion of correct responses within that dimension:
 \begin{equation}
-    S_{\text{agg}} = \frac{1}{7}\sum_{d=1}^{7} S_d
+    S_{m,d} = \frac{1}{|Q_d|}\sum_{q \in Q_d} \mathbb{1}[\hat{y}_{m,q} = y_q^*]
 \end{equation}
-Users can specify role-specific weights (e.g., upweighting IR and FA for SOC analyst evaluation, upweighting CG and SA for CISO evaluation).
+where $Q_d$ is the item set for dimension $d$, $\hat{y}_{m,q}$ is model $m$'s response to item $q$, and $y_q^*$ is the correct answer. The aggregate score is the unweighted mean across all seven dimensions:
+\begin{equation}
+    S_{\text{agg}}(m) = \frac{1}{7}\sum_{d=1}^{7} S_{m,d}
+\end{equation}
+For role-specific evaluation, we introduce weighted aggregation with a role profile vector $\mathbf{w} = (w_1, \ldots, w_7)$ where $\sum_d w_d = 1$:
+\begin{equation}
+    S_{\text{role}}(m) = \sum_{d=1}^{7} w_d \cdot S_{m,d}
+\end{equation}
+For example, a SOC analyst profile might assign $w_{\text{IR}} = 0.30, w_{\text{FA}} = 0.25, w_{\text{TI}} = 0.20$ while a CISO profile assigns $w_{\text{CG}} = 0.30, w_{\text{SA}} = 0.25, w_{\text{IR}} = 0.20$.
+
+\subsection{Competency Profile Distance}
+
+To quantify similarity between model competency profiles, we define the \textit{competency distance} between two models $m_1$ and $m_2$ as:
+\begin{equation}
+    d(m_1, m_2) = \sqrt{\sum_{d=1}^{7} (S_{m_1,d} - S_{m_2,d})^2}
+\end{equation}
+This Euclidean distance in 7-dimensional competency space enables clustering of models with similar capability profiles, independent of their aggregate scores. Two models with identical aggregate scores may have very different competency profiles (e.g., one strong in SC/VK and weak in CG/SA, another balanced across dimensions).
 
 \subsection{Simulation Methodology}
 
-\textbf{Important transparency note:} The results in this paper are generated via a simulation study rather than live LLM API calls. For each model, we define empirically-motivated probability profiles specifying per-dimension, per-format response probabilities based on published benchmark results and model capability reports. For each question, the simulation draws a Bernoulli outcome using the model's probability for that dimension and format combination. This approach enables rapid prototyping of the evaluation framework and analysis methodology at negligible cost, while producing statistically representative performance patterns. We emphasize that live LLM evaluation is needed to validate these simulated findings, and we release the full question set and evaluation harness to enable such validation.
+\textbf{Important transparency note:} The results in this paper are generated via a simulation study rather than live LLM API calls. For each model $m$, we define empirically-motivated probability profiles $\pi_{m,d,f}$ specifying per-dimension $d$, per-format $f$ response probabilities based on published benchmark results and model capability reports~\cite{tihanyi2024cybermetric,bhatt2024cyberseceval,zhang2024cyberbench}. For each question $q$ in dimension $d$ with format $f$, the simulation draws a Bernoulli outcome:
+\begin{equation}
+    X_{m,q} \sim \text{Bernoulli}(\pi_{m,d(q),f(q)})
+\end{equation}
+where $d(q)$ and $f(q)$ denote the dimension and format of item $q$. This approach enables rapid prototyping of the evaluation framework and analysis methodology at negligible cost, while producing statistically representative performance patterns. We emphasize that live LLM evaluation is needed to validate these simulated findings, and we release the full question set and evaluation harness to enable such validation.
+
+Algorithm~\ref{alg:eval} formalizes the complete CyberEval evaluation and profiling pipeline.
+
+\begin{algorithm}[t]
+\caption{CyberEval Evaluation and Competency Profiling}
+\label{alg:eval}
+\begin{algorithmic}[1]
+\REQUIRE Model set $\mathcal{M}$, question set $\mathcal{Q}$ with dimensions $\mathcal{D} = \{d_1, \ldots, d_7\}$, formats $\mathcal{F} = \{\text{MCQ}, \text{Scenario}\}$, threshold $\tau$
+\ENSURE Per-model competency profiles, gap analysis, format bias scores
+\FOR{each model $m \in \mathcal{M}$}
+    \FOR{each dimension $d \in \mathcal{D}$}
+        \FOR{each format $f \in \mathcal{F}$}
+            \STATE $S_{m,d,f} \leftarrow \frac{1}{|Q_{d,f}|}\sum_{q \in Q_{d,f}} \mathbb{1}[\hat{y}_{m,q} = y_q^*]$
+        \ENDFOR
+        \STATE $S_{m,d} \leftarrow \frac{1}{|Q_d|}\sum_{q \in Q_d} \mathbb{1}[\hat{y}_{m,q} = y_q^*]$
+        \STATE $\text{Gap}(m,d) \leftarrow \max(0, \tau - S_{m,d})$
+        \STATE $\Delta_{m,d} \leftarrow S_{m,d,\text{MCQ}} - S_{m,d,\text{Scenario}}$ \COMMENT{Format bias}
+    \ENDFOR
+    \STATE $S_{\text{agg}}(m) \leftarrow \frac{1}{7}\sum_{d} S_{m,d}$
+    \STATE $\sigma_m \leftarrow \text{Std}(S_{m,d_1}, \ldots, S_{m,d_7})$ \COMMENT{Profile unevenness}
+\ENDFOR
+\STATE Rank models by $S_{\text{agg}}$ and compute per-dimension rankings
+\STATE Identify universal deficit dimensions: $\{d : \forall m \in \mathcal{M},\, S_{m,d} < \tau\}$
+\RETURN Competency profiles, gap matrices, format bias scores
+\end{algorithmic}
+\end{algorithm}
 
 \section{Experimental Evaluation}
 
@@ -255,9 +302,33 @@ Table~\ref{tab:format} reveals a consistent MCQ $>$ Scenario performance hierarc
     \label{fig:format_comparison}
 \end{figure}
 
-\subsection{Note on Difficulty and Temporal Analysis}
+\subsection{Toward IRT-Based Difficulty Calibration}
 
-Our current question set of 210 items does not include formal difficulty calibration via IRT or temporal stratification. Items are distributed uniformly across dimensions but not systematically varied by difficulty tier. Future work with a larger item pool will incorporate IRT-based difficulty calibration to enable meaningful difficulty-stratified analysis, as demonstrated by Polo et al.~\cite{polo2024tinybenchmarks}.
+Our current question set of 210 items does not include formal difficulty calibration via Item Response Theory (IRT). Items are distributed uniformly across dimensions but not systematically varied by difficulty tier. Recent work has demonstrated the power of IRT for LLM evaluation: Polo et al.~\cite{polo2024tinybenchmarks} showed that IRT-calibrated item selection achieves 95\% rank correlation with full benchmarks using dramatically fewer items, while the comprehensive survey by Zhang et al.~\cite{zhang2025irt} identifies both opportunities and fundamental challenges in applying psychometric models to AI evaluation. Musi\'{c} and Musi\'{c}~\cite{music2025benchmarks} recently analyzed existing cybersecurity benchmarks through a psychometric lens, finding significant issues including poor item discrimination and inflated scores from guessable items---precisely the issues that IRT calibration would address.
+
+Under a 2-parameter logistic (2PL) IRT model~\cite{baker2001irt}, the probability that model $m$ with latent ability $\theta_m$ correctly answers item $q$ with difficulty $b_q$ and discrimination $a_q$ is:
+\begin{equation}
+    P(X_{m,q} = 1 \mid \theta_m) = \frac{1}{1 + e^{-a_q(\theta_m - b_q)}}
+\end{equation}
+Fitting this model requires response data from multiple models across all items, enabling simultaneous estimation of item parameters $(a_q, b_q)$ and model abilities $\theta_m$. Our planned expansion to 1,000+ items will enable reliable IRT parameter estimation and adaptive testing, where item selection during evaluation is guided by current ability estimates to maximize information gain per item, as advocated by Li et al.~\cite{li2024psychometrics}.
+
+\begin{algorithm}[t]
+\caption{IRT-Guided Adaptive Evaluation (Future Extension)}
+\label{alg:irt}
+\begin{algorithmic}[1]
+\REQUIRE Calibrated item bank $\mathcal{Q}$ with parameters $(a_q, b_q)$ for each $q$, model $m$, target precision $\epsilon$
+\ENSURE Ability estimate $\hat{\theta}_m$ with standard error $< \epsilon$
+\STATE Initialize $\hat{\theta}_m \leftarrow 0$, administered set $A \leftarrow \emptyset$
+\WHILE{$\text{SE}(\hat{\theta}_m) > \epsilon$ \AND $|A| < |Q|$}
+    \STATE Select next item: $q^* \leftarrow \arg\max_{q \notin A} I_q(\hat{\theta}_m)$
+    \STATE \quad where $I_q(\theta) = a_q^2 P_q(\theta)(1 - P_q(\theta))$ is Fisher information
+    \STATE Administer $q^*$ to model $m$, observe response $x_{m,q^*}$
+    \STATE $A \leftarrow A \cup \{q^*\}$
+    \STATE Update $\hat{\theta}_m$ via maximum likelihood on responses in $A$
+\ENDWHILE
+\RETURN $\hat{\theta}_m$, $\text{SE}(\hat{\theta}_m)$
+\end{algorithmic}
+\end{algorithm}
 
 \subsection{Competency Gap Analysis}
 
@@ -265,7 +336,13 @@ We define the competency gap for model $m$ on dimension $d$ as:
 \begin{equation}
     \text{Gap}(m, d) = \max(0, \tau_d - S_{m,d})
 \end{equation}
-where $\tau_d$ is the target competency threshold. Using $\tau = 70\%$ as an illustrative threshold, our simulation shows that only Claude-3.5-Sonnet meets this threshold on SC (83.3\%) and IR (68.3\%, near-threshold). GPT-4o meets it on VK (70.0\%) and SC (78.3\%). No model meets the 70\% threshold on CG or SA, confirming these as universal deficit areas.
+where $\tau_d$ is the target competency threshold. The total deployment risk score for a model across a target role profile is:
+\begin{equation}
+    R(m) = \sum_{d=1}^{7} w_d \cdot \text{Gap}(m, d)^2
+\end{equation}
+where the squared gap penalizes large deficits disproportionately, reflecting the outsized risk of deploying a model with severe blind spots. Using $\tau = 70\%$ as an illustrative threshold, our simulation shows that only Claude-3.5-Sonnet meets this threshold on SC (83.3\%) and IR (68.3\%, near-threshold). GPT-4o meets it on VK (70.0\%) and SC (78.3\%). No model meets the 70\% threshold on CG or SA, confirming these as universal deficit areas.
+
+To quantify whether performance differences between models are statistically meaningful given our simulation setup, we compute 95\% Wilson confidence intervals~\cite{wilson1927ci} for each per-dimension score. With 30 items per dimension, a score of 60\% yields a 95\% CI of approximately $[42.2\%, 75.4\%]$, indicating that fine-grained ranking within closely-spaced models requires a larger item pool. This motivates our planned expansion to 1,000+ items with IRT-based calibration, following the psychometric evaluation principles advocated by Li et~al.~\cite{li2024psychometrics} and the recent IRT-for-LLM survey by Zhang et~al.~\cite{zhang2025irt}.
 
 \begin{figure}[t]
     \centering
@@ -488,6 +565,21 @@ Yang, Y., Nie, Y., Wang, Z., Tang, Y., Guo, W., Li, B., Song, D.: SecCodePLT: A 
 
 \bibitem{li2024seceval}
 Li, G., Li, Y., Wang, G., et~al.: SecEval: A comprehensive benchmark for evaluating cybersecurity knowledge of foundation models. arXiv preprint arXiv:2403.06394 (2024)
+
+\bibitem{zhang2025irt}
+Zhang, Q.R., Alvarez, A., Weinreich, S., Ghosal, T., Gates, D., Steedman, M.: Item response theory for AI: Challenges and opportunities. In: NAACL, pp.~1028--1052 (2025)
+
+\bibitem{music2025benchmarks}
+Musi\'{c}, J., Musi\'{c}, M.: Cybersecurity benchmarks: Are they up to the task? arXiv preprint arXiv:2502.16614 (2025)
+
+\bibitem{xu2025cyberllmbench}
+Xu, C., Liu, T., Li, M., Kutt, B., Piplai, A., Joshi, A.: CyberLLMBench: Towards an informative cybersecurity evaluation dataset. arXiv preprint arXiv:2505.15768 (2025)
+
+\bibitem{li2024psychometrics}
+Li, C., Wang, J., Zhang, Y., Zhu, K., Wang, X., Li, W., Gao, J., Xie, X.: Towards psychometrics-grounded benchmarking of large language models. arXiv preprint arXiv:2407.12855 (2024)
+
+\bibitem{wilson1927ci}
+Wilson, E.B.: Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association \textbf{22}(158), 209--212 (1927)
 
 \end{thebibliography}
 
