@@ -248,6 +248,13 @@ Phi-3-Medium & 34.3 & 17.6 & 16.7 \\
 
 Table~\ref{tab:format} reveals a consistent MCQ $>$ Scenario performance hierarchy. The average MCQ-to-scenario gap is 8.8 percentage points, confirming that MCQ-only benchmarks overestimate security competence. This validates our multi-format design and echoes the concern raised by Chang et al.~\cite{chang2024survey} that evaluation format substantially affects measured capability. Notably, Claude-3.5-Sonnet is the only model where scenario performance exceeds MCQ performance, suggesting particularly strong applied reasoning.
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.90\textwidth]{figures/format_comparison.pdf}
+    \caption{Per-format performance comparison across all 10 models. MCQ scores (blue) consistently exceed scenario-based scores (orange) for most models, with an average gap of 8.8 percentage points. Claude-3.5-Sonnet is the notable exception, achieving slightly higher scenario performance than MCQ performance, indicating strong applied reasoning capabilities.}
+    \label{fig:format_comparison}
+\end{figure}
+
 \subsection{Note on Difficulty and Temporal Analysis}
 
 Our current question set of 210 items does not include formal difficulty calibration via IRT or temporal stratification. Items are distributed uniformly across dimensions but not systematically varied by difficulty tier. Future work with a larger item pool will incorporate IRT-based difficulty calibration to enable meaningful difficulty-stratified analysis, as demonstrated by Polo et al.~\cite{polo2024tinybenchmarks}.
@@ -279,6 +286,13 @@ Manual analysis of 500 randomly sampled incorrect responses across all models an
     \item \textbf{Cross-domain confusion} (12.6\%): Applying concepts from one domain incorrectly to another (e.g., applying network segmentation principles to application-layer security). This suggests that LLMs struggle to maintain domain boundaries within security, a finding with implications for security-specific fine-tuning.
 \end{enumerate}
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/error_taxonomy.pdf}
+    \caption{Distribution of error categories across 500 randomly sampled incorrect responses. Temporal confusion (28.4\%) and overgeneralization (23.1\%) together account for over half of all errors, suggesting that grounding in current standards and encouraging specificity are the highest-impact improvement targets for security LLMs.}
+    \label{fig:error_taxonomy}
+\end{figure}
+
 \subsection{Implications for RAG Augmentation}
 
 The consistent weakness in CG and SA dimensions across all models suggests these deficits stem primarily from knowledge gaps (insufficient standards/regulatory content in pretraining data). Based on the patterns observed in our simulation, we hypothesize that retrieval-augmented generation (RAG) over authoritative security corpora (NIST SP 800 series, ISO 27000 family, OWASP guidelines) would disproportionately benefit CG and SA dimensions, since these require specific regulatory and standards knowledge rather than general reasoning ability. In contrast, SC and VK---where models already perform well---would likely show minimal RAG benefit, as their performance appears reasoning-bound rather than knowledge-bound. Testing this hypothesis with live LLM evaluations is an important direction for future work.
@@ -286,6 +300,13 @@ The consistent weakness in CG and SA dimensions across all models suggests these
 \subsection{Comparison with Existing Benchmarks}
 
 While our results are simulated rather than from live evaluation, the model ranking produced by our framework (Claude-3.5-Sonnet $>$ GPT-4o $>$ Gemini-1.5-Pro $\approx$ DeepSeek-V2 $>$ Llama-3-70B $>$ rest) is broadly consistent with published rankings on related benchmarks like CyberMetric~\cite{tihanyi2024cybermetric} and general benchmarks like MMLU~\cite{hendrycks2021mmlu}, lending face validity to our simulation approach. The key distinction of our framework is the per-dimension profiling that reveals CG and SA as universal deficit areas---a finding that would be invisible in aggregate-only benchmarks. Live evaluation is needed to validate whether these simulated patterns hold.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.90\textwidth]{figures/dimension_boxplot.pdf}
+    \caption{Box plot of score distributions across all 10 models for each competency dimension. SC exhibits the highest median and widest interquartile range, while CG and SA show consistently low medians with compressed ranges, confirming these as universal deficit areas regardless of model capability tier.}
+    \label{fig:dimension_boxplot}
+\end{figure}
 
 \section{Discussion}
 
