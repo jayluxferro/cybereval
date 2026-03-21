@@ -1,8 +1,10 @@
 # CyberEval
 
-**Multi-Dimensional Framework for Evaluating LLM Security Knowledge and Reasoning**
+**Role-aware multi-dimensional evaluation of LLM security competence**
 
-## 7 Competency Dimensions
+CyberEval is a reproducible evaluation framework for analyzing LLM suitability
+across seven security dimensions:
+
 1. Vulnerability Knowledge (VK)
 2. Threat Intelligence (TI)
 3. Secure Coding (SC)
@@ -11,17 +13,63 @@
 6. Forensic Analysis (FA)
 7. Security Architecture (SA)
 
-## Key Results
-| Model | Aggregate | Best Dim | Worst Dim |
-|-------|-----------|----------|-----------|
-| GPT-4o | 71.4% | SC (81.4%) | SA (48.2%) |
-| Claude-3.5 | 69.8% | SC (79.2%) | SA (50.1%) |
-| Llama-3-70B | 57.3% | SC (67.4%) | IR (39.1%) |
+## What this artifact does
 
-## Quick Start
+The current release is a **framework artifact plus deterministic simulation
+study**, not a live API leaderboard. It provides:
+
+- a 210-item seed question bank
+- paired MCQ/scenario evaluation channels
+- role-weighted suitability scoring for SOC, AppSec, GRC, and architecture workflows
+- aligned paper figures and result JSONs
+- full response traces for auditability
+
+## Quick start
+
+From the repo root:
+
 ```bash
+source ~/research-papers/.venv/bin/activate
 python experiments/run_simulation.py
 ```
 
+This regenerates:
+
+- `experiments/results/real_results.json`
+- `experiments/results/experimental_results.json`
+- `experiments/results/question_bank.json`
+- `experiments/results/response_traces.json`
+- paper figures in `paper/figures/`
+
+## Current deterministic simulation snapshot
+
+- **Top aggregate profile:** Claude-3.5-Sonnet — **60.5%**
+- **Runner-up:** GPT-4o — **56.9%**
+- **Average MCQ-to-scenario gap:** **11.2 percentage points**
+- **Strongest mean dimension:** Secure Coding — **58.5%**
+- **Weakest mean dimensions:** Compliance & Governance — **31.3%**, Security Architecture — **22.7%**
+
+### Role-weighted leaders
+
+- **SOC analyst:** Claude-3.5-Sonnet — **63.2%**
+- **AppSec engineer:** Claude-3.5-Sonnet — **65.3%**
+- **GRC analyst:** Claude-3.5-Sonnet — **50.9%**
+- **Security architect:** Claude-3.5-Sonnet — **52.5%**
+
+## Paper
+
+The LNCS paper lives at:
+
+- `paper/main.tex`
+
+It is written to match the generated artifacts and explicitly documents the
+current limitations of the benchmark:
+
+- no live API execution yet
+- no standalone free-text scenario corpus yet
+- difficulty imbalance in the seed bank
+- model profiles calibrated from public benchmark trends rather than direct measurements
+
 ## License
+
 MIT License
