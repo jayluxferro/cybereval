@@ -29,7 +29,7 @@ study**, not a live API leaderboard. It provides:
 From the repo root:
 
 ```bash
-source ~/research-papers/.venv/bin/activate
+# From the repo root
 python experiments/run_simulation.py
 ```
 
