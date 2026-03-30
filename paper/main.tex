@@ -21,7 +21,7 @@
 \maketitle
 
 \begin{abstract}
-LLMs are increasingly proposed for vulnerability triage, threat-intelligence analysis, secure code review, incident response, and governance support, but current cybersecurity benchmarks still emphasize narrow slices of that workflow space such as secure coding, offensive CTF solving, or cyber threat intelligence in isolation~\cite{bhatt2023cyberseceval,bhatt2024cyberseceval2,wan2024cyberseceval3,tihanyi2024cybermetric,alam2024ctibench,shao2024nyuctf,zhang2024cybench,jing2024secbench}. We present \textsc{CyberEval}, a reproducible evaluation framework organized around seven security dimensions: Vulnerability Knowledge, Threat Intelligence, Secure Coding, Incident Response, Compliance \& Governance, Forensic Analysis, and Security Architecture. The current public artifact contains a 210-item seed bank with deterministic difficulty annotations, a paired MCQ/scenario simulation protocol, role-weighted deployment scoring, and auditable response traces. In a deterministic simulation over 10 model profiles calibrated from public benchmark trends, Claude-3.5-Sonnet achieves the highest aggregate score at 60.5\% (95\% Wilson CI: 55.7--65.0), followed by GPT-4o at 56.9\% (52.1--61.6). Across models, Secure Coding is the strongest dimension (mean 58.5\%), while Security Architecture (22.7\%) and Compliance \& Governance (31.3\%) remain persistent weak points. The average MCQ-to-scenario gap is 11.2 percentage points, indicating that MCQ-only evaluation materially overestimates deployment readiness. We emphasize that the current results are \emph{not} live API evaluations: they come from a transparent simulation harness intended to stress-test benchmark structure, reporting, and role-aware analysis before expensive online execution. This positioning makes \textsc{CyberEval} a framework paper and reproducible artifact rather than a finished large-scale leaderboard.
+LLMs are increasingly proposed for vulnerability triage, threat-intelligence analysis, secure code review, incident response, and governance support, but current cybersecurity benchmarks still emphasize narrow slices of that workflow space such as secure coding, offensive CTF solving, or cyber threat intelligence in isolation~\cite{bhatt2023cyberseceval,bhatt2024cyberseceval2,wan2024cyberseceval3,tihanyi2024cybermetric,alam2024ctibench,shao2024nyuctf,zhang2024cybench,jing2024secbench}. We present \textsc{CyberEval}, a multi-dimensional evaluation framework organized around seven security dimensions: Vulnerability Knowledge, Threat Intelligence, Secure Coding, Incident Response, Compliance \& Governance, Forensic Analysis, and Security Architecture. The study uses a 210-item seed bank with deterministic difficulty annotations, a paired MCQ/scenario protocol, and role-weighted deployment scoring to examine how evaluation format and workflow weighting change conclusions about model suitability. In a deterministic simulation over 10 model profiles calibrated from public benchmark trends, Claude-3.5-Sonnet achieves the highest aggregate score at 60.5\% (95\% Wilson CI: 55.7--65.0), followed by GPT-4o at 56.9\% (52.1--61.6). Across models, Secure Coding is the strongest dimension (mean 58.5\%), while Security Architecture (22.7\%) and Compliance \& Governance (31.3\%) remain persistent weak points. The average MCQ-to-scenario gap is 11.2 percentage points, indicating that MCQ-only evaluation materially overestimates deployment readiness. Because the present study is simulation-based rather than a live API evaluation, its main contribution is to show how workflow-aware, multi-format measurement surfaces uneven security competence that single-format leaderboards can obscure.
 \end{abstract}
 
 \keywords{LLM Security Evaluation \and Cybersecurity Benchmarking \and Role-Aware Assessment \and Simulation Study \and Security Reasoning}
@@ -32,13 +32,13 @@ Recent work has shown both the promise and the risk of deploying LLMs in cyberse
 
 Existing benchmarks only partially address that need. CyberSecEval focuses on secure coding and cyberattack safety~\cite{bhatt2023cyberseceval,bhatt2024cyberseceval2,wan2024cyberseceval3}. CyberMetric and CTIBench target cybersecurity knowledge and threat intelligence, respectively~\cite{tihanyi2024cybermetric,alam2024ctibench}. NYU CTF Bench and CyBench emphasize offensive or agentic cyber capability~\cite{shao2024nyuctf,zhang2024cybench}. SecBench moves closest to broad coverage, but the field still lacks a lightweight, auditable framework that explicitly supports \emph{role-aware} model selection across security workflows~\cite{jing2024secbench}. In practice, an application-security engineer, a SOC analyst, and a GRC reviewer care about very different mixtures of secure coding, incident response, governance, and architectural reasoning.
 
-\textsc{CyberEval} is designed as a reproducible first step toward that goal. Rather than presenting a new live leaderboard, we release a deterministic evaluation harness that makes three design choices explicit: (i) seven workflow-oriented security dimensions, (ii) a paired-format protocol that distinguishes easier direct-answer evaluation from harder scenario-weighted reasoning, and (iii) role-weighted aggregation and deficit scoring for deployment analysis. This framing is motivated by general LLM evaluation research showing that benchmark conclusions depend strongly on task design, format, and calibration methodology~\cite{liang2023helm,chang2024survey,polo2024tinybenchmarks}.
+\textsc{CyberEval} is designed as a first step toward that goal. Instead of introducing another single-number leaderboard, we study three design choices directly: (i) seven workflow-oriented security dimensions, (ii) a paired-format protocol that distinguishes easier direct-answer evaluation from harder scenario-weighted reasoning, and (iii) role-weighted aggregation and deficit scoring for deployment analysis. This framing is motivated by general LLM evaluation research showing that benchmark conclusions depend strongly on task design, format, and calibration methodology~\cite{liang2023helm,chang2024survey,polo2024tinybenchmarks}.
 
 Our main contributions are:
 \begin{itemize}[leftmargin=*]
-    \item \textbf{A reproducible multi-dimensional cyber-evaluation artifact.} The released framework contains a 210-item seed bank spanning seven security dimensions, deterministic simulation seeds, generated figures, and auditable response traces.
+    \item \textbf{A multi-dimensional cyber-evaluation framework.} We define a 210-item seed bank spanning seven security dimensions and pair it with a deterministic evaluation setup that supports consistent comparison across formats and roles.
     \item \textbf{Role-aware scoring and risk analysis.} In addition to aggregate scores, \textsc{CyberEval} computes workflow-specific suitability scores and deficit-based deployment risk for four illustrative roles: SOC analyst, application-security engineer, GRC analyst, and security architect.
-    \item \textbf{An honest simulation study with uncertainty estimates.} We report Wilson confidence intervals, difficulty-skew diagnostics, and format-gap analysis, while explicitly documenting that the current release is a benchmark-construction prototype rather than a live model-comparison benchmark.
+    \item \textbf{A simulation study with uncertainty estimates.} We report Wilson confidence intervals, difficulty-skew diagnostics, and format-gap analysis, while making clear that the present results characterize the evaluation design under simulated model profiles rather than live model measurements.
 \end{itemize}
 
 The most important empirical result is qualitative rather than leaderboard-centric: different security dimensions remain sharply uneven even among the strongest profiles, and the paired-format protocol exposes an 11.2-point performance drop from MCQ-style answers to harder scenario-weighted evaluation. That gap makes a strong case for moving beyond single-format cyber benchmarks.
@@ -51,7 +51,7 @@ General-purpose evaluation frameworks such as HELM established the importance of
 
 \subsection{Cybersecurity Benchmarks and Evaluation Suites}
 
-Cybersecurity benchmark development has accelerated since 2023. The CyberSecEval line focuses on secure coding, cyberattack safety, and later broader cyber-risk evaluation~\cite{bhatt2023cyberseceval,bhatt2024cyberseceval2,wan2024cyberseceval3}. CyberMetric evaluates cybersecurity knowledge with a retrieval-augmented benchmark construction strategy~\cite{tihanyi2024cybermetric}. CTIBench focuses specifically on cyber threat intelligence~\cite{alam2024ctibench}. NYU CTF Bench and CyBench evaluate offensive and agentic cyber capabilities~\cite{shao2024nyuctf,zhang2024cybench}, while SecBench provides a recent broader benchmark spanning multiple cyber domains~\cite{jing2024secbench}. The common theme across these efforts is that cyber capability is heterogeneous; the remaining gap is an artifact that connects heterogeneous dimensions to concrete deployment roles.
+Cybersecurity benchmark development has accelerated since 2023. The CyberSecEval line focuses on secure coding, cyberattack safety, and later broader cyber-risk evaluation~\cite{bhatt2023cyberseceval,bhatt2024cyberseceval2,wan2024cyberseceval3}. CyberMetric evaluates cybersecurity knowledge with a retrieval-augmented benchmark construction strategy~\cite{tihanyi2024cybermetric}. CTIBench focuses specifically on cyber threat intelligence~\cite{alam2024ctibench}. NYU CTF Bench and CyBench evaluate offensive and agentic cyber capabilities~\cite{shao2024nyuctf,zhang2024cybench}, while SecBench provides a recent broader benchmark spanning multiple cyber domains~\cite{jing2024secbench}. The common theme across these efforts is that cyber capability is heterogeneous; the remaining gap is a framework that connects heterogeneous dimensions to concrete deployment roles.
 
 \subsection{Capability, Risk, and Dual-Use Assessment}
 
@@ -59,7 +59,7 @@ The cyber-LLM literature also documents strong dual-use tensions. Pearce et al. 
 
 \subsection{Positioning of CyberEval}
 
-Table~\ref{tab:comparison} summarizes the intended position of \textsc{CyberEval}. The current release is smaller than mature benchmark suites, but it contributes an auditable, role-aware analysis layer that is often absent from cyber-LLM evaluation papers.
+Table~\ref{tab:comparison} summarizes the intended position of \textsc{CyberEval}. The current study is smaller than mature benchmark suites, but it contributes a role-aware analysis layer that is often absent from cyber-LLM evaluation papers.
 
 \begin{table}[t]
 \centering
@@ -85,13 +85,13 @@ SecBench~\cite{jing2024secbench} & broad cyber benchmarking & \ding{51} & \ding{
 
 \section{Methodology}
 
-\subsection{Security Dimensions and Artifact Scope}
+\subsection{Security Dimensions and Task Coverage}
 
 \textsc{CyberEval} organizes security competence into seven dimensions: Vulnerability Knowledge (VK), Threat Intelligence (TI), Secure Coding (SC), Incident Response (IR), Compliance \& Governance (CG), Forensic Analysis (FA), and Security Architecture (SA). The intent is pragmatic rather than ontological: the dimensions correspond to recurring security workflows that appear across modern benchmark papers and practitioner deployments~\cite{zhang2024llmcyber,tihanyi2024cybermetric,alam2024ctibench,jing2024secbench}.
 
-The released artifact contains a 210-item seed bank, with 30 base items per dimension. Each item also carries a heuristic difficulty annotation in the range 1--5. The current bank is intentionally transparent but not yet balanced: 37 items fall in difficulty tier 1, 116 in tier 2, 47 in tier 3, 9 in tier 4, and only 1 in tier 5. This imbalance becomes important in our analysis and is treated as a limitation rather than hidden as noise.
+The evaluation set contains 210 base items, with 30 items per dimension. Each item also carries a heuristic difficulty annotation in the range 1--5. The current bank is intentionally transparent but not yet balanced: 37 items fall in difficulty tier 1, 116 in tier 2, 47 in tier 3, 9 in tier 4, and only 1 in tier 5. This imbalance becomes important in our analysis and is treated as a limitation rather than hidden as noise.
 
-A key design clarification is that the current public release does \emph{not} yet contain a distinct free-text scenario corpus. Instead, each base item is evaluated under two channels: an easier MCQ-style channel and a harder scenario-weighted channel implemented through a deterministic format modifier in the simulation harness. We therefore treat the present release as a \emph{benchmark-construction prototype}: it supports reproducible evaluation logic and role-aware reporting, but not yet live free-form scenario judging.
+A key design clarification is that the current study does \emph{not} yet contain a distinct free-text scenario corpus. Instead, each base item is evaluated under two channels: an easier MCQ-style channel and a harder scenario-weighted channel implemented through a deterministic format modifier in the simulation setup. This lets us study format sensitivity and role-aware reporting, but it does not yet amount to live free-form scenario judging.
 
 \subsection{Scoring}
 
@@ -124,13 +124,13 @@ Finally, to inspect whether the current item bank is difficulty-balanced, we com
 \end{equation}
 This proxy is not a full calibrated 2PL IRT model; it is a reproducible diagnostic inspired by the calibration literature and by recent efficient-evaluation work such as tinyBenchmarks~\cite{polo2024tinybenchmarks}.
 
-\subsection{Simulation Protocol and Reproducibility}
+\subsection{Simulation Setup}
 
 The current experiment evaluates 10 model profiles: GPT-4o, Claude-3.5-Sonnet, Gemini-1.5-Pro, Llama-3-70B, DeepSeek-V2, Mixtral-8x22B, Qwen-2-72B, CodeLlama-34B, GPT-3.5-Turbo, and Phi-3-Medium. Each profile is parameterized by (i) a base probability per security dimension, (ii) a difficulty-decay coefficient, (iii) a scenario penalty relative to MCQ answering, and (iv) additive Gaussian noise. The profile ordering and relative strength pattern are chosen to mirror broad trends reported in public cyber and general LLM evaluations rather than to claim live measured accuracy for any specific API~\cite{bhatt2023cyberseceval,bhatt2024cyberseceval2,tihanyi2024cybermetric,alam2024ctibench,shao2024nyuctf}.
 
-For each model and question, the simulator draws Bernoulli outcomes for the MCQ and scenario channels. Importantly, we use stable model-specific seeds derived from SHA-256 hashes rather than Python's process-randomized \texttt{hash()} function, so repeated executions regenerate identical tables, JSON artifacts, and figure files. The artifact now writes four audit files: \texttt{real\_results.json}, \texttt{experimental\_results.json}, \texttt{question\_bank.json}, and \texttt{response\_traces.json}. This design removes the stale-result mismatch that often plagues benchmark repositories.
+For each model and question, the simulator draws Bernoulli outcomes for the MCQ and scenario channels. We use stable model-specific seeds derived from SHA-256 hashes rather than Python's process-randomized \texttt{hash()} function, so repeated executions regenerate identical tables and figures. The codebase also emits aligned result and trace files, which reduces the stale-result mismatch that often plagues benchmark repositories.
 
-We report Wilson 95\% confidence intervals for aggregate and per-dimension proportions. Because the bank is still small and difficulty-skewed, these intervals should be interpreted as uncertainty in the current artifact rather than as definitive statements about model security competence.
+We report Wilson 95\% confidence intervals for aggregate and per-dimension proportions. Because the bank is still small and difficulty-skewed, these intervals should be interpreted as uncertainty in the current study rather than as definitive statements about model security competence.
 
 \section{Experimental Evaluation}
 
@@ -140,7 +140,7 @@ Table~\ref{tab:main_results} reports the deterministic simulation results. Claud
 
 \begin{table*}[t]
 \centering
-\caption{CyberEval aggregate and per-dimension scores (\%). CIs are reported in text for the top models; all intervals are included in the released JSON artifact.}
+\caption{CyberEval aggregate and per-dimension scores (\%). CIs are reported in text for the top models; complete interval data are available in the accompanying results files.}
 \label{tab:main_results}
 \scriptsize
 \resizebox{\textwidth}{!}{%
@@ -207,15 +207,15 @@ The current bank is not yet suitable for strong claims about difficulty scaling.
     \label{fig:difficulty}
 \end{figure}
 
-The IRT-style difficulty proxy reinforces this diagnosis. Across items, the proxy spans roughly $[-4.60, 4.60]$ with standard deviation 1.08, indicating that the seed bank does include a broad empirical spread. However, because that spread is concentrated disproportionately in easy and medium items, the current release should be interpreted as a calibration and reporting scaffold rather than as a mature adaptive benchmark. This is exactly the setting where efficient-evaluation ideas such as tinyBenchmarks become relevant~\cite{polo2024tinybenchmarks}.
+The IRT-style difficulty proxy reinforces this diagnosis. Across items, the proxy spans roughly $[-4.60, 4.60]$ with standard deviation 1.08, indicating that the seed bank does include a broad empirical spread. However, because that spread is concentrated disproportionately in easy and medium items, the current benchmark should be interpreted as an initial calibrated testbed rather than as a mature adaptive benchmark. This is exactly the setting where efficient-evaluation ideas such as tinyBenchmarks become relevant~\cite{polo2024tinybenchmarks}.
 
 \section{Discussion}
 
 \subsection{What CyberEval Measures Today}
 
-The current release measures something useful but narrower than a finished live benchmark. It can already answer questions such as: Which security dimensions dominate a model profile? How much does harder scenario-style evaluation degrade performance? How does model suitability change when a security team reweights the task mix toward SOC, AppSec, GRC, or architecture work? Those are operationally meaningful questions, and they are answered reproducibly by the current artifact.
+The current study measures something useful but narrower than a finished live benchmark. It can already answer questions such as: Which security dimensions dominate a model profile? How much does harder scenario-style evaluation degrade performance? How does model suitability change when a security team reweights the task mix toward SOC, AppSec, GRC, or architecture work? Those are operationally meaningful questions, and they are answered directly by the present evaluation setup.
 
-What the release does \emph{not} yet provide is direct evidence about live API behavior, long-form free-text reasoning, or calibrated adaptive testing. That distinction matters. Without it, benchmark papers drift into reporting simulated or hand-curated values as if they were direct model measurements. We intentionally avoid that framing here.
+What the current evaluation does \emph{not} yet provide is direct evidence about live API behavior, long-form free-text reasoning, or calibrated adaptive testing. That distinction matters. Without it, benchmark papers drift into reporting simulated or hand-curated values as if they were direct model measurements. We intentionally avoid that framing here.
 
 \subsection{Practical Implications}
 
@@ -226,16 +226,16 @@ Three takeaways are especially relevant for deployment. First, Secure Coding rem
 Our conclusions are constrained by four major limitations.
 \begin{enumerate}[leftmargin=*]
     \item \textbf{No live API evaluation.} All reported numbers come from deterministic simulation profiles rather than direct model calls. The paper therefore evaluates framework behavior, not frontier-model ground truth.
-    \item \textbf{No standalone scenario corpus.} The present artifact implements paired MCQ and scenario channels through a format modifier rather than distinct scenario prompts and judged free-text outputs.
+    \item \textbf{No standalone scenario corpus.} The current setup implements paired MCQ and scenario channels through a format modifier rather than distinct scenario prompts and judged free-text outputs.
     \item \textbf{Difficulty imbalance.} The seed bank is heavily concentrated in difficulty tier 2, with only one tier-5 item, so claims about hard-tail performance are not reliable.
     \item \textbf{Profile calibration from public trends.} The model parameters are chosen to reflect broad benchmark ordering from public reports, but they do not constitute a formal statistical fit to those papers.
 \end{enumerate}
 
-These limitations are not cosmetic. They define the boundary of what the current artifact can support scientifically. In exchange, the release gains two desirable properties that many benchmark repositories lack: full reproducibility and complete traceability from figures back to generated results.
+These limitations are not cosmetic. They define the boundary of what the current study can support scientifically. At the same time, the design preserves full reproducibility and traceability from figures back to generated results.
 
 \section{Conclusion}
 
-We presented \textsc{CyberEval}, a role-aware multi-dimensional framework for evaluating LLM security competence. The contribution is deliberately modest and reproducible: a 210-item seed bank, a deterministic paired-format simulation protocol, role-weighted deployment analysis, uncertainty estimates, and aligned artifact generation. In this setting, Claude-3.5-Sonnet is the strongest overall profile at 60.5\%, GPT-4o follows at 56.9\%, the average MCQ-to-scenario gap is 11.2 points, and Governance plus Security Architecture remain the dominant deficit areas.
+We presented \textsc{CyberEval}, a role-aware multi-dimensional framework for evaluating LLM security competence. The contribution is deliberately modest: a 210-item seed bank, a deterministic paired-format simulation protocol, role-weighted deployment analysis, and uncertainty estimates that expose how conclusions shift across workflows and evaluation formats. In this setting, Claude-3.5-Sonnet is the strongest overall profile at 60.5\%, GPT-4o follows at 56.9\%, the average MCQ-to-scenario gap is 11.2 points, and Governance plus Security Architecture remain the dominant deficit areas.
 
 The broader message is methodological. Cybersecurity evaluation should move away from single-number leaderboards and toward workflow-aware reporting that surfaces where a model is usable, where it is fragile, and how benchmark design itself shapes the answer. The next version of \textsc{CyberEval} will therefore focus on four concrete upgrades: live API execution, a genuine scenario-response corpus, rebalanced difficulty coverage, and adaptive item selection grounded in calibrated benchmark design.
 
