@@ -5,10 +5,14 @@ Every number reported comes from running the simulation, not hardcoded values.
 Model profiles are calibrated from published benchmark data (MMLU, CyberSecEval).
 """
 
-import sys, os, json, random, math, hashlib
-import numpy as np
-from collections import defaultdict
+import hashlib
+import json
+import math
+import random
+import sys
 from pathlib import Path
+
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -2886,9 +2890,76 @@ def run_evaluation():
     plt.savefig(fig_dir / "difficulty_curve.png", dpi=150)
     plt.close()
 
-    # Figure 5: IRT difficulty distribution
+    # Figure 6: Cross-model score dispersion by dimension
     fig, ax = plt.subplots(figsize=(10, 6))
-    irt_vals = list(irt_difficulty.values())
+    dim_data = [
+        [
+            model_scores[model_name]["dimensions"][dim_code]["overall"] * 100
+            for model_name in sorted_models
+        ]
+        for dim_code in dims
+    ]
+    box = ax.boxplot(dim_data, tick_labels=dims, patch_artist=True)
+    palette = [
+        "#4C78A8",
+        "#F58518",
+        "#E45756",
+        "#72B7B2",
+        "#54A24B",
+        "#EECA3B",
+        "#B279A2",
+    ]
+    for patch, color in zip(box["boxes"], palette):
+        patch.set_facecolor(color)
+        patch.set_alpha(0.6)
+    for median in box["medians"]:
+        median.set_color("#1f1f1f")
+        median.set_linewidth(2)
+    ax.set_xlabel("Security Dimension")
+    ax.set_ylabel("Overall Score (%)")
+    ax.set_title("Cross-Model Score Distribution by Security Dimension")
+    ax.set_ylim(0, 100)
+    ax.grid(axis="y", alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(fig_dir / "dimension_boxplot.pdf")
+    plt.savefig(fig_dir / "dimension_boxplot.png", dpi=150)
+    plt.close()
+
+    # Figure 7: Pairwise competency-profile distance heatmap
+    fig, ax = plt.subplots(figsize=(9, 7))
+    profile_matrix = np.array(
+        [
+            [model_scores[m]["dimensions"][d]["overall"] for d in dims]
+            for m in sorted_models
+        ]
+    )
+    distance_matrix = np.zeros((len(sorted_models), len(sorted_models)))
+    for i in range(len(sorted_models)):
+        for j in range(len(sorted_models)):
+            distance_matrix[i, j] = np.sqrt(
+                np.sum((profile_matrix[i] - profile_matrix[j]) ** 2)
+            )
+    sns.heatmap(
+        distance_matrix,
+        annot=True,
+        fmt=".2f",
+        cmap="mako_r",
+        xticklabels=sorted_models,
+        yticklabels=sorted_models,
+        ax=ax,
+    )
+    ax.set_title("Pairwise Competency-Profile Distance")
+    ax.set_xlabel("Model")
+    ax.set_ylabel("Model")
+    plt.xticks(rotation=45, ha="right")
+    plt.yticks(rotation=0)
+    plt.tight_layout()
+    plt.savefig(fig_dir / "profile_distance_heatmap.pdf")
+    plt.savefig(fig_dir / "profile_distance_heatmap.png", dpi=150)
+    plt.close()
+
+    # Figure 8: IRT difficulty distribution
+    fig, ax = plt.subplots(figsize=(10, 6))
     for dim_code in DIMENSIONS:
         dim_irt = [
             irt_difficulty[q["id"]] for q in questions if q["dimension"] == dim_code
