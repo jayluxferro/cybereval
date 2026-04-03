@@ -56,6 +56,13 @@ This regenerates:
 - **GRC analyst:** Claude-3.5-Sonnet — **50.9%**
 - **Security architect:** Claude-3.5-Sonnet — **52.5%**
 
+### Deployment interpretation
+
+- Only **Claude-3.5-Sonnet** and **GPT-4o** clear the illustrative `0.60` threshold in four dimensions: **VK, TI, SC, and FA**.
+- **AppSec** is the clearest separation lane: Claude-3.5-Sonnet leads GPT-4o by **3.7 points** while lowering the role-risk score from **0.0096** to **0.0061**.
+- **GRC** remains a universal weak point: the top-two scores differ by only **0.3 points** and carry nearly identical risk (**0.0198** vs **0.0204**).
+- The frontier pair is close but not identical: their normalized competency-profile distance is **0.155**, so substitution still changes the residual weakness pattern.
+
 ## Paper
 
 The LNCS paper lives at:
