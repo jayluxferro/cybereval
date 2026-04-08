@@ -1,0 +1,141 @@
+{
+  "artifact_dir": "/home/vector/research/aegis-research/cybereval/paper/artifacts/live_llm/20260408T013312Z",
+  "utc_timestamp": "20260408T013312Z",
+  "baseline_commit": "25240c7c90df0c3c5368b369866ef35a979e38e8",
+  "metrics": {
+    "sample_question_count": 7,
+    "sample_prompt_count": 14,
+    "models": {
+      "openai-codex:gpt-5.3-codex": {
+        "count": 14,
+        "correct": 14,
+        "accuracy": 1.0,
+        "mcq_accuracy": 1.0,
+        "scenario_accuracy": 1.0,
+        "scenario_gap_pp": 0.0,
+        "by_format": {
+          "mcq": {
+            "count": 7,
+            "correct": 7,
+            "accuracy": 1.0
+          },
+          "scenario": {
+            "count": 7,
+            "correct": 7,
+            "accuracy": 1.0
+          }
+        },
+        "by_dimension": {
+          "VK": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "TI": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "SC": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "IR": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "CG": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "FA": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "SA": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          }
+        },
+        "usage": {}
+      }
+    },
+    "ranking": [
+      {
+        "model": "openai-codex:gpt-5.3-codex",
+        "count": 14,
+        "correct": 14,
+        "accuracy": 1.0,
+        "mcq_accuracy": 1.0,
+        "scenario_accuracy": 1.0,
+        "scenario_gap_pp": 0.0,
+        "by_format": {
+          "mcq": {
+            "count": 7,
+            "correct": 7,
+            "accuracy": 1.0
+          },
+          "scenario": {
+            "count": 7,
+            "correct": 7,
+            "accuracy": 1.0
+          }
+        },
+        "by_dimension": {
+          "VK": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "TI": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "SC": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "IR": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "CG": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "FA": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "SA": {
+            "count": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          }
+        },
+        "usage": {}
+      }
+    ],
+    "simulated_frontier": {
+      "ranking": [
+        "Claude-3.5-Sonnet",
+        "GPT-4o"
+      ],
+      "aggregate": {
+        "Claude-3.5-Sonnet": 0.6047619047619047,
+        "GPT-4o": 0.569047619047619
+      }
+    },
+    "live_order_matches_simulated_frontier": false
+  }
+}
