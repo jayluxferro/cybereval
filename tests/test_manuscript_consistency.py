@@ -7,6 +7,9 @@ ROOT = Path(__file__).resolve().parents[1]
 RESULTS_PATH = ROOT / "experiments" / "results" / "real_results.json"
 MANUSCRIPT_PATH = ROOT / "paper" / "main.tex"
 PDF_PATH = ROOT / "paper" / "main.pdf"
+LATEST_LIVE_SUMMARY_PATH = (
+    ROOT / "paper" / "artifacts" / "live_llm" / "latest_summary.json"
+)
 
 
 def _distance(results: dict, model_a: str, model_b: str) -> float:
@@ -85,6 +88,27 @@ def test_manuscript_tracks_role_weighted_margins():
     assert f"{runner_up_risk:.4f} to {leader_risk:.4f}" in manuscript
     assert f"{grc_margin:.1f} points" in manuscript
     assert f"{grc_leader_risk:.4f} versus {grc_runner_up_risk:.4f}" in manuscript
+
+
+def test_manuscript_tracks_latest_live_pilot_summary():
+    manuscript = MANUSCRIPT_PATH.read_text()
+    latest = json.loads(LATEST_LIVE_SUMMARY_PATH.read_text())
+    ranking = latest["metrics"]["ranking"][0]
+
+    model = ranking["model"]
+    overall = ranking["accuracy"] * 100
+    mcq = ranking["mcq_accuracy"] * 100
+    scenario = ranking["scenario_accuracy"] * 100
+    gap = ranking["scenario_gap_pp"]
+    correct = ranking["correct"]
+    total = ranking["count"]
+
+    assert model in manuscript
+    assert f"{correct}/{total}" in manuscript
+    assert f"{overall:.1f}\\%" in manuscript
+    assert f"{mcq:.1f}\\%" in manuscript
+    assert f"{scenario:.1f}\\%" in manuscript
+    assert f"{gap:.1f}-point" in manuscript
 
 
 def test_manuscript_avoids_internal_validation_prose():
