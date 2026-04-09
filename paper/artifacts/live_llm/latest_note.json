@@ -1,15 +1,20 @@
 {
-  "artifact_dir": "/home/vector/research/aegis-research/cybereval/paper/artifacts/live_llm/20260409T171458Z",
-  "utc_timestamp": "20260409T171458Z",
-  "baseline_commit": "944fd50271a5fb52fb24c032cdb28d9cb0b1724e",
+  "artifact_dir": "/home/vector/research/aegis-research/cybereval/paper/artifacts/live_llm/20260409T232937Z",
+  "utc_timestamp": "20260409T232937Z",
+  "baseline_commit": "7755b9383923b0f03bc7c286df46cfa4f938cc64",
   "live_model": "openai-codex:gpt-5.3-codex",
   "sample_question_count": 7,
-  "prompt_count": 14,
-  "correct": 14,
+  "expected_prompt_count": 14,
+  "parsed_prompt_count": 13,
+  "prompt_count": 13,
+  "parsed_correct": 13,
+  "correct": 13,
   "accuracy": 1.0,
+  "valid_response_rate": 0.9285714285714286,
   "mcq_accuracy": 1.0,
   "scenario_accuracy": 1.0,
   "scenario_gap_pp": 0.0,
+  "scenario_ok_count": 6,
   "difficulty_histogram": {
     "2": 5,
     "3": 2
@@ -23,16 +28,26 @@
     "FA-153",
     "SA-180"
   ],
+  "fully_covered_dimensions": [
+    "VK",
+    "TI",
+    "SC",
+    "IR",
+    "CG",
+    "SA"
+  ],
+  "partial_dimensions": [
+    "FA"
+  ],
   "perfect_dimensions": [
     "VK",
     "TI",
     "SC",
     "IR",
     "CG",
-    "FA",
     "SA"
   ],
-  "all_dimensions_saturated": true,
+  "all_dimensions_saturated": false,
   "deployment_threshold": 0.6,
   "simulated_frontier": [
     "Claude-3.5-Sonnet",
@@ -48,5 +63,26 @@
     "CG",
     "SA"
   ],
-  "interpretation": "The refreshed live slice saturates all seven dimensions on a difficulty-2/3 sample, including dimensions that stay below the simulated deployment threshold, so it should be read as a provenance and ceiling-effect probe rather than as a discriminative live ranking."
+  "parse_error_count": 1,
+  "parse_error_dimensions": [
+    "FA"
+  ],
+  "parse_error_examples": [
+    {
+      "question_id": "FA-153",
+      "dimension": "FA",
+      "format": "scenario",
+      "error": "JSONDecodeError: Expecting ',' delimiter: line 8 column 1 (char 321)"
+    }
+  ],
+  "confidence_field_count": 0,
+  "confidence_field_rate": 0.0,
+  "rationale_like_count": 6,
+  "rationale_like_rate": 0.46153846153846156,
+  "rationale_key_variants": {
+    "brief_reason": 1,
+    "reason": 4,
+    "reasoning": 1
+  },
+  "interpretation": "The refreshed live slice answered every parseable prompt correctly, but only 13 of 14 prompts produced parseable JSON. The lone failure was the FA scenario cell, and none of the parseable replies supplied the requested numeric confidence field, so the artifact is best read as a provenance and structured-output stress test rather than a discriminative live ranking."
 }

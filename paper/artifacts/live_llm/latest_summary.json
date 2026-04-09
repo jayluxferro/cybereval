@@ -1,14 +1,14 @@
 {
-  "artifact_dir": "/home/vector/research/aegis-research/cybereval/paper/artifacts/live_llm/20260409T171458Z",
-  "utc_timestamp": "20260409T171458Z",
-  "baseline_commit": "944fd50271a5fb52fb24c032cdb28d9cb0b1724e",
+  "artifact_dir": "/home/vector/research/aegis-research/cybereval/paper/artifacts/live_llm/20260409T232937Z",
+  "utc_timestamp": "20260409T232937Z",
+  "baseline_commit": "7755b9383923b0f03bc7c286df46cfa4f938cc64",
   "metrics": {
     "sample_question_count": 7,
     "sample_prompt_count": 14,
     "models": {
       "openai-codex:gpt-5.3-codex": {
-        "count": 14,
-        "correct": 14,
+        "count": 13,
+        "correct": 13,
         "accuracy": 1.0,
         "mcq_accuracy": 1.0,
         "scenario_accuracy": 1.0,
@@ -20,8 +20,8 @@
             "accuracy": 1.0
           },
           "scenario": {
-            "count": 7,
-            "correct": 7,
+            "count": 6,
+            "correct": 6,
             "accuracy": 1.0
           }
         },
@@ -52,8 +52,8 @@
             "accuracy": 1.0
           },
           "FA": {
-            "count": 2,
-            "correct": 2,
+            "count": 1,
+            "correct": 1,
             "accuracy": 1.0
           },
           "SA": {
@@ -68,8 +68,8 @@
     "ranking": [
       {
         "model": "openai-codex:gpt-5.3-codex",
-        "count": 14,
-        "correct": 14,
+        "count": 13,
+        "correct": 13,
         "accuracy": 1.0,
         "mcq_accuracy": 1.0,
         "scenario_accuracy": 1.0,
@@ -81,8 +81,8 @@
             "accuracy": 1.0
           },
           "scenario": {
-            "count": 7,
-            "correct": 7,
+            "count": 6,
+            "correct": 6,
             "accuracy": 1.0
           }
         },
@@ -113,8 +113,8 @@
             "accuracy": 1.0
           },
           "FA": {
-            "count": 2,
-            "correct": 2,
+            "count": 1,
+            "correct": 1,
             "accuracy": 1.0
           },
           "SA": {
