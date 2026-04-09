@@ -1,7 +1,7 @@
 {
-  "artifact_dir": "/home/vector/research/aegis-research/cybereval/paper/artifacts/live_llm/20260408T013312Z",
-  "utc_timestamp": "20260408T013312Z",
-  "baseline_commit": "25240c7c90df0c3c5368b369866ef35a979e38e8",
+  "artifact_dir": "/home/vector/research/aegis-research/cybereval/paper/artifacts/live_llm/20260409T171458Z",
+  "utc_timestamp": "20260409T171458Z",
+  "baseline_commit": "944fd50271a5fb52fb24c032cdb28d9cb0b1724e",
   "metrics": {
     "sample_question_count": 7,
     "sample_prompt_count": 14,

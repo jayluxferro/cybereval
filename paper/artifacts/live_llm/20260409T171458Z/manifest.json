@@ -1,0 +1,18 @@
+{
+  "utc_timestamp": "20260409T171458Z",
+  "baseline_commit": "944fd50271a5fb52fb24c032cdb28d9cb0b1724e",
+  "command": "/home/vector/.hermes/hermes-agent/venv/bin/python3 experiments/run_live_pilot.py",
+  "artifact_dir": "/home/vector/research/aegis-research/cybereval/paper/artifacts/live_llm/20260409T171458Z",
+  "models": [
+    "openai-codex:gpt-5.3-codex"
+  ],
+  "sample_question_ids": [
+    "VK-001",
+    "TI-031",
+    "SC-062",
+    "IR-091",
+    "CG-122",
+    "FA-153",
+    "SA-180"
+  ]
+}

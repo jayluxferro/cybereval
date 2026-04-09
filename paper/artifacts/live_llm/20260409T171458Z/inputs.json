@@ -1,0 +1,124 @@
+{
+  "utc_timestamp": "20260409T171458Z",
+  "baseline_commit": "944fd50271a5fb52fb24c032cdb28d9cb0b1724e",
+  "models": [
+    "openai-codex:gpt-5.3-codex"
+  ],
+  "selection_policy": "first difficulty-2-or-3 item per dimension, fallback to first available item",
+  "sample": [
+    {
+      "id": "VK-001",
+      "dimension": "VK",
+      "question": "Which CWE category covers buffer overflow vulnerabilities?",
+      "choices": [
+        "CWE-120",
+        "CWE-79",
+        "CWE-89",
+        "CWE-352"
+      ],
+      "correct": 0,
+      "difficulty": 2
+    },
+    {
+      "id": "TI-031",
+      "dimension": "TI",
+      "question": "STIX is a standard for?",
+      "choices": [
+        "Sharing threat intelligence",
+        "Security testing",
+        "System administration",
+        "Source code analysis"
+      ],
+      "correct": 0,
+      "difficulty": 2
+    },
+    {
+      "id": "SC-062",
+      "dimension": "SC",
+      "question": "Content Security Policy (CSP) mitigates?",
+      "choices": [
+        "XSS attacks",
+        "SQL injection",
+        "Buffer overflow",
+        "CSRF"
+      ],
+      "correct": 0,
+      "difficulty": 2
+    },
+    {
+      "id": "IR-091",
+      "dimension": "IR",
+      "question": "What is the NIST IR lifecycle?",
+      "choices": [
+        "Preparation, Detection, Containment, Post-Incident",
+        "Plan, Do, Check, Act",
+        "Identify, Protect, Detect, Respond, Recover",
+        "Assess, Mitigate, Monitor, Report"
+      ],
+      "correct": 0,
+      "difficulty": 2
+    },
+    {
+      "id": "CG-122",
+      "dimension": "CG",
+      "question": "SOC 2 Type II differs from Type I by?",
+      "choices": [
+        "Testing controls over time period",
+        "Having more controls",
+        "Being more expensive",
+        "Requiring certification"
+      ],
+      "correct": 0,
+      "difficulty": 3
+    },
+    {
+      "id": "FA-153",
+      "dimension": "FA",
+      "question": "File carving recovers files by?",
+      "choices": [
+        "Identifying file headers/footers in raw data",
+        "Searching file names",
+        "Checking recycle bin",
+        "Reading file system tables"
+      ],
+      "correct": 0,
+      "difficulty": 3
+    },
+    {
+      "id": "SA-180",
+      "dimension": "SA",
+      "question": "What is zero trust architecture?",
+      "choices": [
+        "Never trust, always verify",
+        "Trust internal network fully",
+        "Trust verified users permanently",
+        "Zero security controls needed"
+      ],
+      "correct": 0,
+      "difficulty": 2
+    }
+  ],
+  "prompt_templates": {
+    "system": "You are participating in a cybersecurity benchmark. Return valid JSON only, with keys selected_option (integer 0-3), confidence (number 0-1), and rationale (string). Do not include markdown fences or any extra text.",
+    "formats": {
+      "mcq": {
+        "VK-001": "Question ID: VK-001\nDimension: VK (Vulnerability Knowledge)\nDifficulty: 2\n\nAnswer the following cybersecurity multiple-choice question. Select the single best option.\n\nQuestion:\nWhich CWE category covers buffer overflow vulnerabilities?\n\nOptions:\n0. CWE-120\n1. CWE-79\n2. CWE-89\n3. CWE-352\n\nReturn JSON only.",
+        "TI-031": "Question ID: TI-031\nDimension: TI (Threat Intelligence)\nDifficulty: 2\n\nAnswer the following cybersecurity multiple-choice question. Select the single best option.\n\nQuestion:\nSTIX is a standard for?\n\nOptions:\n0. Sharing threat intelligence\n1. Security testing\n2. System administration\n3. Source code analysis\n\nReturn JSON only.",
+        "SC-062": "Question ID: SC-062\nDimension: SC (Secure Coding)\nDifficulty: 2\n\nAnswer the following cybersecurity multiple-choice question. Select the single best option.\n\nQuestion:\nContent Security Policy (CSP) mitigates?\n\nOptions:\n0. XSS attacks\n1. SQL injection\n2. Buffer overflow\n3. CSRF\n\nReturn JSON only.",
+        "IR-091": "Question ID: IR-091\nDimension: IR (Incident Response)\nDifficulty: 2\n\nAnswer the following cybersecurity multiple-choice question. Select the single best option.\n\nQuestion:\nWhat is the NIST IR lifecycle?\n\nOptions:\n0. Preparation, Detection, Containment, Post-Incident\n1. Plan, Do, Check, Act\n2. Identify, Protect, Detect, Respond, Recover\n3. Assess, Mitigate, Monitor, Report\n\nReturn JSON only.",
+        "CG-122": "Question ID: CG-122\nDimension: CG (Compliance & Governance)\nDifficulty: 3\n\nAnswer the following cybersecurity multiple-choice question. Select the single best option.\n\nQuestion:\nSOC 2 Type II differs from Type I by?\n\nOptions:\n0. Testing controls over time period\n1. Having more controls\n2. Being more expensive\n3. Requiring certification\n\nReturn JSON only.",
+        "FA-153": "Question ID: FA-153\nDimension: FA (Forensic Analysis)\nDifficulty: 3\n\nAnswer the following cybersecurity multiple-choice question. Select the single best option.\n\nQuestion:\nFile carving recovers files by?\n\nOptions:\n0. Identifying file headers/footers in raw data\n1. Searching file names\n2. Checking recycle bin\n3. Reading file system tables\n\nReturn JSON only.",
+        "SA-180": "Question ID: SA-180\nDimension: SA (Security Architecture)\nDifficulty: 2\n\nAnswer the following cybersecurity multiple-choice question. Select the single best option.\n\nQuestion:\nWhat is zero trust architecture?\n\nOptions:\n0. Never trust, always verify\n1. Trust internal network fully\n2. Trust verified users permanently\n3. Zero security controls needed\n\nReturn JSON only."
+      },
+      "scenario": {
+        "VK-001": "Question ID: VK-001\nDimension: VK (Vulnerability Knowledge)\nDifficulty: 2\n\nYou are helping an application-security reviewer classify a weakness found during triage. Re-read the same underlying question in a workflow setting, reason briefly, and still choose the single best option from the list.\n\nQuestion:\nWhich CWE category covers buffer overflow vulnerabilities?\n\nOptions:\n0. CWE-120\n1. CWE-79\n2. CWE-89\n3. CWE-352\n\nReturn JSON only.",
+        "TI-031": "Question ID: TI-031\nDimension: TI (Threat Intelligence)\nDifficulty: 2\n\nYou are assisting a threat-intelligence analyst who needs the most accurate interpretation for a report. Re-read the same underlying question in a workflow setting, reason briefly, and still choose the single best option from the list.\n\nQuestion:\nSTIX is a standard for?\n\nOptions:\n0. Sharing threat intelligence\n1. Security testing\n2. System administration\n3. Source code analysis\n\nReturn JSON only.",
+        "SC-062": "Question ID: SC-062\nDimension: SC (Secure Coding)\nDifficulty: 2\n\nYou are helping an AppSec engineer choose the safest explanation during secure-code review. Re-read the same underlying question in a workflow setting, reason briefly, and still choose the single best option from the list.\n\nQuestion:\nContent Security Policy (CSP) mitigates?\n\nOptions:\n0. XSS attacks\n1. SQL injection\n2. Buffer overflow\n3. CSRF\n\nReturn JSON only.",
+        "IR-091": "Question ID: IR-091\nDimension: IR (Incident Response)\nDifficulty: 2\n\nYou are supporting an incident responder making an initial containment or triage decision. Re-read the same underlying question in a workflow setting, reason briefly, and still choose the single best option from the list.\n\nQuestion:\nWhat is the NIST IR lifecycle?\n\nOptions:\n0. Preparation, Detection, Containment, Post-Incident\n1. Plan, Do, Check, Act\n2. Identify, Protect, Detect, Respond, Recover\n3. Assess, Mitigate, Monitor, Report\n\nReturn JSON only.",
+        "CG-122": "Question ID: CG-122\nDimension: CG (Compliance & Governance)\nDifficulty: 3\n\nYou are assisting a governance analyst interpreting a compliance or policy control question. Re-read the same underlying question in a workflow setting, reason briefly, and still choose the single best option from the list.\n\nQuestion:\nSOC 2 Type II differs from Type I by?\n\nOptions:\n0. Testing controls over time period\n1. Having more controls\n2. Being more expensive\n3. Requiring certification\n\nReturn JSON only.",
+        "FA-153": "Question ID: FA-153\nDimension: FA (Forensic Analysis)\nDifficulty: 3\n\nYou are helping a forensic analyst interpret the most defensible investigative answer. Re-read the same underlying question in a workflow setting, reason briefly, and still choose the single best option from the list.\n\nQuestion:\nFile carving recovers files by?\n\nOptions:\n0. Identifying file headers/footers in raw data\n1. Searching file names\n2. Checking recycle bin\n3. Reading file system tables\n\nReturn JSON only.",
+        "SA-180": "Question ID: SA-180\nDimension: SA (Security Architecture)\nDifficulty: 2\n\nYou are assisting a security architect selecting the best architecture-oriented answer. Re-read the same underlying question in a workflow setting, reason briefly, and still choose the single best option from the list.\n\nQuestion:\nWhat is zero trust architecture?\n\nOptions:\n0. Never trust, always verify\n1. Trust internal network fully\n2. Trust verified users permanently\n3. Zero security controls needed\n\nReturn JSON only."
+      }
+    }
+  }
+}

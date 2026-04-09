@@ -1,0 +1,52 @@
+{
+  "artifact_dir": "/home/vector/research/aegis-research/cybereval/paper/artifacts/live_llm/20260409T171458Z",
+  "utc_timestamp": "20260409T171458Z",
+  "baseline_commit": "944fd50271a5fb52fb24c032cdb28d9cb0b1724e",
+  "live_model": "openai-codex:gpt-5.3-codex",
+  "sample_question_count": 7,
+  "prompt_count": 14,
+  "correct": 14,
+  "accuracy": 1.0,
+  "mcq_accuracy": 1.0,
+  "scenario_accuracy": 1.0,
+  "scenario_gap_pp": 0.0,
+  "difficulty_histogram": {
+    "2": 5,
+    "3": 2
+  },
+  "sample_question_ids": [
+    "VK-001",
+    "TI-031",
+    "SC-062",
+    "IR-091",
+    "CG-122",
+    "FA-153",
+    "SA-180"
+  ],
+  "perfect_dimensions": [
+    "VK",
+    "TI",
+    "SC",
+    "IR",
+    "CG",
+    "FA",
+    "SA"
+  ],
+  "all_dimensions_saturated": true,
+  "deployment_threshold": 0.6,
+  "simulated_frontier": [
+    "Claude-3.5-Sonnet",
+    "GPT-4o"
+  ],
+  "frontier_below_threshold_dimensions": [
+    "IR",
+    "CG",
+    "SA"
+  ],
+  "saturated_below_threshold_dimensions": [
+    "IR",
+    "CG",
+    "SA"
+  ],
+  "interpretation": "The refreshed live slice saturates all seven dimensions on a difficulty-2/3 sample, including dimensions that stay below the simulated deployment threshold, so it should be read as a provenance and ceiling-effect probe rather than as a discriminative live ranking."
+}
