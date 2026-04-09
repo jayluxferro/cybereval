@@ -158,10 +158,37 @@ def _extract_json_blob(text: str) -> dict[str, Any]:
     try:
         return json.loads(cleaned)
     except json.JSONDecodeError:
+        decoder = json.JSONDecoder()
+        anchored_starts = [
+            idx
+            for idx, ch in enumerate(cleaned)
+            if ch == "{" and (idx == 0 or cleaned[idx - 1] == "\n")
+        ]
+        candidate_starts = anchored_starts or [
+            idx for idx, ch in enumerate(cleaned) if ch == "{"
+        ]
+        parsed_objects: list[dict[str, Any]] = []
+        for start in candidate_starts:
+            try:
+                parsed, _ = decoder.raw_decode(cleaned[start:])
+            except json.JSONDecodeError:
+                continue
+            if isinstance(parsed, dict):
+                parsed_objects.append(parsed)
+        if parsed_objects:
+            return parsed_objects[-1]
         match = re.search(r"\{.*\}", cleaned, re.DOTALL)
         if match:
             return json.loads(match.group(0))
         raise
+
+
+def _normalize_rationale(parsed: dict[str, Any]) -> str | None:
+    for key in ["rationale", "reason", "reasoning", "brief_reason"]:
+        value = parsed.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return None
 
 
 def _normalize_selected_option(
@@ -232,6 +259,7 @@ def _extract_hermes_text(stdout: str) -> tuple[str, str | None]:
 
 
 def _call_hermes(provider: str, model: str, prompt: str) -> dict[str, Any]:
+    hermes_prompt = f"{SYSTEM_PROMPT}\n\n{prompt}"
     cmd = [
         "hermes",
         "chat",
@@ -247,7 +275,7 @@ def _call_hermes(provider: str, model: str, prompt: str) -> dict[str, Any]:
         "--source",
         "tool",
         "-q",
-        prompt,
+        hermes_prompt,
     ]
     proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
     if proc.returncode != 0:
@@ -570,6 +598,7 @@ def main() -> int:
             for fmt in ["mcq", "scenario"]:
                 prompt = _build_prompt(question, fmt)
                 started = time.time()
+                api_result: dict[str, Any] | None = None
                 try:
                     api_result = _call_model(
                         provider, model, prompt, transport=transport
@@ -603,7 +632,7 @@ def main() -> int:
                             "correct_choice": question["choices"][question["correct"]],
                             "correct": bool(correct),
                             "confidence": parsed.get("confidence"),
-                            "rationale": parsed.get("rationale"),
+                            "rationale": _normalize_rationale(parsed),
                             "latency_s": round(latency_s, 3),
                             "usage": api_result.get("usage", {}),
                             "response_id": api_result.get("response_id"),
@@ -626,6 +655,15 @@ def main() -> int:
                             "prompt": prompt,
                             "latency_s": round(latency_s, 3),
                             "error": f"{type(exc).__name__}: {exc}",
+                            "response_id": None
+                            if api_result is None
+                            else api_result.get("response_id"),
+                            "raw_text": None
+                            if api_result is None
+                            else api_result.get("text"),
+                            "raw_response": None
+                            if api_result is None
+                            else api_result.get("raw"),
                         }
                     )
 

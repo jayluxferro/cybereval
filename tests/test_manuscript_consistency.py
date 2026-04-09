@@ -109,25 +109,38 @@ def test_manuscript_tracks_latest_live_pilot_summary():
     overall = ranking["accuracy"] * 100
     mcq = ranking["mcq_accuracy"] * 100
     scenario = ranking["scenario_accuracy"] * 100
-    gap = ranking["scenario_gap_pp"]
-    correct = ranking["correct"]
-    total = ranking["count"]
-    difficulty_two = note["difficulty_histogram"].get("2", 0)
-    difficulty_three = note["difficulty_histogram"].get("3", 0)
+    parsed = note["parsed_prompt_count"]
+    expected = note["expected_prompt_count"]
+    valid_response_rate = note["valid_response_rate"] * 100
     below_threshold_dims = _oxford_join(note["saturated_below_threshold_dimensions"])
+    parse_error = note["parse_error_examples"][0]
+    fully_covered = len(note["fully_covered_dimensions"])
 
     assert model in manuscript
-    assert f"{correct}/{total}" in manuscript
+    assert f"{parsed}/{expected}" in manuscript
     assert f"{overall:.1f}\\%" in manuscript
     assert f"{mcq:.1f}\\%" in manuscript
     assert f"{scenario:.1f}\\%" in manuscript
-    assert f"{gap:.1f}-point" in manuscript
+    assert f"{valid_response_rate:.1f}\\%" in manuscript
+    assert f"{note['scenario_ok_count']} parseable scenario prompts" in manuscript
+    assert f"{note['rationale_like_count']} parseable scenario replies" in manuscript
     assert "all seven dimensions" in manuscript
+    assert below_threshold_dims in manuscript
+    assert f"{parse_error['dimension']} {parse_error['format']} cell" in manuscript
     assert (
-        f"{difficulty_two} difficulty-2 items and {difficulty_three} difficulty-3 items"
+        f"only {fully_covered} dimensions retain full paired MCQ+scenario coverage"
         in manuscript
     )
-    assert below_threshold_dims in manuscript
+    if note["confidence_field_count"] == 0:
+        assert (
+            f"none of the {parsed} parseable replies supplied the requested numeric confidence field"
+            in manuscript
+        )
+    else:
+        assert (
+            f"{note['confidence_field_count']} of the {parsed} parseable replies supplied the requested numeric confidence field"
+            in manuscript
+        )
 
 
 def test_manuscript_avoids_internal_validation_prose():
