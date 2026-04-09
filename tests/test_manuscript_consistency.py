@@ -10,6 +10,7 @@ PDF_PATH = ROOT / "paper" / "main.pdf"
 LATEST_LIVE_SUMMARY_PATH = (
     ROOT / "paper" / "artifacts" / "live_llm" / "latest_summary.json"
 )
+LATEST_LIVE_NOTE_PATH = ROOT / "paper" / "artifacts" / "live_llm" / "latest_note.json"
 
 
 def _distance(results: dict, model_a: str, model_b: str) -> float:
@@ -25,6 +26,14 @@ def _distance(results: dict, model_a: str, model_b: str) -> float:
             for dim in dims
         )
     )
+
+
+def _oxford_join(items: list[str]) -> str:
+    if len(items) == 1:
+        return items[0]
+    if len(items) == 2:
+        return f"{items[0]} and {items[1]}"
+    return f"{', '.join(items[:-1])}, and {items[-1]}"
 
 
 def test_manuscript_tracks_key_scores_profiles_and_figures():
@@ -93,6 +102,7 @@ def test_manuscript_tracks_role_weighted_margins():
 def test_manuscript_tracks_latest_live_pilot_summary():
     manuscript = MANUSCRIPT_PATH.read_text()
     latest = json.loads(LATEST_LIVE_SUMMARY_PATH.read_text())
+    note = json.loads(LATEST_LIVE_NOTE_PATH.read_text())
     ranking = latest["metrics"]["ranking"][0]
 
     model = ranking["model"]
@@ -102,6 +112,9 @@ def test_manuscript_tracks_latest_live_pilot_summary():
     gap = ranking["scenario_gap_pp"]
     correct = ranking["correct"]
     total = ranking["count"]
+    difficulty_two = note["difficulty_histogram"].get("2", 0)
+    difficulty_three = note["difficulty_histogram"].get("3", 0)
+    below_threshold_dims = _oxford_join(note["saturated_below_threshold_dimensions"])
 
     assert model in manuscript
     assert f"{correct}/{total}" in manuscript
@@ -109,6 +122,12 @@ def test_manuscript_tracks_latest_live_pilot_summary():
     assert f"{mcq:.1f}\\%" in manuscript
     assert f"{scenario:.1f}\\%" in manuscript
     assert f"{gap:.1f}-point" in manuscript
+    assert "all seven dimensions" in manuscript
+    assert (
+        f"{difficulty_two} difficulty-2 items and {difficulty_three} difficulty-3 items"
+        in manuscript
+    )
+    assert below_threshold_dims in manuscript
 
 
 def test_manuscript_avoids_internal_validation_prose():
