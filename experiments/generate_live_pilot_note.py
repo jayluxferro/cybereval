@@ -16,6 +16,79 @@ DIMENSION_ORDER = ["VK", "TI", "SC", "IR", "CG", "FA", "SA"]
 RATIONALE_KEYS = ["rationale", "reason", "reasoning", "brief_reason"]
 
 
+def _oxford_join(items: list[str]) -> str:
+    if not items:
+        return ""
+    if len(items) == 1:
+        return items[0]
+    if len(items) == 2:
+        return f"{items[0]} and {items[1]}"
+    return f"{', '.join(items[:-1])}, and {items[-1]}"
+
+
+def _build_interpretation(note: dict[str, Any]) -> str:
+    parsed = note["parsed_prompt_count"]
+    expected = note["expected_prompt_count"]
+    fully_covered = len(note["fully_covered_dimensions"])
+    below_threshold = note["saturated_below_threshold_dimensions"]
+    below_clause = ""
+    if below_threshold:
+        below_clause = (
+            f" Even this saturated slice still includes {_oxford_join(below_threshold)} where "
+            "the simulated frontier remains below the 0.60 deployment bar."
+        )
+
+    if (
+        note["parse_error_count"] == 0
+        and note["confidence_field_count"] == parsed
+        and note["rationale_key_variants"] == {"rationale": parsed}
+    ):
+        coverage_clause = (
+            "All seven dimensions retain full paired MCQ+scenario coverage."
+            if note["all_dimensions_saturated"]
+            else f"Only {fully_covered} dimensions retain full paired MCQ+scenario coverage."
+        )
+        return (
+            f"The refreshed live slice saturated the bounded {expected}-prompt sample: all {expected} "
+            f"prompts produced parseable JSON, all {parsed} parsed answers were correct, and all {parsed} "
+            "parseable replies supplied both the requested numeric confidence field and the requested "
+            f"rationale field. {coverage_clause}{below_clause} The artifact is therefore best read as a "
+            "bounded provenance and ceiling-effect check rather than as a discriminative live ranking."
+        )
+
+    parse_error_clause = ""
+    if note["parse_error_examples"]:
+        first_error = note["parse_error_examples"][0]
+        parse_error_clause = f" The first parse failure was the {first_error['dimension']} {first_error['format']} cell."
+
+    confidence_clause = (
+        f"All {parsed} parseable replies supplied the requested numeric confidence field."
+        if note["confidence_field_count"] == parsed
+        else (
+            f"None of the {parsed} parseable replies supplied the requested numeric confidence field."
+            if note["confidence_field_count"] == 0
+            else f"{note['confidence_field_count']} of the {parsed} parseable replies supplied the requested numeric confidence field."
+        )
+    )
+    rationale_keys = sorted(note["rationale_key_variants"])
+    rationale_clause = (
+        f"The parseable replies used the following rationale-like keys: {_oxford_join(rationale_keys)}."
+        if rationale_keys
+        else "No parseable reply exposed a rationale-like field."
+    )
+    coverage_clause = (
+        "All seven dimensions retain full paired MCQ+scenario coverage."
+        if note["all_dimensions_saturated"]
+        else f"Only {fully_covered} dimensions retain full paired MCQ+scenario coverage."
+    )
+    return (
+        f"The refreshed live slice answered every parseable prompt correctly, but only {parsed} of {expected} "
+        f"prompts produced parseable JSON.{parse_error_clause} {confidence_clause} {rationale_clause} "
+        f"{coverage_clause}{below_clause} The artifact is therefore best read as a provenance and "
+        "structured-output stress test rather than as a discriminative live ranking."
+    )
+
+
 def _load_raw_payload(record: dict[str, Any]) -> dict[str, Any]:
     raw_text = record.get("raw_text")
     if not isinstance(raw_text, str) or not raw_text.strip():
@@ -163,13 +236,8 @@ def main() -> int:
             else 0.0
         ),
         "rationale_key_variants": dict(sorted(rationale_key_variants.items())),
-        "interpretation": (
-            "The refreshed live slice answered every parseable prompt correctly, but only 13 of 14 prompts "
-            "produced parseable JSON. The lone failure was the FA scenario cell, and none of the parseable "
-            "replies supplied the requested numeric confidence field, so the artifact is best read as a "
-            "provenance and structured-output stress test rather than a discriminative live ranking."
-        ),
     }
+    note["interpretation"] = _build_interpretation(note)
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(note, indent=2) + "\n", encoding="utf-8")

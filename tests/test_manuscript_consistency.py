@@ -113,25 +113,48 @@ def test_manuscript_tracks_latest_live_pilot_summary():
     expected = note["expected_prompt_count"]
     valid_response_rate = note["valid_response_rate"] * 100
     below_threshold_dims = _oxford_join(note["saturated_below_threshold_dimensions"])
-    parse_error = note["parse_error_examples"][0]
     fully_covered = len(note["fully_covered_dimensions"])
 
     assert model in manuscript
-    assert f"{parsed}/{expected}" in manuscript
     assert f"{overall:.1f}\\%" in manuscript
     assert f"{mcq:.1f}\\%" in manuscript
     assert f"{scenario:.1f}\\%" in manuscript
     assert f"{valid_response_rate:.1f}\\%" in manuscript
     assert f"{note['scenario_ok_count']} parseable scenario prompts" in manuscript
-    assert f"{note['rationale_like_count']} parseable scenario replies" in manuscript
+
+    if parsed == expected:
+        assert f"all {expected} prompts produced parseable JSON" in manuscript
+    else:
+        assert f"{parsed}/{expected}" in manuscript
+
+    if note["rationale_like_count"] == parsed:
+        assert f"all {parsed} parseable replies" in manuscript
+    else:
+        assert f"{note['rationale_like_count']} parseable replies" in manuscript
+
     assert "all seven dimensions" in manuscript
-    assert below_threshold_dims in manuscript
-    assert f"{parse_error['dimension']} {parse_error['format']} cell" in manuscript
-    assert (
-        f"only {fully_covered} dimensions retain full paired MCQ+scenario coverage"
-        in manuscript
-    )
-    if note["confidence_field_count"] == 0:
+    if below_threshold_dims:
+        assert below_threshold_dims in manuscript
+
+    if note["parse_error_count"]:
+        parse_error = note["parse_error_examples"][0]
+        assert f"{parse_error['dimension']} {parse_error['format']} cell" in manuscript
+        assert (
+            f"only {fully_covered} dimensions retain full paired MCQ+scenario coverage"
+            in manuscript
+        )
+    else:
+        assert (
+            "full paired MCQ+scenario coverage across all seven dimensions"
+            in manuscript
+        )
+
+    if note["confidence_field_count"] == parsed:
+        assert (
+            f"All {parsed} parseable replies supplied the requested numeric confidence field"
+            in manuscript
+        )
+    elif note["confidence_field_count"] == 0:
         assert (
             f"none of the {parsed} parseable replies supplied the requested numeric confidence field"
             in manuscript
@@ -141,6 +164,17 @@ def test_manuscript_tracks_latest_live_pilot_summary():
             f"{note['confidence_field_count']} of the {parsed} parseable replies supplied the requested numeric confidence field"
             in manuscript
         )
+
+    rationale_keys = note["rationale_key_variants"]
+    if rationale_keys == {"rationale": parsed}:
+        assert (
+            f"all {parsed} parseable replies used the requested \\texttt{{rationale}} key"
+            in manuscript
+        )
+    else:
+        for key in rationale_keys:
+            tex_key = key.replace("_", "\\_")
+            assert f"\\texttt{{{tex_key}}}" in manuscript
 
 
 def test_manuscript_avoids_internal_validation_prose():
