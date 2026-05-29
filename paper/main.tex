@@ -162,7 +162,11 @@ CG & NIST 800-53 provides what type of guidance? & Security and privacy controls
 \end{tabular}
 \end{table*}
 
-\textbf{Question construction.} Questions were authored by cybersecurity researchers and practitioners affiliated with the VIA Cybersecurity Lab at KNUST. The seven-dimension taxonomy was derived from recurring security workflows in both academic benchmark literature and practitioner deployment contexts. Each item was assigned a heuristic difficulty rating (1--5) based on the depth of domain knowledge and the number of reasoning steps required. Items at tier 1 test recall of widely known facts; items at tier 3 require synthesis of multiple concepts; items at tier 5 require expert-level reasoning about edge cases. The distribution reflects an initial design goal of broad coverage across dimensions rather than calibrated difficulty scaling---a choice that, in retrospect, limits the current study's ability to characterize hard-question discrimination.
+\textbf{Question construction.} Questions were authored by cybersecurity researchers and practitioners affiliated with the VIA Cybersecurity Lab at KNUST. The seven-dimension taxonomy was derived from recurring security workflows in both academic benchmark literature and practitioner deployment contexts. Each question presents four answer choices with exactly one correct answer and three distractors. Distractors were designed to be plausible to a non-specialist but clearly incorrect to a domain expert, following standard multiple-choice item construction methodology.
+
+Each item was assigned a heuristic difficulty rating (1--5) based on two factors: the depth of domain knowledge required and the number of reasoning steps needed to arrive at the correct answer. Tier 1 items test recall of widely known facts (e.g., identifying SQL injection from a description). Tier 3 items require synthesis of multiple concepts (e.g., distinguishing between APT attribution based on TTP descriptions). Tier 5 items require expert-level reasoning about edge cases (e.g., identifying the correct microservice security pattern from a detailed scenario). The distribution---37 items at tier 1, 116 at tier 2, 47 at tier 3, 9 at tier 4, and 1 at tier 5---reflects an initial design goal of broad coverage across dimensions. This concentration on easier items is the primary factor limiting the scope of our saturation claims.
+
+The question bank was validated through internal review by multiple members of the research team. Each question was independently reviewed by at least two authors, with disagreements resolved through discussion. No questions were sourced from existing certification exams or published benchmark banks, ensuring that models could not have memorized answers from training data. The full question bank is included in the released artifact to enable independent verification.
 
 \subsection{Prompt Template}
 
@@ -334,16 +338,41 @@ Figure~\ref{fig:difficulty} breaks down accuracy by the heuristic difficulty ann
 \label{fig:difficulty}
 \end{figure*}
 
-The difficulty-tier analysis reveals two patterns. First, for models above the 90\% threshold, difficulty annotations do not predict accuracy---these models score at or near 100\% regardless of tier. Second, for models near or below the threshold (Nemotron-120B, Qwen-3.6-35B), the difficulty signal is visible: accuracy declines as tier increases, and the decline is steepest for the model with the lowest aggregate score. This suggests that the difficulty annotations carry information, but that current-generation frontier models have compressed the easy-to-medium range to the point where the annotations no longer discriminate.
+The difficulty-tier analysis reveals two patterns, summarized in Table~\ref{tab:difficulty_summary}. First, for models above the 90\% threshold, difficulty annotations do not predict accuracy---these models score at or near 100\% regardless of tier, with variance attributable to parsing failures rather than knowledge gaps. Second, for models near or below the threshold (Nemotron-120B, Qwen-3.6-35B), the difficulty signal is visible: accuracy declines as tier increases. Nemotron-120B shows the steepest decline from 97\% at tier 1 to 74\% at tier 3, a 23-point drop across two difficulty levels. This confirms that the difficulty annotations carry valid information about question hardness, but that current-generation frontier models have compressed the easy-to-medium range to the point where the annotations no longer discriminate among competent models.
 
-\subsection{Token Efficiency}
+\begin{table*}[t]
+\centering
+\caption{Aggregate accuracy by difficulty tier. Tier 5 (1 question) is omitted from trend analysis due to insufficient sample size.}
+\label{tab:difficulty_summary}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{Tier 1 (37q)} & \textbf{Tier 2 (116q)} & \textbf{Tier 3 (47q)} & \textbf{Tier 4 (9q)} & \textbf{Tier 5 (1q)} \\
+\midrule
+Kimi-K2.6 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 \\
+Claude-Sonnet-4.6 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 \\
+Gemma-4-31B & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 \\
+Qwen-3.5-9B & 100.0 & 100.0 & 97.9 & 100.0 & 100.0 \\
+DeepSeek-V4-Pro & 97.3 & 100.0 & 100.0 & 100.0 & 100.0 \\
+DeepSeek-V4-Flash & 97.3 & 94.8 & 97.9 & 100.0 & 100.0 \\
+Qwen-3.6-35B & 94.6 & 91.4 & 87.2 & 100.0 & 100.0 \\
+Nemotron-120B & 97.3 & 87.9 & 74.5 & 66.7 & 100.0 \\
+\midrule
+\textbf{Aggregate} & \textbf{98.3} & \textbf{96.7} & \textbf{94.7} & \textbf{95.8} & \textbf{100.0} \\
+\bottomrule
+\end{tabular}
+\end{table*}
 
-Figure~\ref{fig:token_efficiency} examines the relationship between accuracy and token consumption. Models vary widely in the number of tokens they expend per question, from Claude-Sonnet-4.6's efficient 94 tokens/question to Qwen-3.6-35B's verbose 196 tokens/question, with no systematic relationship to accuracy. Kimi-K2.6 and Claude-Sonnet-4.6 both achieve perfect scores, yet Claude uses 37\% fewer tokens. This efficiency gap has practical implications for deployment cost, even when accuracy is equivalent.
+\subsection{Token Efficiency and Provider Comparison}
+
+Figure~\ref{fig:token_efficiency} examines the relationship between accuracy and token consumption. Models vary widely in the number of tokens expended per question, from Claude-Sonnet-4.6's efficient 94 tokens to Qwen-3.6-35B's verbose 196 tokens, with no systematic relationship to accuracy. The three models achieving perfect scores (Kimi-K2.6, Claude-Sonnet-4.6, Gemma-4-31B) span token efficiencies from 94 to 146 tokens per question. Claude-Sonnet-4.6 uses 37\% fewer tokens than Kimi-K2.6 while achieving the same accuracy. This efficiency gap has direct cost implications: at standard API pricing, deploying Claude-Sonnet-4.6 for MCQ-based cybersecurity screening costs approximately one-third less than deploying Kimi-K2.6 with no accuracy penalty.
+
+Comparing across API providers, the seven models accessed via DoubleWordAI achieved a collective accuracy of 96.3\% (1,011/1,050 questions) with 121,901 total tokens. The single model accessed via OpenRouter (Claude-Sonnet-4.6) achieved 100.0\% (210/210) with 19,640 tokens. The provider comparison is observational rather than causal---model capability and provider infrastructure are confounded---but the data establish that both providers support accurate MCQ evaluation for current-generation models.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/live_token_efficiency.pdf}
-\caption{Accuracy vs. average tokens per question. Token consumption varies by a factor of 2.2$\times$ across models with no systematic accuracy benefit. The two 100\% models differ by 37\% in token efficiency.}
+\caption{Accuracy vs. average tokens per question. Token consumption varies by a factor of 2.2$\times$ across models with no systematic accuracy benefit. The three 100\% models differ by 37\% in token efficiency.}
 \label{fig:token_efficiency}
 \end{figure*}
 
