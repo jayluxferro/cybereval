@@ -354,7 +354,7 @@ Nemotron-120B & 83.3 & 93.3 & 86.7 & 83.3 & 93.3 & 76.7 & 83.3 \\
 \end{tabular}
 \end{table*}
 
-Two patterns emerge. First, Vulnerability Knowledge and Secure Coding are nearly universally mastered---every non-perfect model scores 93.3\% or higher on VK and 86.7\% or higher on SC. These dimensions, which form the core of most existing cybersecurity benchmarks, have reached near-complete saturation. Second, where residual variance remains, it concentrates in Forensic Analysis and Security Architecture---the dimensions most dependent on procedural knowledge and system-level reasoning. The spread from best to worst within these dimensions is 23.3 points, suggesting discrimination is still possible but requires larger item banks than the 30 questions per dimension used here.
+Two patterns emerge. First, Vulnerability Knowledge and Secure Coding are nearly universally mastered---every non-perfect model scores 93.3\% or higher on VK and 86.7\% or higher on SC. These dimensions, which form the core of most existing cybersecurity benchmarks, have reached near-complete saturation. Second, residual variance concentrates in Forensic Analysis and Security Architecture, where the spread from best to worst is 23.3 points across 30 questions per dimension.
 
 \subsection{Comprehensive Benchmark Comparison}
 
@@ -383,23 +383,21 @@ SecBench~\cite{jing2024secbench} & 2024 & 7 & $\sim$15K & No & No & No \\
 \end{tabular}
 \end{table*}
 
-This study is not the largest cybersecurity benchmark in terms of item count, nor the most comprehensive in domain coverage. Its contribution is methodological: it demonstrates, with reproducible evidence, that easy-to-medium MCQ-based cybersecurity evaluation has reached a point where the measurement instrument, rather than the models being measured, is the limiting factor. This finding is orthogonal to benchmark size.
+This study is not the largest cybersecurity benchmark in terms of item count. Its contribution is reproducible, live-API evidence that easy-to-medium MCQ-based cybersecurity evaluation has reached a measurement ceiling for current-generation models.
 
 \subsection{Implications for Benchmark Lifecycle Management}
 
-Our findings support three concrete recommendations for how the cybersecurity AI evaluation community should manage benchmark lifecycles.
+\textbf{Sunset criteria.} For MCQ cybersecurity benchmarks concentrated at easy-to-medium difficulty, our data shows scores above 90\% reflect measurement noise rather than capability differences~\cite{nist2023airmf,owasp2024llm,mitre2024atlas}.
 
-\textbf{1. Sunset criteria at benchmark creation.} For MCQ cybersecurity benchmarks concentrated at easy-to-medium difficulty, our data shows scores above 90\% reflect measurement noise rather than capability differences. Defining a saturation threshold at benchmark release enables objective retirement criteria~\cite{nist2023airmf,owasp2024llm,mitre2024atlas}.
+\textbf{Calibration intervals.} The 39.5 percentage-point gap developed over approximately 18 months. Live recalibration at intervals shorter than the pace of capability improvement would have detected this saturation earlier.
 
-\textbf{2. Calibration intervals.} The 39.5 percentage-point gap we document developed over approximately 18 months. Recalibration against live measurements should occur at intervals shorter than the pace of capability improvement.
-
-\textbf{3. Saturation as a publishable contribution.} The current incentive structure rewards novel benchmark creation. Saturation measurement---establishing when a benchmark has ceased to discriminate---provides complementary evidence that tracks the movement of the evaluation frontier.
+\textbf{Saturation measurement.} Saturation evidence---establishing when a benchmark has ceased to discriminate---tracks the movement of the evaluation frontier and complements benchmark creation as a scientific contribution.
 
 \section{Discussion}
 
 \subsection{MCQ Benchmarks as Floor Tests}
 
-The results support a fundamental reframing of the role of MCQ benchmarks in cybersecurity LLM evaluation. Rather than treating them as ranking tools that produce leaderboard orderings, they should be treated as \textbf{floor tests}: screening instruments that identify models clearly unsuitable for deployment.
+The results support reframing easy-to-medium MCQ benchmarks as \textbf{floor tests}: screening instruments that identify models unsuitable for deployment.
 
 We select 90\% as an illustrative floor-test threshold. At our sample size of 210 questions, the difference between 95\% and 100\% represents at most 10 questions---a margin that can be explained by parsing variance alone, as Section~V-C demonstrates. A model scoring below 90\% on questions concentrated in difficulty tiers 1--3 misses at least 21 questions, a margin that exceeds plausible parsing failure rates.
 
