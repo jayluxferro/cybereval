@@ -263,7 +263,9 @@ Nemotron-Super-120B & 85.7 & 180/210 & 23,450 \\
 \label{fig:main_results}
 \end{figure*}
 
-Figure~\ref{fig:main_results} visualizes these results. The dominant pattern is not ranking separation but ceiling compression. The spread among the top seven models is only 9.0 percentage points. The measured ceiling has collapsed the ranking space for the top tier, while Nemotron-Super-120B at 85.7\% falls below the saturation threshold.
+Figure~\ref{fig:main_results} visualizes these results. The confidence intervals illustrate the measurement precision: for models scoring 100\% (210/210), the 95\% Wilson CI spans [98.2\%, 100.0\%]; for Nemotron-120B at 85.7\% (180/210), the CI spans [80.3\%, 89.9\%]. The three perfect-scoring models and the two 99.5\%-scoring models all have overlapping confidence intervals, meaning their scores are statistically indistinguishable at this sample size. Nemotron-120B is the only model whose confidence interval does not overlap with any other model, confirming it as a clear statistical outlier.
+
+The dominant pattern is ceiling compression. The spread among the top seven models is only 9.0 percentage points, and the overlapping confidence intervals mean that the ranking among these seven models carries no statistical information. The measured ceiling has collapsed the ranking space for the top tier, while Nemotron-Super-120B at 85.7\% is the only model clearly separable from the rest.
 
 \subsection{Quantifying the Capability Improvement Trajectory}
 
@@ -320,6 +322,19 @@ Qwen-3.6-35B & 19 & Verbose reasoning; 196 avg tokens/question, sometimes fails 
 \end{table*}
 
 The pattern is consistent: the dominant failure mode is parsing failure, not incorrect knowledge. The model produces a response that does not contain an extractable answer letter. The reported scores are therefore lower bounds on true model knowledge.
+
+\subsection{Performance by Difficulty Tier}
+
+Figure~\ref{fig:difficulty} breaks down accuracy by the heuristic difficulty annotation assigned to each question. Four models (Kimi-K2.6, Claude-Sonnet-4.6, Gemma-4-31B, Qwen-3.5-9B) maintain near-perfect accuracy across all five difficulty tiers. DeepSeek-V4-Pro drops only at tier 1 (a single parsing failure on a tier-1 question). Qwen-3.6-35B shows a slight decline from tier 1 (95\%) to tier 3 (87\%). Nemotron-120B exhibits the clearest difficulty sensitivity, falling from 97\% at tier 1 to 74\% at tier 3. At tier 5, all models score 100\%---but this tier contains only a single question, so the ceiling is an artifact of sample size rather than evidence of hard-question mastery.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/live_difficulty.pdf}
+\caption{Model accuracy by difficulty tier. Top-tier models maintain ceiling performance across all tiers. Nemotron-120B and Qwen-3.6-35B show progressive decline from tier 1 to tier 3. Tier 5 (single question, all models 100\%) is omitted from trend analysis due to insufficient sample size.}
+\label{fig:difficulty}
+\end{figure*}
+
+The difficulty-tier analysis reveals two patterns. First, for models above the 90\% threshold, difficulty annotations do not predict accuracy---these models score at or near 100\% regardless of tier. Second, for models near or below the threshold (Nemotron-120B, Qwen-3.6-35B), the difficulty signal is visible: accuracy declines as tier increases, and the decline is steepest for the model with the lowest aggregate score. This suggests that the difficulty annotations carry information, but that current-generation frontier models have compressed the easy-to-medium range to the point where the annotations no longer discriminate.
 
 \subsection{Token Efficiency}
 
