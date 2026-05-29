@@ -7,9 +7,8 @@ TMPDIR=$(mktemp -d)
 
 echo "Packaging for IEEE Access submission..."
 
-# Copy paper source and figures
+# Copy paper source and figures (no PDF — publisher compiles from source)
 cp paper/main.tex "$TMPDIR/"
-cp paper/main.pdf "$TMPDIR/"
 cp -r paper/figures "$TMPDIR/figures"
 
 # Remove any leftover build artifacts from figures
