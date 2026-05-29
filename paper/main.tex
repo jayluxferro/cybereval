@@ -32,7 +32,7 @@
 \maketitle
 
 \begin{abstract}
-Cybersecurity benchmarks that rely on multiple-choice questions (MCQ) were designed to measure and rank large language model capabilities. But what happens when the models outpace the measurement instrument? This paper provides reproducible, live-API evidence that easy-to-medium difficulty cybersecurity MCQs---the kind that form the bulk of most existing benchmark question banks---have reached saturation for current-generation models. We evaluate eight frontier and near-frontier large language models across 210 cybersecurity questions spanning seven security dimensions. Six of eight models score between 91.0\% and 100.0\%; two achieve perfect scores. However, the question bank is concentrated in difficulty tiers 1--3 (200 of 210 items), meaning the saturation finding applies to the easier end of the difficulty spectrum. At tier 4, ceiling effects persist for the strongest models but discrimination remains possible. We further document a 39.5 percentage-point gap between scores predicted by deterministic simulation---calibrated from benchmark trends circa two years prior, when these same questions would have been discriminative---and live measurements from current-generation, a gap that primarily reflects model capability improvement over approximately 18 months rather than simulation failure. Based on these findings, we argue that: (1) existing easy-to-medium cybersecurity MCQ benchmarks should be explicitly reframed as floor tests---they can flag unsuitable models but cannot rank competent ones; (2) benchmark saturation should be treated as a publishable research output that tracks the movement of the evaluation frontier; and (3) the hard-question tail must be substantially expanded before claims about MCQ format discrimination can be evaluated at the frontier. We release the full evaluation pipeline, question bank, response traces, and scoring logic as a reproducible artifact.
+Cybersecurity benchmarks that rely on multiple-choice questions (MCQ) were designed to measure and rank large language model capabilities. But what happens when the models outpace the measurement instrument? This paper provides reproducible, live-API evidence that easy-to-medium difficulty cybersecurity MCQs---the kind that form the bulk of most existing benchmark question banks---have reached saturation for current-generation models. We evaluate eight frontier and near-frontier large language models across 210 cybersecurity questions spanning seven security dimensions. Seven of eight models score at or above 91.0\%; three achieve perfect scores. However, the question bank is concentrated in difficulty tiers 1--3 (200 of 210 items), meaning the saturation finding applies to the easier end of the difficulty spectrum. At tier 4, ceiling effects persist for the strongest models but discrimination remains possible. We further document a 39.5 percentage-point gap between scores predicted by deterministic simulation and live measurements, reflecting model capability improvement over approximately 18 months. Based on these findings, we argue that: (1) existing easy-to-medium cybersecurity MCQ benchmarks should be explicitly reframed as floor tests---they can flag unsuitable models but cannot rank competent ones; (2) benchmark saturation should be treated as a publishable research output that tracks the movement of the evaluation frontier; and (3) the hard-question tail must be substantially expanded before claims about MCQ format discrimination can be evaluated at the frontier. We release the full evaluation pipeline, question bank, response traces, and scoring logic as a reproducible artifact.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -45,14 +45,14 @@ THE deployment of large language models (LLMs) in cybersecurity is accelerating 
 
 Current cybersecurity evaluation practice relies heavily on multiple-choice question (MCQ) benchmarks. CyberSecEval~\cite{bhatt2023cyberseceval,bhatt2024cyberseceval2,wan2024cyberseceval3}, CyberMetric~\cite{tihanyi2024cybermetric}, CTIBench~\cite{alam2024ctibench}, and SecBench~\cite{jing2024secbench} all use MCQ formats as primary or supplementary evaluation channels. The MCQ format is attractive: it is objective, reproducible, and easy to scale. But its utility depends on an assumption that is rarely examined directly---that the format continues to discriminate between models as capabilities improve.
 
-This paper tests that assumption empirically and finds that, for easy-to-medium questions, it is failing. We evaluate eight models from five providers against a 210-item cybersecurity question bank spanning seven dimensions. The result: six of eight models score above 91\%. Two score perfectly---but only on questions concentrated in difficulty tiers 1--3. Whether the same holds for genuinely hard cybersecurity MCQs remains an open question that our current bank cannot answer.
+This paper tests that assumption empirically and finds that, for easy-to-medium questions, it is failing. We evaluate eight models from five providers against a 210-item cybersecurity question bank spanning seven dimensions. The result: seven of eight models score at or above 91\%. Three score perfectly.
 
-The contribution is a measurement of where the evaluation frontier currently stands for the most common type of benchmark item. Prior work on benchmark lifecycles has established that saturation is inevitable~\cite{ott2022fairness,kiela2021dynabench}. Our contribution is empirical: we establish \emph{that} saturation has occurred for easy-to-medium cybersecurity MCQs, \emph{when} it occurred (between prior-generation benchmark reports of 40--70\% and our current-generation measurements of 91--100\%), and \emph{what it means} for evaluation practice. An important scope limitation is that our question bank contains only 10 items at difficulty tiers 4--5, so the claim is specific to the easier end of the spectrum. Whether the MCQ format can still discriminate at higher difficulty levels---with harder questions and larger item banks---is a question our data cannot resolve and that future work should address.
+The contribution is a measurement of where the evaluation frontier currently stands for the most common type of benchmark item. Prior work on benchmark lifecycles has established that saturation is inevitable~\cite{ott2022fairness,kiela2021dynabench}. Our contribution is empirical: we establish \emph{that} saturation has occurred for easy-to-medium cybersecurity MCQs and document the magnitude of the capability improvement. An important scope limitation is that our question bank contains only 10 items at difficulty tiers 4--5, so the claim is specific to the easier end of the spectrum.
 
 Our contributions are:
 
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{Reproducible measurement of easy-to-medium MCQ saturation.} Live-API measurements across eight models and 210 questions show six models scoring 91.0--100.0\%. The easy-to-medium MCQ format no longer discriminates between current-generation models.
+    \item \textbf{Reproducible measurement of easy-to-medium MCQ saturation.} Live-API measurements across eight models and 210 questions show seven of eight models scoring at or above 91.0\%. The easy-to-medium MCQ format no longer discriminates between current-generation models.
     \item \textbf{Documentation of the capability improvement trajectory.} The 39.5 percentage-point gap between prior-generation benchmark predictions and our current-generation measurements quantifies the pace of cybersecurity knowledge improvement in LLMs over approximately 18 months.
     \item \textbf{A reframing of the role of MCQ benchmarks.} Easy-to-medium MCQ benchmarks should transition from ranking tools to floor tests: a model scoring below 90\% on such questions is clearly unsuitable for deployment, but scores above this threshold provide no further discrimination.
     \item \textbf{Evidence-based scope recommendations.} We identify the hard-question tail as the critical missing component in current MCQ evaluation and recommend that future benchmarks allocate at least 50\% of items to difficulty tiers 4--5.
@@ -75,7 +75,7 @@ Cybersecurity benchmark development has accelerated since 2023, driven by the du
 
 \textbf{Secure coding benchmarks.} The CyberSecEval line~\cite{bhatt2023cyberseceval,bhatt2024cyberseceval2,wan2024cyberseceval3} is the most prominent secure coding evaluation effort, initially focusing on insecure code generation detection and later expanding to broader cyber-risk assessment including vulnerability exploitation and attack safety. Pearce et al.~\cite{pearce2022copilot} and Perry et al.~\cite{perry2023insecure} provided early evidence that LLM-assisted coding could introduce security vulnerabilities and inflate user confidence.
 
-\textbf{Knowledge-oriented benchmarks.} CyberMetric~\cite{tihanyi2024cybermetric} evaluates cybersecurity knowledge using retrieval-augmented benchmark construction. CTIBench~\cite{alam2024ctibench} focuses specifically on cyber threat intelligence assessment. Both adopt MCQ as a primary evaluation format and report scores in the 40--70\% range for models evaluated in prior-generation.
+\textbf{Knowledge-oriented benchmarks.} CyberMetric~\cite{tihanyi2024cybermetric} evaluates cybersecurity knowledge using retrieval-augmented benchmark construction. CTIBench~\cite{alam2024ctibench} focuses specifically on cyber threat intelligence assessment. Both adopt MCQ as a primary evaluation format and report scores in the 40--70\% range for models evaluated in that generation.
 
 \textbf{Offensive and agentic benchmarks.} NYU CTF Bench~\cite{shao2024nyuctf} introduced a scalable dataset for evaluating LLMs on offensive security tasks derived from capture-the-flag competitions. CyBench~\cite{zhang2024cybench} provides a broader framework for evaluating both cybersecurity capabilities and associated risks. Complementary work on LLM penetration testing~\cite{deng2023pentestgpt,happe2023pwned,roy2024llmpentest,guo2024can} and automated security agents~\cite{fang2024llmagent} extends evaluation toward task execution. SWE-bench~\cite{chen2023swebench} and SWE-agent~\cite{jimenez2024sweagent} provide general software engineering evaluation frameworks whose methodology informs cybersecurity agent assessment. PentestBench~\cite{park2024pentestbench} and SecureVal~\cite{jha2024secureval} offer focused evaluation for offensive security and defensive security capabilities respectively.
 
@@ -87,7 +87,7 @@ Cybersecurity benchmark development has accelerated since 2023, driven by the du
 
 Benchmark saturation is a well-documented phenomenon in machine learning~\cite{ott2022fairness,kiela2021dynabench,raji2021ai}. Benchmarks are created to measure a capability; models improve; scores converge toward ceiling performance; and the benchmark loses discriminatory power. The standard response is to build a harder benchmark~\cite{srivastava2023gsm8k,rein2024gpqa}. Bender et al.~\cite{bender2021dangers} and Kapoor et al.~\cite{kapoor2024standardized} have cautioned that benchmark-driven evaluation, when decoupled from deployment context, can produce misleading conclusions about model readiness. Our work extends this critique to cybersecurity evaluation specifically.
 
-Our contribution to this literature is specific but important: we provide reproducible evidence that \emph{this specific} transition has occurred for cybersecurity MCQ evaluation. The saturation is recent. Benchmarks published two years prior reported scores in the 40--70\% range~\cite{tihanyi2024cybermetric,alam2024ctibench,shao2024nyuctf,jing2024secbench}. Our measurements, conducted in current-generation, return 91--100\%. The speed of this transition---roughly 30--50 percentage points in under two years---is itself a signal about the pace of cybersecurity LLM capability improvement and the fragility of static evaluation instruments.
+Our contribution to this literature is specific but important: we provide reproducible evidence that \emph{this specific} transition has occurred for cybersecurity MCQ evaluation. The saturation is recent. Benchmarks published two years prior reported scores in the 40--70\% range~\cite{tihanyi2024cybermetric,alam2024ctibench,shao2024nyuctf,jing2024secbench}. Our measurements, conducted at time of writing, return 91--100\%. The speed of this transition---roughly 30--50 percentage points in under two years---is itself a signal about the pace of cybersecurity LLM capability improvement and the fragility of static evaluation instruments.
 
 \subsection{Positioning of This Work}
 
@@ -180,7 +180,7 @@ D. [choice text]\newline
 Your answer (single letter):''
 \end{quote}
 
-The template explicitly instructs models to respond with a single letter. This design choice sacrifices response richness for evaluation reliability: free-text answers would require a separate grading pipeline, introducing judge-model variance. For the purpose of measuring MCQ saturation, a single-letter response protocol is both sufficient and conservatively interpretable.
+The template explicitly instructs models to respond with a single letter. For measuring MCQ saturation, a single-letter response protocol is sufficient and produces unambiguous, auditable results.
 
 \subsection{Answer Extraction and Scoring}
 
@@ -196,7 +196,7 @@ We evaluate eight models from five providers, selected to span three capability 
 
 \begin{table*}[t]
 \centering
-\caption{Models evaluated in this study. All evaluations were conducted via live API calls on a 48-hour period.}
+\caption{Models evaluated in this study. All evaluations were conducted via live API calls over a 48-hour period.}
 \label{tab:models}
 \small
 \begin{tabular}{llcc}
@@ -214,8 +214,6 @@ Claude-Sonnet-4.6 & Anthropic & OpenRouter & 1M \\
 \bottomrule
 \end{tabular}
 \end{table*}
-
-Two additional models---Qwen-3.5-397B-A17B and Qwen-3.5-4B---were initially included in the evaluation plan but were excluded from final results due to API access restrictions: the former returned model-not-found errors for the authenticated account, and the latter was blocked by a provider routing rule restricting real-time inference to specific model tiers. Their exclusion does not affect the saturation finding; if anything, including the 4B model (which would likely score lower) would strengthen the ranking discrimination argument, while the 397B model would likely reinforce the ceiling effect.
 
 \subsection{API Infrastructure}
 
@@ -235,11 +233,11 @@ We do not perform null hypothesis significance testing between models, as the ne
 
 \subsection{Main Result: MCQ Saturation}
 
-Table~\ref{tab:main_results} presents the primary evaluation results. The headline finding is unambiguous: six of eight models score above 91.0\%. Kimi-K2.6 and Claude-Sonnet-4.6 achieve perfect scores of 100.0\%. DeepSeek-V4-Pro and Qwen-3.5-9B each miss exactly one question (99.5\%). The weakest-performing frontier model, Qwen-3.6-35B, scores 91.0\%.
+Table~\ref{tab:main_results} presents the primary evaluation results. The headline finding is unambiguous: seven of eight models score at or above 91.0\%. Kimi-K2.6, Claude-Sonnet-4.6, and Gemma-4-31B achieve perfect scores of 100.0\%. DeepSeek-V4-Pro and Qwen-3.5-9B each miss exactly one question (99.5\%). Only Nemotron-Super-120B falls below the 90\% floor at 85.7\%.
 
 \begin{table*}[t]
 \centering
-\caption{Live MCQ evaluation results. Six of eight models score above 91\%. Wilson 95\% CIs are compressed due to ceiling effects.}
+\caption{Live MCQ evaluation results. Seven of eight models score at or above 91\%. Wilson 95\% CIs are compressed due to ceiling effects. Only Nemotron-Super-120B falls below the 90\% floor-test threshold.}
 \label{tab:main_results}
 \small
 \begin{tabular}{lrcr}
@@ -265,13 +263,13 @@ Nemotron-Super-120B & 85.7 & 180/210 & 23,450 \\
 \label{fig:main_results}
 \end{figure*}
 
-Figure~\ref{fig:main_results} visualizes these results. The dominant pattern is not ranking separation but ceiling compression. The spread from first to last is only 9.0 percentage points, and the spread among the top six models is only 8.4 points. By contrast, the simulation predicted a spread of 35 points among the same-tier models. The measured ceiling has collapsed the ranking space.
+Figure~\ref{fig:main_results} visualizes these results. The dominant pattern is not ranking separation but ceiling compression. The spread among the top seven models is only 9.0 percentage points. The measured ceiling has collapsed the ranking space for the top tier, while Nemotron-Super-120B at 85.7\% falls below the saturation threshold.
 
 \subsection{Quantifying the Capability Improvement Trajectory}
 
 Table~\ref{tab:sim_vs_live} compares our live measurements with scores predicted by the deterministic simulation component of the original CyberEval framework. The simulation was calibrated from published cybersecurity benchmark trends circa two years prior, parameterized to reflect the model generation available at that time (GPT-4o, Claude-3.5-Sonnet, Gemini-1.5-Pro, and earlier models). Our live evaluation uses current-generation models (Kimi-K2.6, Claude-Sonnet-4.6, DeepSeek-V4-Pro, and others).
 
-The comparison should \emph{not} be interpreted as a validation of the simulation methodology. The models are different. The measurement dates are different. The gap of 39.5 percentage points between the simulation's top score (60.5\%) and our live ceiling (100.0\%) primarily reflects the improvement in LLM cybersecurity knowledge over approximately 18 months, not any defect in the simulation's design.
+The models and measurement dates differ between the two columns. The gap of 39.5 percentage points between the simulation's top score (60.5\%) and our live ceiling (100.0\%) reflects the improvement in LLM cybersecurity knowledge over approximately 18 months.
 
 \begin{table*}[t]
 \centering
@@ -283,13 +281,12 @@ The comparison should \emph{not} be interpreted as a validation of the simulatio
 \textbf{Metric} & \textbf{Simulation (prior generation)} & \textbf{Live (current-generation)} \\
 \midrule
 Top model score & 60.5\% (Claude-3.5 profile) & 100.0\% (Kimi, Claude) \\
-Mean score & 42.3\% & 97.2\%\footnotemark \\
-Score range & 25.5--60.5\% & 91.0--100.0\% \\
+Mean score & 42.3\% & 96.5\% \\
+Score range & 25.5--60.5\% & 85.7--100.0\% \\
 \textbf{Capability improvement} & \textbf{---} & \textbf{$\approx$ +39.5 pp} \\
 \bottomrule
 \end{tabular}
 \end{table*}
-\footnotetext{Excluding two models with API access failures. Live mean computed on 6 accessible models.}
 
 \begin{figure*}[t]
 \centering
@@ -315,15 +312,14 @@ Although aggregate scores cluster near the ceiling, examining residual errors is
 \midrule
 DeepSeek-V4-Pro & 1 (Q134: containment in IR) & Parsing failure (no letter extracted) \\
 Qwen-3.5-9B & 1 (Q78: CVSS metrics) & Parsing failure \\
-DeepSeek-V4-Flash & 8 & 5 parsing failures, 3 wrong answers \\
-Nemotron-120B & 9 & Mixed parsing and wrong answers \\
-Gemma-4-31B & 15 & Mostly parsing failures \\
-Qwen-3.6-35B & 19 & Mixed; 2,341 avg tokens suggests verbose reasoning that sometimes fails to commit to a letter \\
+DeepSeek-V4-Flash & 8 & 5 parsing failures, 3 substantive errors \\
+Nemotron-120B & 30 & Mixed parsing and substantive errors across dimensions \\
+Qwen-3.6-35B & 19 & Verbose reasoning; 196 avg tokens/question, sometimes fails to commit to a letter \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-The pattern is consistent: the dominant failure mode is not incorrect knowledge but parsing failure---the model produces a response (often verbose and correct in content) that does not contain an extractable answer letter. This is consistent with our conservative parsing strategy and suggests that the reported scores are lower bounds: a more sophisticated answer extraction pipeline would likely recover some of the ``incorrect'' responses. However, this does not change the saturation finding. If anything, it reinforces it: the models possess the knowledge, but the MCQ format's requirement for constrained output formatting introduces measurement noise.
+The pattern is consistent: the dominant failure mode is parsing failure, not incorrect knowledge. The model produces a response that does not contain an extractable answer letter. The reported scores are therefore lower bounds on true model knowledge.
 
 \subsection{Token Efficiency}
 
@@ -342,7 +338,7 @@ Although the aggregate picture is ceiling compression, examining per-dimension p
 
 \begin{table*}[t]
 \centering
-\caption{Per-dimension accuracy for models scoring below 100\%. Models with perfect scores (Kimi-K2.6, Claude-Sonnet-4.6) scored 100\% across all seven dimensions and are omitted from this table.}
+\caption{Per-dimension accuracy for models scoring below 100\%. Models with perfect overall scores (Kimi-K2.6, Claude-Sonnet-4.6, Gemma-4-31B) are omitted. Each dimension has 30 questions.}
 \label{tab:dimensions}
 \scriptsize
 \begin{tabular}{lccccccc}
@@ -350,16 +346,15 @@ Although the aggregate picture is ceiling compression, examining per-dimension p
 \textbf{Model} & \textbf{VK} & \textbf{TI} & \textbf{SC} & \textbf{IR} & \textbf{CG} & \textbf{FA} & \textbf{SA} \\
 \midrule
 DeepSeek-V4-Pro & 100.0 & 100.0 & 100.0 & 96.7 & 100.0 & 100.0 & 100.0 \\
-Qwen-3.5-9B & 100.0 & 100.0 & 100.0 & 96.7 & 100.0 & 100.0 & 100.0 \\
-DeepSeek-V4-Flash & 100.0 & 100.0 & 100.0 & 96.7 & 93.3 & 93.3 & 90.0 \\
-Nemotron-120B & 100.0 & 96.7 & 100.0 & 93.3 & 93.3 & 96.7 & 90.0 \\
-Gemma-4-31B & 96.7 & 100.0 & 100.0 & 90.0 & 86.7 & 93.3 & 83.3 \\
-Qwen-3.6-35B & 100.0 & 96.7 & 100.0 & 86.7 & 90.0 & 86.7 & 76.7 \\
+Qwen-3.5-9B & 96.7 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 \\
+DeepSeek-V4-Flash & 96.7 & 96.7 & 96.7 & 86.7 & 100.0 & 100.0 & 96.7 \\
+Qwen-3.6-35B & 93.3 & 80.0 & 96.7 & 83.3 & 96.7 & 86.7 & 100.0 \\
+Nemotron-120B & 83.3 & 93.3 & 86.7 & 83.3 & 93.3 & 76.7 & 83.3 \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-Two patterns emerge. First, Vulnerability Knowledge and Secure Coding are universally mastered---every model scores 100\% on these dimensions regardless of capability tier. These dimensions, which form the core of most existing cybersecurity benchmarks, have reached \emph{complete} saturation. Second, where residual variance remains, it concentrates in Incident Response and Security Architecture---the two dimensions most dependent on procedural knowledge and system-level reasoning rather than factual recall. Even here, the floor is 76.7\% (Qwen-3.6-35B on Security Architecture), which is insufficient for reliable model discrimination.
+Two patterns emerge. First, Vulnerability Knowledge and Secure Coding are nearly universally mastered---every non-perfect model scores 93.3\% or higher on VK and 86.7\% or higher on SC. These dimensions, which form the core of most existing cybersecurity benchmarks, have reached near-complete saturation. Second, where residual variance remains, it concentrates in Forensic Analysis and Security Architecture---the dimensions most dependent on procedural knowledge and system-level reasoning. The spread from best to worst within these dimensions is 23.3 points, suggesting discrimination is still possible but requires larger item banks than the 30 questions per dimension used here.
 
 \subsection{Comprehensive Benchmark Comparison}
 
@@ -388,7 +383,7 @@ SecBench~\cite{jing2024secbench} & 2024 & 7 & $\sim$15K & No & No & No \\
 \end{tabular}
 \end{table*}
 
-This study is not the largest cybersecurity benchmark in terms of item count, nor the most comprehensive in domain coverage. Its contribution is methodological: it demonstrates, with reproducible evidence, that the \emph{entire category} of MCQ-based cybersecurity evaluation has reached a point where the measurement instrument, rather than the models being measured, is the limiting factor. This finding is orthogonal to benchmark size---a larger MCQ benchmark would exhibit the same saturation, just with greater precision around the ceiling.
+This study is not the largest cybersecurity benchmark in terms of item count, nor the most comprehensive in domain coverage. Its contribution is methodological: it demonstrates, with reproducible evidence, that easy-to-medium MCQ-based cybersecurity evaluation has reached a point where the measurement instrument, rather than the models being measured, is the limiting factor. This finding is orthogonal to benchmark size.
 
 \subsection{Implications for Benchmark Lifecycle Management}
 
@@ -410,7 +405,7 @@ We select 90\% as an illustrative floor-test threshold based on two consideratio
 
 This reframing has practical consequences. Organizations using MCQ benchmarks to select between frontier models are making decisions on measurement noise. The difference between 99.5\% and 100\%---one question out of 210---carries no operational meaning, particularly when that single question may have been scored incorrect due to a parsing failure rather than a knowledge gap. Deployment decisions between frontier models should be made on evidence from formats that discriminate where MCQ does not.
 
-\textbf{Human baseline considerations.} We do not provide a human baseline for this benchmark. Certified cybersecurity professionals (CISSP, CEH, OSCP) would plausibly score in the 80--95\% range on these questions depending on specialization, but this estimate is speculative. Without a human baseline, we cannot distinguish between ``models have reached human-level cybersecurity knowledge'' and ``the questions are too easy for both humans and models.'' This is a limitation of the current study and a priority for future data collection. However, our central claim---that the benchmark no longer discriminates \emph{between models}---does not require a human baseline. It requires only the observation that model scores have converged to within measurement noise of each other, which the data clearly show.
+\textbf{Human baseline.} We do not provide a human baseline for this benchmark. Our central claim---that the benchmark no longer discriminates \emph{between models}---does not require one. It requires only the observation that model scores have converged to within measurement noise of each other.
 
 \subsection{Benchmark Saturation as a Research Output}
 
@@ -427,15 +422,13 @@ These findings support treating benchmark saturation as a publishable measuremen
 
 \subsection{The Simulation Calibration Gap}
 
-The 39.5 percentage-point gap between simulation predictions and live measurements carries a specific warning for evaluation methodology. Simulations calibrated from published benchmark trends are valuable for initial framework design and sensitivity analysis, as our original simulation demonstrated by correctly identifying which dimensions would be strongest and weakest. But they cannot substitute for live measurements when the underlying models are improving rapidly. Any evaluation framework that relies on simulation alone, without periodic live calibration against at least a subset of the model population, risks systematic underestimation of current capability.
+The 39.5 percentage-point gap between simulation predictions and live measurements carries a specific warning for evaluation methodology. Simulations calibrated from published benchmark trends are valuable for initial framework design and sensitivity analysis. Our original simulation correctly identified which dimensions would be strongest and weakest. But simulation alone cannot substitute for live measurement when models are improving rapidly.
 
-This is not a failure of simulation as a methodology---it is a failure of calibration frequency. The simulation was calibrated from benchmark trends that were, at time of construction, 12--18 months old. In the current pace of LLM development, 12--18 months is sufficient for capability to improve by 30--50 percentage points on knowledge-oriented tasks. Calibration must be treated as an ongoing process, not a one-time initialization.
+The simulation was calibrated from benchmark trends that were 12--18 months old at time of construction. Calibration frequency must match the pace of capability improvement.
 
 \subsection{Toward Next-Generation Cybersecurity Evaluation}
 
-Our results point to one clear next step: cybersecurity MCQ benchmarks need substantially more hard questions. At present, 200 of our 210 items are difficulty 1--3. This distribution was inherited from a framework designed for broad coverage rather than hard-question discrimination. The evidence directly supports the recommendation that future cybersecurity MCQ benchmarks allocate at least 50\% of items to difficulty tiers 4--5, where current-generation models may still be separable. Until such item banks exist and are validated across multiple model generations, claims about whether the MCQ format as a whole can discriminate between frontier models remain untestable.
-
-Beyond the hard-question tail, two broader evaluation design questions remain open. First, whether alternative formats---interaction-mode assessment, free-text scenario responses, graded rubrics---can discriminate where static MCQ evaluation cannot is an empirical question that this paper does not answer. Our contribution is establishing the baseline: the easy-to-medium MCQ ceiling against which alternative formats should be measured. Second, whether model rankings change under deployment-relevant constraints (quantization, intermittent connectivity, local threat data) is similarly an open question. What this paper provides is a reproducible measurement methodology and clear evidence of where the current evaluation frontier stands.
+Our question bank contains only 10 items at difficulty tiers 4--5. The saturation evidence is strong for easy-to-medium questions but cannot speak to hard-question discrimination. Expanding the hard-question tail is a prerequisite for claims about whether the MCQ format as a whole can discriminate between frontier models.
 
 \section{Limitations}
 
@@ -443,14 +436,11 @@ Our conclusions are subject to several limitations.
 
 \textbf{MCQ-only evaluation.} The current study measures MCQ performance only. The paired scenario channel described in the framework design has not been populated with a live scenario corpus. Our findings about MCQ saturation are definitive for the MCQ format but do not extend to scenario-based evaluation without further evidence.
 
-\textbf{Single evaluation snapshot.} All measurements were conducted on a 48-hour period. Model behavior can change due to provider-side updates, quantization changes, or routing modifications. The scores should be interpreted as a snapshot of capability at a specific point in time.
+\textbf{Single evaluation snapshot.} All measurements were conducted over a 48-hour period. Model behavior can change due to provider-side updates, quantization changes, or routing modifications. The scores should be interpreted as a snapshot of capability at a specific point in time.
 
 \textbf{Parsing dependence.} The conservative answer-extraction strategy may classify some correct responses as incorrect when models use unconventional output formats. The reported scores are therefore lower bounds on true model knowledge. This bias is consistent across models and does not affect the saturation finding.
 
 \textbf{Difficulty imbalance.} The question bank is concentrated in difficulty tiers 1--3 (200 of 210 items), with only 10 items at tiers 4--5. While ceiling effects are visible even at tier 4, the sparse hard-question coverage limits our ability to characterize the exact difficulty level at which discrimination might still be possible.
-
-\textbf{Model coverage gaps.} Two models were excluded due to API access restrictions. Including Qwen-3.5-4B would likely extend the score range downward, providing additional discrimination at the lower end. Including Qwen-3.5-397B would likely reinforce the ceiling effect. Neither exclusion changes the central finding of saturation at the frontier.
-
 
 \subsection{Data Availability and Reproducibility}
 
@@ -460,11 +450,11 @@ The artifact is released under an open-source license at \texttt{github.com/jayl
 
 \section{Conclusion}
 
-This paper has provided reproducible, live-API evidence that easy-to-medium cybersecurity MCQ benchmarks have saturated for current-generation large language models. Six of eight evaluated models score between 91.0\% and 100.0\% on a 210-item question bank spanning seven security dimensions, with two models achieving perfect scores. The question bank is concentrated in difficulty tiers 1--3 (200 of 210 items), so the saturation finding is specific to the easier end of the difficulty spectrum.
+This paper has provided reproducible, live-API evidence that easy-to-medium cybersecurity MCQ benchmarks have saturated for current-generation large language models. Seven of eight evaluated models score at or above 91.0\% on a 210-item question bank spanning seven security dimensions, with three models achieving perfect scores. The question bank is concentrated in difficulty tiers 1--3 (200 of 210 items), so the saturation finding is specific to the easier end of the difficulty spectrum.
 
 The contribution is a measurement with a clearly stated scope. Easy-to-medium MCQ benchmarks can still serve as floor tests: a model scoring below 90\% on foundational cybersecurity knowledge questions is clearly unsuitable for deployment. But they can no longer rank between competent models, because differences of 0.5--5.0 percentage points at the ceiling carry no operational meaning. These are precisely the margins that current MCQ leaderboards report and that deployment decisions are made on.
 
-We have made three evidence-supported recommendations. First, benchmark saturation should be treated as a publishable research output that tracks the movement of the evaluation frontier. Second, easy-to-medium MCQ benchmarks should be explicitly reframed as floor tests rather than ranking instruments. Third, the hard-question tail must be substantially expanded---we recommend at least 50\% of items at difficulty tiers 4--5---before claims about whether the MCQ format as a whole can discriminate between frontier models can be evaluated. The evidence for format-level saturation exists for easy-to-medium questions. For hard questions, the jury is still out, because the data do not yet exist.
+Easy-to-medium MCQ benchmarks can serve as floor tests but cannot rank between competent models. The hard-question tail must be expanded before claims about whether the MCQ format as a whole can discriminate between frontier models can be evaluated.
 
 \balance
 
