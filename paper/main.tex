@@ -429,6 +429,8 @@ SecBench~\cite{jing2024secbench} & 2024 & 7 & $\sim$15K & No & No & No \\
 
 This study is not the largest cybersecurity benchmark in terms of item count. Its contribution is reproducible, live-API evidence that easy-to-medium MCQ-based cybersecurity evaluation has reached a measurement ceiling for current-generation models.
 
+Several trends are visible across the benchmark landscape. First, item count has grown rapidly: from CyberSecEval's approximately 2,000 items in 2023 to SecBench's approximately 15,000 items in 2024. Second, domain coverage has expanded from single-domain benchmarks (secure coding, threat intelligence) to seven-domain coverage. Third, live API evaluation has become the norm: six of the nine studies in Table~\ref{tab:benchmark_comparison} use live model inference rather than simulation. Our study extends these trends by adding multi-provider evidence and explicit saturation reporting. No prior cybersecurity benchmark, to our knowledge, has reported saturation as a primary finding rather than a limitation.
+
 \subsection{Implications for Benchmark Lifecycle Management}
 
 \textbf{Sunset criteria.} For MCQ cybersecurity benchmarks concentrated at easy-to-medium difficulty, our data shows scores above 90\% reflect measurement noise rather than capability differences~\cite{nist2023airmf,owasp2024llm,mitre2024atlas}.
@@ -492,7 +494,9 @@ The artifact is released under an open-source license at \texttt{github.com/jayl
 
 This paper has provided reproducible, live-API evidence that easy-to-medium cybersecurity MCQ benchmarks have saturated for current-generation large language models. Seven of eight evaluated models score at or above 91.0\% on a 210-item question bank spanning seven security dimensions, with three models achieving perfect scores. The question bank is concentrated in difficulty tiers 1--3 (200 of 210 items), so the saturation finding is specific to the easier end of the difficulty spectrum.
 
-The contribution is a measurement with a clearly stated scope. Easy-to-medium MCQ benchmarks can serve as floor tests but cannot rank between competent models. The hard-question tail must be expanded before claims about whether the MCQ format as a whole can discriminate between frontier models can be evaluated.
+The contribution is a measurement with a clearly stated scope. Across eight models from five providers, seven score at or above 91.0\% on 210 cybersecurity MCQs. Three achieve perfect scores. The confidence intervals of the top seven models overlap, meaning their scores are statistically indistinguishable at this sample size. Only Nemotron-Super-120B, at 85.7\%, is clearly separable from the rest. This establishes a concrete ceiling: easy-to-medium MCQ benchmarks can serve as floor tests but cannot rank between competent models.
+
+Three evidence-supported implications follow. First, for organizations selecting between frontier models, MCQ benchmark scores above 90\% carry no operational meaning---the differences reflect measurement noise, not capability gaps. Second, the hard-question tail is the critical missing component in current MCQ evaluation; our bank contains only 10 items at difficulty tiers 4--5, and expanding this tail is a prerequisite for evaluating whether the MCQ format can discriminate at the frontier. Third, the 39.5 percentage-point gap between prior-generation simulation predictions and current-generation live measurements demonstrates that uncalibrated simulations become obsolete within 12--18 months at the current pace of capability improvement. The evaluation frontier moves. Measurement instruments must move with it.
 
 \balance
 
