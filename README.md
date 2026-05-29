@@ -1,9 +1,27 @@
 # CyberEval
 
-**Role-aware multi-dimensional evaluation of LLM security competence**
+**Measuring the Ceiling: Evidence That Easy-to-Medium Cybersecurity MCQ Benchmarks Have Saturated**
 
-CyberEval is a reproducible evaluation framework for analyzing LLM suitability
-across seven security dimensions:
+CyberEval evaluates LLM cybersecurity competence across 7 dimensions using a 210-item MCQ question bank. It provides reproducible, live-API evidence that easy-to-medium cybersecurity MCQs have saturated for current-generation models.
+
+## Live Evaluation Results (May 2026)
+
+8 models evaluated across 210 questions:
+
+| Model | Score | Provider |
+|-------|-------|----------|
+| Kimi-K2.6 | 100.0% | Moonshot AI |
+| Claude-Sonnet-4.6 | 100.0% | Anthropic |
+| Gemma-4-31B | 100.0% | Google |
+| DeepSeek-V4-Pro | 99.5% | DeepSeek |
+| Qwen-3.5-9B | 99.5% | Alibaba |
+| DeepSeek-V4-Flash | 96.2% | DeepSeek |
+| Qwen-3.6-35B | 91.0% | Alibaba |
+| Nemotron-Super-120B | 85.7% | NVIDIA |
+
+**Key finding:** 7/8 models score at or above 91.0%. 3 models achieve perfect scores. The easy-to-medium MCQ format no longer discriminates between competent models — it can only flag clearly unsuitable ones (floor test).
+
+## 7 Security Dimensions
 
 1. Vulnerability Knowledge (VK)
 2. Threat Intelligence (TI)
@@ -13,69 +31,48 @@ across seven security dimensions:
 6. Forensic Analysis (FA)
 7. Security Architecture (SA)
 
-## What this artifact does
+## Repository Structure
 
-The current release is a **framework artifact plus deterministic simulation
-study**, not a live API leaderboard. It provides:
-
-- a 210-item seed question bank
-- paired MCQ/scenario evaluation channels
-- role-weighted suitability scoring for SOC, AppSec, GRC, and architecture workflows
-- aligned paper figures and result JSONs
-- full response traces for auditability
-
-## Quick start
-
-From the repo root:
-
-```bash
-# From the repo root
-python experiments/run_simulation.py
+```
+paper/
+  main.tex          — IEEE Access paper (IEEEtran, 11 pages, 57 refs)
+  main.pdf          — compiled paper
+  figures/          — 3 live-data figures (main results, sim vs live, token efficiency)
+experiments/
+  run_live_mcq.py   — live evaluation runner (8 models × 210 questions)
+  run_real_evaluation.py — original simulation runner (210-item question bank source)
+  run_simulation.py — paper figure generator (simulation-based)
+  results/
+    live_mcq/results.jsonl — full response trace (1,680 API calls)
+src/
+  evaluator.py      — model evaluation engine
+  framework.py      — CyberEval framework core
+  profiler.py       — deployment profiling
+tests/
+  test_manuscript_consistency.py
 ```
 
-This regenerates:
+## Quick Start
 
-- `experiments/results/real_results.json`
-- `experiments/results/experimental_results.json`
-- `experiments/results/question_bank.json`
-- `experiments/results/response_traces.json`
-- paper figures in `paper/figures/`
+```bash
+# Install dependencies
+uv sync
 
-## Current deterministic simulation snapshot
+# Run the simulation (original framework)
+python experiments/run_simulation.py
 
-- **Top aggregate profile:** Claude-3.5-Sonnet — **60.5%**
-- **Runner-up:** GPT-4o — **56.9%**
-- **Average MCQ-to-scenario gap:** **11.2 percentage points**
-- **Strongest mean dimension:** Secure Coding — **58.5%**
-- **Weakest mean dimensions:** Compliance & Governance — **31.3%**, Security Architecture — **22.7%**
-
-### Role-weighted leaders
-
-- **SOC analyst:** Claude-3.5-Sonnet — **63.2%**
-- **AppSec engineer:** Claude-3.5-Sonnet — **65.3%**
-- **GRC analyst:** Claude-3.5-Sonnet — **50.9%**
-- **Security architect:** Claude-3.5-Sonnet — **52.5%**
-
-### Deployment interpretation
-
-- Only **Claude-3.5-Sonnet** and **GPT-4o** clear the illustrative `0.60` threshold in four dimensions: **VK, TI, SC, and FA**.
-- **AppSec** is the clearest separation lane: Claude-3.5-Sonnet leads GPT-4o by **3.7 points** while lowering the role-risk score from **0.0096** to **0.0061**.
-- **GRC** remains a universal weak point: the top-two scores differ by only **0.3 points** and carry nearly identical risk (**0.0198** vs **0.0204**).
-- The frontier pair is close but not identical: their normalized competency-profile distance is **0.155**, so substitution still changes the residual weakness pattern.
+# Run the live MCQ evaluation (requires API keys)
+python experiments/run_live_mcq.py
+```
 
 ## Paper
 
-The LNCS paper lives at:
+**"Measuring the Ceiling: Evidence That Easy-to-Medium Cybersecurity MCQ Benchmarks Have Saturated for Current-Generation LLMs"**
 
-- `paper/main.tex`
-
-It is written to match the generated artifacts and explicitly documents the
-current limitations of the benchmark:
-
-- no live API execution yet
-- no standalone free-text scenario corpus yet
-- difficulty imbalance in the seed bank
-- model profiles calibrated from public benchmark trends rather than direct measurements
+- Justice Owusu Agyemang, Kwame Opuni-Boachie Obour Agyekum, Kwame Agyeman-Prempeh Agyekum, Francisca Adoma Acheampong, Jerry John Kponyo
+- VIA Cybersecurity Lab & Quantum and Assistive Technologies Lab, KNUST, Ghana
+- Targeted at IEEE Access
+- 11 pages, 57 references, reproducible artifact
 
 ## License
 
