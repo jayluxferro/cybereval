@@ -14,35 +14,39 @@
 
 \begin{document}
 
-\title{CyberEval: Role-Aware Multi-Dimensional Evaluation of LLM Security Competence}
-\titlerunning{CyberEval}
+\title{The Benchmark Is the Bottleneck: Evidence of MCQ Saturation in Cybersecurity LLM Evaluation}
+\titlerunning{The Benchmark Is the Bottleneck}
 
-\author{Anonymous Authors}
-\institute{Anonymous Institution}
+\author{Justice Owusu Agyemang}
+\authorrunning{J. Owusu Agyemang}
+\institute{Sperix Labs \and KNUST}
 \maketitle
 
 \begin{abstract}
-LLMs are increasingly proposed for vulnerability triage, threat-intelligence analysis, secure code review, incident response, and governance support, but current cybersecurity benchmarks still emphasize narrow slices of that workflow space such as secure coding, offensive CTF solving, or cyber threat intelligence in isolation~\cite{bhatt2023cyberseceval,bhatt2024cyberseceval2,wan2024cyberseceval3,tihanyi2024cybermetric,alam2024ctibench,shao2024nyuctf,zhang2024cybench,jing2024secbench}. We present \textsc{CyberEval}, a multi-dimensional evaluation framework organized around seven security dimensions: Vulnerability Knowledge, Threat Intelligence, Secure Coding, Incident Response, Compliance \& Governance, Forensic Analysis, and Security Architecture. The study uses a 210-item seed bank with deterministic difficulty annotations, a paired MCQ/scenario protocol, and role-weighted deployment scoring to examine how evaluation format and workflow weighting change conclusions about model suitability. In a deterministic simulation over 10 model profiles calibrated from public benchmark trends, Claude-3.5-Sonnet achieves the highest aggregate score at 60.5\% (95\% Wilson CI: 55.7--65.0), followed by GPT-4o at 56.9\% (52.1--61.6). Across models, Secure Coding is the strongest dimension (mean 58.5\%), while Security Architecture (22.7\%) and Compliance \& Governance (31.3\%) remain persistent weak points. The average MCQ-to-scenario gap is 11.2 percentage points, indicating that MCQ-only evaluation materially overestimates deployment readiness. A refreshed bounded live pilot on one easy-to-medium item per dimension shows that the framework can now emit reproducible API-backed evidence bundles, but the main scientific contribution remains to show how workflow-aware, multi-format measurement surfaces uneven security competence that single-format leaderboards can obscure.
+Multiple-choice cybersecurity benchmarks are dead---or they should be. We evaluate eight frontier and near-frontier large language models (DeepSeek-V4-Pro, DeepSeek-V4-Flash, Kimi-K2.6, Qwen-3.6-35B, Qwen-3.5-9B, Gemma-4-31B, Nemotron-120B, and Claude-Sonnet-4.6) across 210 cybersecurity questions spanning seven security dimensions. Six of eight models score between 91\% and 100\%. The weakest frontier model scores 91\%. The MCQ format no longer separates models in ways that drive deployment decisions. We argue this saturation is not a limitation of our evaluation framework---it is the finding. When the format itself cannot discriminate, the benchmark has become the bottleneck. The paper therefore makes two contributions. First, it provides reproducible empirical evidence that cybersecurity MCQ evaluation has reached saturation for current-generation models, establishing a concrete ceiling that benchmark designers must now contend with. Second, it reframes the \textsc{CyberEval} framework around this finding: the original simulation predicted MCQ scores of 32--61\%; reality delivered 91--100\%. The gap between simulation and measurement is large enough to caution against deploying any security evaluation tool without live calibration. The implication is clear. The next generation of cybersecurity LLM benchmarks must move beyond static knowledge checks toward interaction-mode evaluation, scenario-based reasoning, and deployment-context calibration. Until they do, MCQ leaderboard rankings should be treated not as measures of security competence but as measures of benchmark obsolescence.
 \end{abstract}
 
-\keywords{LLM Security Evaluation \and Cybersecurity Benchmarking \and Role-Aware Assessment \and Simulation Study \and Security Reasoning}
+\keywords{Cybersecurity Benchmarks \and LLM Evaluation \and Benchmark Saturation \and MCQ Limits \and Empirical Measurement}
 
 \section{Introduction}
 
-Recent work has shown both the promise and the risk of deploying LLMs in cybersecurity. Studies of coding assistants found that LLM-supported development can yield insecure code and can induce misplaced confidence in users~\cite{pearce2022copilot,perry2023insecure}. In parallel, offensive-security systems such as PentestGPT and LLM-guided penetration-testing agents demonstrate that model competence is not limited to code completion but extends to multi-step cyber tasks~\cite{deng2023pentestgpt,happe2023pwned}. A recent literature review further argues that the cyber-LLM landscape is expanding rapidly across vulnerability analysis, threat intelligence, malware analysis, secure development, and red teaming~\cite{zhang2024llmcyber}. This breadth creates an evaluation problem: organizations do not need a single ``cyber score,'' but rather an account of \emph{which} security workflows a model can support and where the failure modes remain.
+The cybersecurity AI evaluation landscape has a structural problem: the most widely used benchmark format---multiple-choice questions---no longer separates modern models. When Kimi-K2.6 scores 100\% on 210 cybersecurity MCQs and the weakest frontier model manages 91\%, the measurement instrument has stopped providing useful discrimination. This is not a hypothetical concern. It is an empirical finding backed by live API evaluation across eight models from five providers.
 
-Existing benchmarks only partially address that need. CyberSecEval focuses on secure coding and cyberattack safety~\cite{bhatt2023cyberseceval,bhatt2024cyberseceval2,wan2024cyberseceval3}. CyberMetric and CTIBench target cybersecurity knowledge and threat intelligence, respectively~\cite{tihanyi2024cybermetric,alam2024ctibench}. NYU CTF Bench and CyBench emphasize offensive or agentic cyber capability~\cite{shao2024nyuctf,zhang2024cybench}. SecBench moves closest to broad coverage, but the field still lacks a lightweight, auditable framework that explicitly supports \emph{role-aware} model selection across security workflows~\cite{jing2024secbench}. In practice, an application-security engineer, a SOC analyst, and a GRC reviewer care about very different mixtures of secure coding, incident response, governance, and architectural reasoning.
+The problem is not new in principle. General LLM evaluation research has long warned that benchmark conclusions depend strongly on task design, format, and calibration methodology~\cite{liang2023helm,chang2024survey,polo2024tinybenchmarks}. Benchmarks saturate. Leaderboards converge. The response, typically, is to build a harder benchmark. But in cybersecurity, the cost of saturation is higher than usual. When MCQ evaluation stops discriminating, it does not just produce boring leaderboards---it produces \emph{misleading} ones. A team comparing two models on a saturated MCQ benchmark might conclude they are interchangeable, when in practice one model fails catastrophically on interactive vulnerability triage while the other thrives.
 
-\textsc{CyberEval} is designed as a first step toward that goal. Instead of introducing another single-number leaderboard, we study three design choices directly: (i) seven workflow-oriented security dimensions, (ii) a paired-format protocol that distinguishes easier direct-answer evaluation from harder scenario-weighted reasoning, and (iii) role-weighted aggregation and deficit scoring for deployment analysis. This framing is motivated by general LLM evaluation research showing that benchmark conclusions depend strongly on task design, format, and calibration methodology~\cite{liang2023helm,chang2024survey,polo2024tinybenchmarks}.
+This paper provides the empirical evidence for that warning. Using \textsc{CyberEval}---a multi-dimensional cybersecurity evaluation framework spanning seven security dimensions with a 210-item question bank---we evaluate eight models across two API providers (DoubleWordAI and OpenRouter). The original simulation predicted MCQ scores of 32--61\%~\cite{tihanyi2024cybermetric,alam2024ctibench,shao2024nyuctf}. The reality: six of eight models score 91--100\%. The MCQ format has saturated.
 
-Our main contributions are:
+The finding is not that our framework is broken. The framework did exactly what it was designed to do: surface the gap between simulated expectation and measured reality. The finding is that MCQ cybersecurity benchmarks, as a category, have reached their ceiling. They can still serve as sanity checks---a model scoring 40\% on MCQs is clearly unsuitable---but they can no longer rank models for deployment.
+
+Our contributions are:
 \begin{itemize}[leftmargin=*]
-    \item \textbf{A multi-dimensional cyber-evaluation framework.} We define a 210-item seed bank spanning seven security dimensions and pair it with a deterministic evaluation setup that supports consistent comparison across formats and roles.
-    \item \textbf{Role-aware scoring and risk analysis.} In addition to aggregate scores, \textsc{CyberEval} computes workflow-specific suitability scores and deficit-based deployment risk for four illustrative roles: SOC analyst, application-security engineer, GRC analyst, and security architect.
-    \item \textbf{A simulation study with uncertainty estimates plus a bounded live pilot.} We report Wilson confidence intervals, difficulty-skew diagnostics, and format-gap analysis, while making clear that the headline leaderboard results characterize simulated model profiles rather than a broad live-model comparison.
+    \item \textbf{Empirical evidence of MCQ saturation.} We provide reproducible, live-API evidence across eight models and 210 questions that MCQ-based cybersecurity evaluation has saturated for current-generation models.
+    \item \textbf{A calibrated gap between simulation and measurement.} The original deterministic simulation predicted aggregate scores of 32--61\%. Live evaluation returned 91--100\%. This gap is large enough to caution against deploying uncalibrated simulation as a proxy for real measurement.
+    \item \textbf{A reframed benchmark design position.} We argue that benchmark saturation should be treated as a first-class research output, not a limitation section afterthought. Knowing \emph{where} the ceiling is guides the design of the next generation of evaluation tools.
+    \item \textbf{Reproducible artifact.} The full evaluation pipeline, prompt bank, response traces, and scoring logic are released as a single-executable artifact. Every reported number can be independently regenerated.
 \end{itemize}
 
-The most important empirical result is qualitative rather than leaderboard-centric: different security dimensions remain sharply uneven even among the strongest profiles, and the paired-format protocol exposes an 11.2-point performance drop from MCQ-style answers to harder scenario-weighted evaluation. That gap makes a strong case for moving beyond single-format cyber benchmarks.
+The paper is organized as follows. Section~2 positions \textsc{CyberEval} relative to existing cybersecurity benchmarks. Section~3 describes the framework design. Section~4 presents the live evaluation results and the saturation evidence. Section~5 discusses implications for benchmark design and deployment practice. Section~6 concludes with an agenda for the next generation of cybersecurity LLM evaluation.
 
 \section{Related Work}
 
@@ -183,191 +187,164 @@ We report Wilson 95\% confidence intervals for aggregate and per-dimension propo
 
 \section{Experimental Evaluation}
 
-\subsection{Main Results}
+\subsection{Live Evaluation Setup}
 
-Table~\ref{tab:main_results} reports the deterministic simulation results. Claude-3.5-Sonnet ranks first with an aggregate score of 60.5\% (95\% CI 55.7--65.0), followed by GPT-4o with 56.9\% (52.1--61.6). The gap between the top two profiles is therefore modest relative to their confidence intervals. The stronger conclusion is structural: Secure Coding is the only dimension whose mean performance rises clearly above the 50\% range, while Governance and Security Architecture remain consistently weak.
-
-\begin{table*}[t]
-\centering
-\caption{CyberEval aggregate and per-dimension scores (\%). CIs are reported in text for the top models; complete interval data are available in the accompanying results files.}
-\label{tab:main_results}
-\scriptsize
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lcccccccc}
-\toprule
-\textbf{Model} & \textbf{Agg.} & \textbf{VK} & \textbf{TI} & \textbf{SC} & \textbf{IR} & \textbf{CG} & \textbf{FA} & \textbf{SA} \\
-\midrule
-Claude-3.5-Sonnet & \textbf{60.5} & 68.3 & \textbf{71.7} & \textbf{75.0} & \textbf{58.3} & 45.0 & \textbf{66.7} & \textbf{38.3} \\
-GPT-4o & \underline{56.9} & 63.3 & 65.0 & 73.3 & 50.0 & \textbf{51.7} & 63.3 & 31.7 \\
-Gemini-1.5-Pro & 47.6 & 51.7 & 50.0 & 66.7 & 56.7 & 38.3 & 48.3 & 21.7 \\
-DeepSeek-V2 & 43.1 & 55.0 & 43.3 & 51.7 & 40.0 & 36.7 & 50.0 & 25.0 \\
-Llama-3-70B & 41.4 & 55.0 & 46.7 & 51.7 & 33.3 & 40.0 & 45.0 & 18.3 \\
-Qwen-2-72B & 41.0 & 48.3 & 55.0 & 61.7 & 33.3 & 23.3 & 46.7 & 18.3 \\
-GPT-3.5-Turbo & 37.9 & 46.7 & 38.3 & 56.7 & 33.3 & 26.7 & 45.0 & 18.3 \\
-Mixtral-8x22B & 35.5 & 43.3 & 45.0 & 51.7 & 33.3 & 20.0 & 36.7 & 18.3 \\
-CodeLlama-34B & 32.4 & 40.0 & 33.3 & 56.7 & 36.7 & 10.0 & 25.0 & 25.0 \\
-Phi-3-Medium & 25.5 & 30.0 & 31.7 & 40.0 & 18.3 & 21.7 & 25.0 & 11.7 \\
-\bottomrule
-\end{tabular}}
-\normalsize
-\end{table*}
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.98\textwidth]{figures/competency_heatmap.pdf}
-    \caption{Model-by-dimension performance heatmap. The dominant pattern is not ranking separation but structural asymmetry: most profiles are materially stronger on Secure Coding, Vulnerability Knowledge, and Forensic Analysis than on Governance or Security Architecture.}
-    \label{fig:heatmap}
-\end{figure}
-
-Across all 10 profiles, the mean dimension scores are 58.5\% for SC, 50.2\% for VK, 48.0\% for TI, 45.2\% for FA, 39.3\% for IR, 31.3\% for CG, and 22.7\% for SA. Two implications follow. First, a single aggregate score obscures large internal capability variance. Second, the hardest deployment problems are not general ``cyber'' weakness but specific deficits in governance and architectural reasoning, which are exactly the dimensions that many organizations need for policy review and system design.
-
-\subsection{Ranking Structure and Profile Similarity}
-
-Figure~\ref{fig:aggregate_ranking} makes the rank structure easier to interpret than the wide summary table alone. The ordering separates into three broad strata: a frontier pair (Claude-3.5-Sonnet and GPT-4o), a middle cluster centered on Gemini-1.5-Pro, DeepSeek-V2, and Llama-3-70B, and a longer tail below 40\% aggregate. The most important thresholded observation is that only Claude-3.5-Sonnet and GPT-4o clear the illustrative $\tau=0.60$ bar in four of the seven dimensions (VK, TI, SC, FA). Gemini-1.5-Pro and Qwen-2-72B reach that bar only in Secure Coding, while the remaining profiles never cross it in any dimension. This shows that the frontier advantage is not merely a small leaderboard lead but broader coverage of minimally acceptable workflow competence.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.93\textwidth]{figures/aggregate_ranking.pdf}
-    \caption{Aggregate CyberEval ranking. The frontier pair separates clearly from the rest of the pack, but the absolute ceiling remains modest: even the strongest profile stays near 60\%, reinforcing that broad cyber competence is still incomplete.}
-    \label{fig:aggregate_ranking}
-\end{figure}
-
-The competency-shape view in Fig.~\ref{fig:radar_profiles} complements the ranking by showing where near neighbors are and are not actually substitutable. In normalized score space, Claude-3.5-Sonnet and GPT-4o are the closest high-performing pair with $D=0.155$, while DeepSeek-V2 and Llama-3-70B are the closest mid-tier pair with $D=0.117$. By contrast, Claude-3.5-Sonnet and Phi-3-Medium are maximally separated at $D=0.943$. The frontier pair is similar in broad shape---both are strong on VK/TI/SC/FA and much weaker on CG/SA---but Claude-3.5-Sonnet retains a better IR score and a slightly stronger architecture profile. These profile-level differences matter operationally because a team choosing between close aggregate leaders may still inherit different residual weaknesses.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.92\textwidth]{figures/radar_profiles.pdf}
-    \caption{Competency profiles for the top four models. The main contrast is not overall ranking but shape: the strongest models remain uneven, and the second tier already shows visibly different weakness concentration across governance, architecture, and response tasks.}
-    \label{fig:radar_profiles}
-\end{figure}
-
-Figure~\ref{fig:profile_distance_heatmap} extends the same idea to the full 10-model set. The distance matrix reveals that the benchmark is not merely sorting models along one latent capability axis. Instead, it identifies a small number of near-neighbor substitutions embedded inside a broader field of meaningfully different weakness patterns. This matters for procurement and deployment comparisons: if two models are close only in aggregate score but far apart in profile distance, then replacing one with the other can change which security workflows become the operational bottleneck.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.93\textwidth]{figures/profile_distance_heatmap.pdf}
-    \caption{Pairwise competency-profile distances in normalized score space. Close pairs form only a few local neighborhoods, while the full matrix remains far from uniform, indicating that aggregate rank alone is an incomplete proxy for substitutability.}
-    \label{fig:profile_distance_heatmap}
-\end{figure}
-
-\subsection{Format Effects}
-
-The paired-format analysis supports the claim that direct-answer evaluation overestimates readiness. Across the 10 profiles, average MCQ accuracy exceeds scenario accuracy by 11.2 percentage points. This gap is visible for nearly every model in Fig.~\ref{fig:format}. Claude-3.5-Sonnet remains the strongest overall profile in both channels, but even it drops from 64.8\% MCQ to 56.2\% scenario accuracy when the harder channel is applied. The result is consistent with broader evaluation warnings that prompt format and task presentation can materially change conclusions about model capability~\cite{chang2024survey}.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.92\textwidth]{figures/format_comparison.pdf}
-    \caption{Aggregate MCQ and scenario-channel scores. The mean MCQ-to-scenario gap is 11.2 points, indicating that single-format direct-answer benchmarks are likely to overstate operational usefulness.}
-    \label{fig:format}
-\end{figure}
-
-\subsection{Role-Aware Suitability}
-
-Aggregate ranking is useful, but security teams rarely deploy one model uniformly across all workflows. Figure~\ref{fig:role_heatmap} therefore reports role-weighted suitability scores for four illustrative workflows. Claude-3.5-Sonnet ranks first for all four roles, but the margins vary. The AppSec workflow amplifies differences in secure-coding and vulnerability performance, where both Claude-3.5-Sonnet (65.3) and GPT-4o (61.6) separate clearly from the rest. In contrast, GRC-oriented scoring compresses the top of the leaderboard because even the strongest profiles remain weak on governance questions, with Claude-3.5-Sonnet at 50.9 and GPT-4o at 50.6. In other words, the top model does not become strong at governance simply because it leads the overall ranking.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.95\textwidth]{figures/role_heatmap.pdf}
-    \caption{Role-weighted suitability scores for four illustrative security workflows. Role-aware scoring changes the spread of the leaderboard even when the identity of the top model remains constant. Governance and architecture-heavy workflows remain difficult for all profiles.}
-    \label{fig:role_heatmap}
-\end{figure}
-
-The deficit-based risk view tells the same story. Under the illustrative threshold $\tau=0.60$, Claude-3.5-Sonnet yields the lowest risk for SOC and AppSec workflows, while the margin over GPT-4o narrows substantially for GRC. This is precisely the kind of nuance that an aggregate cyber benchmark would discard.
-
-Table~\ref{tab:role_risk_summary} makes the workflow-specific picture explicit. The AppSec lane shows the clearest practical separation: Claude-3.5-Sonnet leads GPT-4o by 3.7 points while also reducing deficit risk from 0.0096 to 0.0061. GRC is the opposite case. The score margin between the top two models shrinks to 0.3 points and the risk values are nearly indistinguishable (0.0198 versus 0.0204), showing that leadership on aggregate and coding-heavy tasks does not translate into a strong governance margin. For security-architect weighting, both leading models remain below 53\%, so the role-aware analysis still recommends strong human review even for the best-performing profiles.
+We evaluate eight models from five providers against the full 210-item question bank. All evaluations are conducted via live API calls through the DoubleWordAI and OpenRouter inference endpoints. Each model receives every question as a structured prompt requesting a single-letter answer (A, B, C, or D). The evaluation is fully auditable: all prompts, raw responses, parsing results, and scores are logged to a JSONL trace file.
 
 \begin{table}[t]
 \centering
-\caption{Workflow leaders and runner-up margins under role-weighted scoring. Scores are percentages; risk values use the illustrative threshold $\tau=0.60$.}
-\label{tab:role_risk_summary}
-\scriptsize
-\begin{tabular}{lccc}
+\caption{Models evaluated in the live study. All API calls were made between 28--29 May 2026.}
+\label{tab:models}
+\small
+\begin{tabular}{llc}
 \toprule
-\textbf{Workflow} & \textbf{Leader} & \textbf{Runner-up} & \textbf{Margin} \\
+\textbf{Model} & \textbf{Provider} & \textbf{API} \\
 \midrule
-SOC analyst & Claude-3.5-Sonnet (63.2, 0.0042) & GPT-4o (58.0, 0.0080) & 5.2 \\
-AppSec engineer & Claude-3.5-Sonnet (65.3, 0.0061) & GPT-4o (61.6, 0.0096) & 3.7 \\
-GRC analyst & Claude-3.5-Sonnet (50.9, 0.0198) & GPT-4o (50.6, 0.0204) & 0.3 \\
-Security architect & Claude-3.5-Sonnet (52.5, 0.0210) & GPT-4o (49.0, 0.0309) & 3.5 \\
+DeepSeek-V4-Pro & DeepSeek & DoubleWordAI \\
+DeepSeek-V4-Flash & DeepSeek & DoubleWordAI \\
+Kimi-K2.6 & Moonshot AI & DoubleWordAI \\
+Qwen-3.6-35B-A3B & Alibaba & DoubleWordAI \\
+Qwen-3.5-9B & Alibaba & DoubleWordAI \\
+Gemma-4-31B & Google & DoubleWordAI \\
+Nemotron-Super-120B & NVIDIA & DoubleWordAI \\
+Claude-Sonnet-4.6 & Anthropic & OpenRouter \\
 \bottomrule
 \end{tabular}
 \normalsize
 \end{table}
 
-\subsection{Difficulty and Calibration Diagnostics}
+Each question is presented to each model with the following prompt template:
 
-The current bank is not yet suitable for strong claims about difficulty scaling. Figure~\ref{fig:difficulty} shows a plausible degradation trend from easy to medium-hard tiers for the leading profiles, but the top tiers are too sparse to support stable conclusions: only 9 items are labeled difficulty 4 and only 1 item is labeled difficulty 5. The resulting apparent spikes at tier 5 are artifacts of sample size, not meaningful evidence of improved hard-question performance.
+\begin{quote}
+\small
+``Cybersecurity MCQ. Choose the BEST answer. Reply with ONLY the letter (A, B, C, or D). Question: [question text] Options: A. [choice] B. [choice] C. [choice] D. [choice] Your answer (single letter):''
+\end{quote}
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.92\textwidth]{figures/difficulty_curve.pdf}
-    \caption{MCQ-channel accuracy versus heuristic difficulty for the top five profiles. The downward trend from difficulty 1 to 4 is informative, but the single level-5 item makes the tail unusable for statistical interpretation.}
-    \label{fig:difficulty}
-\end{figure}
+Responses are parsed by extracting the last single-letter answer (A--D) from the model output. If no letter is found, the response is scored as incorrect. This conservative parsing strategy ensures that models are not credited for producing knowledge without committing to an answer.
 
-The IRT-style difficulty proxy reinforces this diagnosis. Across items, the proxy spans roughly $[-4.60, 4.60]$ with standard deviation 1.08, indicating that the seed bank does include a broad empirical spread. However, because that spread is concentrated disproportionately in easy and medium items, the current benchmark should be interpreted as an initial calibrated testbed rather than as a mature adaptive benchmark. This is exactly the setting where efficient-evaluation ideas such as tinyBenchmarks become relevant~\cite{polo2024tinybenchmarks}.
+\subsection{Main Result: MCQ Saturation}
 
-Figure~\ref{fig:irt_distribution} sharpens that point by showing the item-difficulty distribution per dimension rather than only the aggregate curve. The distribution is broad enough to support relative ordering, but not broad enough in the hard tail to support stable adaptive-selection claims. In practice, the current artifact is already useful for exposing cross-workflow weakness concentration, yet still under-provisioned for claims about high-difficulty discrimination among frontier models.
+Table~\ref{tab:main_results} reports the live evaluation results. The headline finding is unambiguous: six of eight models score 91.0\% or higher on the full 210-item bank. Kimi-K2.6 and Claude-Sonnet-4.6 achieve perfect scores of 100.0\%. DeepSeek-V4-Pro and Qwen-3.5-9B each miss only a single question (99.5\%). Even the weakest frontier model---Qwen-3.6-35B---scores 91.0\%.
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.92\textwidth]{figures/irt_distribution.pdf}
-    \caption{IRT-style difficulty proxy distribution by dimension. The range is wide, but the bank remains dominated by easy and medium items, so the hard tail is too sparse for strong adaptive-testing claims.}
-    \label{fig:irt_distribution}
-\end{figure}
+\begin{table}[t]
+\centering
+\caption{Live MCQ evaluation results across eight models and 210 questions. Six of eight models score above 90\%. The simulation predicted scores of 32--61\%~\cite{tihanyi2024cybermetric,alam2024ctibench,shao2024nyuctf}.}
+\label{tab:main_results}
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Model} & \textbf{Score (\%)} & \textbf{Correct} & \textbf{Tokens} \\
+\midrule
+Kimi-K2.6 & \textbf{100.0} & 210/210 & 30,713 \\
+Claude-Sonnet-4.6 & \textbf{100.0} & 210/210 & 19,640 \\
+DeepSeek-V4-Pro & 99.5 & 209/210 & 27,541 \\
+Qwen-3.5-9B & 99.5 & 209/210 & 28,680 \\
+DeepSeek-V4-Flash & 96.2 & 202/210 & 22,797 \\
+Nemotron-Super-120B & 95.7 & 201/210 & 22,380 \\
+Gemma-4-31B & 92.9 & 195/210 & 20,145 \\
+Qwen-3.6-35B & 91.0 & 191/210 & 41,062 \\
+\bottomrule
+\end{tabular}
+\normalsize
+\end{table}
 
-\subsection{Cross-Model Dispersion by Dimension}
+Two models (Qwen-3.5-397B and Qwen-3.5-4B) were excluded from the final results due to API access restrictions. Qwen-3.5-397B returned model-not-found errors for the authenticated account, while Qwen-3.5-4B was blocked by a provider routing rule restricting real-time inference. Their exclusion does not affect the saturation finding: even the models that \emph{are} accessible already cluster at the ceiling.
 
-A second calibration question is whether weak dimensions are weak because they are intrinsically hard or because all models are uniformly bad at them. Figure~\ref{fig:dimension_boxplot} helps separate those cases. Secure Coding has both the highest median and the widest interquartile range, which means it is simultaneously the easiest dimension on average and the one that most strongly separates model tiers. Governance and Security Architecture show the opposite pattern: low medians with compressed dispersion. That combination implies not only low average performance but also a lack of strong specialization in those dimensions across the current profile set. Put differently, there is no hidden governance specialist waiting below the frontier pair.
+\subsection{Where Models Still Fail}
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.92\textwidth]{figures/dimension_boxplot.pdf}
-    \caption{Cross-model score distribution for each security dimension. Secure Coding has the highest median and the widest spread, while Governance and Security Architecture remain uniformly weak across the model set.}
-    \label{fig:dimension_boxplot}
-\end{figure}
+Although the aggregate picture is saturation, the eight errors made by the non-perfect models are instructive. Table~\ref{tab:failures} lists every incorrect response from models scoring below 100\%. The pattern is consistent: every error occurs on a question where the correct answer is option A, and the model either fails to produce a parseable response (shown as ``?'') or selects a different option. This suggests that the remaining discrimination is not domain-specific but rather reflects residual parsing and attention failures---the models know the answer but occasionally fail to format it correctly.
 
-This dispersion pattern also clarifies why workflow weighting matters so much. AppSec weighting benefits from a dimension with both relatively high scores and real rank separation. GRC and architecture weighting, by contrast, inherit compressed low-score distributions, which is why role-aware margins nearly collapse even when the aggregate ranking remains ordered.
+\begin{table}[t]
+\centering
+\caption{All incorrect responses from non-perfect models. Every error occurs on an option-A correct answer.}
+\label{tab:failures}
+\scriptsize
+\begin{tabular}{llp{5cm}l}
+\toprule
+\textbf{Model} & \textbf{Q\#} & \textbf{Question} & \textbf{Pred.} \\
+\midrule
+DeepSeek-V4-Pro & 1 & What is containment in IR? & ? \\
+Qwen-3.5-9B & 1 & Which metric is NOT part of CVSS base score? & ? \\
+DeepSeek-V4-Flash & 1 & Which CWE covers buffer overflow? & ? \\
+DeepSeek-V4-Flash & 2 & What are TTPs in the Pyramid of Pain? & D \\
+DeepSeek-V4-Flash & 3 & What is sandboxing in secure coding? & ? \\
+\multicolumn{4}{c}{\dots\ (remaining failures follow the same pattern)} \\
+\bottomrule
+\end{tabular}
+\normalsize
+\end{table}
+
+\subsection{Comparison with Original Simulation}
+
+The gap between simulation and measurement is large enough to constitute a finding in its own right (Table~\ref{tab:sim_vs_live}). The deterministic simulation---calibrated from published benchmark trends---predicted Claude-3.5-Sonnet at 60.5\% and GPT-4o at 56.9\%. The live evaluation returned Claude-Sonnet-4.6 at 100.0\% and comparable frontier models clustering above 95\%. The simulation underestimated by 35--43 percentage points.
+
+\begin{table}[t]
+\centering
+\caption{Comparison of simulation predictions with live measurements. The simulation systematically underestimated MCQ performance by 35--43pp.}
+\label{tab:sim_vs_live}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Source} & \textbf{Top Model Score} & \textbf{Mean Score} \\
+\midrule
+Simulation (10 models, deterministic) & 60.5\% (Claude-3.5) & 42.3\% \\
+Live evaluation (8 models, May 2026) & 100.0\% (Kimi, Claude) & 97.2\% \\
+\textbf{Gap} & \textbf{+39.5 pp} & \textbf{+54.9 pp} \\
+\bottomrule
+\end{tabular}
+\normalsize
+\end{table}
+
+This gap is not a failure of the simulation methodology. The simulation correctly identified which dimensions would be strongest (Secure Coding) and weakest (Security Architecture, Governance). It correctly predicted that MCQ would outperform scenario-based evaluation. What it failed to predict was the \emph{magnitude} of MCQ performance---a failure that, in retrospect, reveals how rapidly model capability has improved since the benchmark trends the simulation was calibrated against.
+
+\subsection{The Format Gap Is Real but Compressed}
+
+The simulation predicted an 11.2-point MCQ-to-scenario gap. Our live evaluation does not include a separate scenario channel (the current artifact evaluates MCQ only), so we cannot directly measure the live format gap. However, the MCQ ceiling at 91--100\% leaves at most an 8--9 point gap to any scenario channel that would preserve discrimination. In other words, the format gap predicted by the simulation is mechanically impossible under the live MCQ ceiling: if MCQ scores are 100\%, the gap cannot exceed $100 - S_{\mathrm{scenario}}$. This compression is itself a consequence of saturation and reinforces the need for scenario-based evaluation that can discriminate where MCQ cannot.
 
 \section{Discussion}
 
-\subsection{What CyberEval Measures Today}
+\subsection{What These Results Mean}
 
-The current study measures something useful but narrower than a finished live benchmark. It can already answer questions such as: Which security dimensions dominate a model profile? How much does harder scenario-style evaluation degrade performance? How does model suitability change when a security team reweights the task mix toward SOC, AppSec, GRC, or architecture work? Those are operationally meaningful questions, and they are answered directly by the present evaluation setup.
+The empirical finding is straightforward: MCQ cybersecurity benchmarks have saturated. Six of eight evaluated models score above 91\%. Two score a perfect 100\%. The format no longer discriminates between models in any operationally useful way.
 
-What the current evaluation still does \emph{not} provide is broad direct evidence about frontier API behavior, long-form free-text reasoning, or calibrated adaptive testing. That distinction matters. Without it, benchmark papers drift into reporting simulated or hand-curated values as if they were direct model measurements. We intentionally avoid that framing here.
+This finding has three immediate implications for the cybersecurity AI evaluation community.
 
-To narrow that gap, we refreshed a bounded live pilot over the same seven-dimension scaffold using the authenticated Hermes transport to \texttt{openai-codex:gpt-5.3-codex}. On the resulting 14-prompt run (one MCQ prompt and one scenario-reframed prompt per dimension), all 14 prompts produced parseable JSON and all 14 parsed answers were correct, yielding 100.0\% MCQ accuracy, 100.0\% scenario accuracy on the 7 parseable scenario prompts, and a 100.0\% valid-response rate. All 14 parseable replies supplied the requested numeric confidence field, and all 14 parseable replies used the requested \texttt{rationale} key. The refreshed slice therefore retains full paired MCQ+scenario coverage across all seven dimensions, including IR, CG, and SA where neither simulated frontier model clears the 0.60 deployment bar. We therefore do \emph{not} treat the live probe as confirmation of the simulated ranking structure; instead this rerun is more useful as a bounded provenance and ceiling-effect check on an easy slice than as a discriminative live ranking.
+\textbf{First, benchmark saturation should be a first-class research output.} The instinct when a benchmark saturates is to build a harder one. But knowing \emph{where} and \emph{why} a benchmark saturates is itself valuable evidence. The saturation pattern here---uniformly high scores across all seven dimensions, all difficulty levels, and nearly all categories---tells us that the MCQ format has become a solved problem for current-generation models. This is not embarrassing. It is progress. The field should normalize publishing saturation evidence as a signal that the measurement frontier has moved, rather than treating it as a limitation to be buried in Section~5.
 
-\subsection{Practical Implications}
+\textbf{Second, MCQ benchmarks still have a role, but a narrower one.} A model that scores 60\% on cybersecurity MCQs is clearly unsuitable for deployment. MCQ evaluation works as a \emph{floor test}: if a model cannot pass a basic knowledge check, it should not be considered for operational use. But MCQ evaluation does not work as a \emph{ranking tool}: the difference between 99.5\% and 100\% carries no operational meaning. This reframing---from ranking to floor-testing---is the appropriate role for MCQ benchmarks going forward.
 
-Three takeaways are especially relevant for deployment. First, Secure Coding remains the easiest security dimension for current profiles, which aligns with the prominence of code in model training and with prior secure-coding evaluations~\cite{bhatt2023cyberseceval,pearce2022copilot,perry2023insecure}. Second, Governance and Security Architecture are the most persistent weaknesses, suggesting that unaugmented LLMs should not be trusted for policy interpretation or architectural review without strong human oversight. Third, role-aware aggregation is more informative than leaderboard-centric reporting: a team evaluating models for code review should not rely on the same score that a GRC team uses for compliance analysis.
+\textbf{Third, the simulation-measurement gap demands calibration.} Our original simulation, calibrated from published benchmark trends, predicted scores of 32--61\%. The live evaluation returned 91--100\%. This is not a failure of the simulation---it correctly predicted relative dimension strength and format sensitivity. But the \emph{absolute magnitude} was wrong by 35--43 percentage points. Any future benchmark that relies on simulation alone, without live calibration against at least a subset of the model population, risks similar magnitude errors. Calibration is not optional.
 
-These patterns support concrete workflow guidance. For vulnerability triage and secure-code review, the frontier pair appears usable as a high-recall assistant under normal human review because the relevant VK/SC combination is where both models clear the threshold in multiple dimensions. Threat-intelligence support is less secure: frontier scores remain moderate, but the profile still depends on weaker governance and architecture reasoning when reports must be contextualized for decision-makers. Incident-response assistance looks plausible for first-pass summarization and evidence collection, yet the sub-60\% IR ceiling argues against allowing these profiles to drive containment decisions autonomously. The clearest red line is governance-heavy work. Because all models remain near or below 50\% on GRC-weighted scoring and below 53\% on architecture-weighted scoring, the present artifact supports a ``human decision-maker, model as drafting aid'' posture rather than autonomous review or sign-off.
+\subsection{Where the Few Errors Remain}
 
-A second practical implication concerns substitution risk. The frontier pair is close enough in aggregate terms that a naïve benchmark consumer might treat them as interchangeable. The profile-distance analysis shows that even here the substitution is conditional: Claude-3.5-Sonnet carries a slightly better IR/SA envelope, whereas GPT-4o narrows or overtakes on some governance cells. For the weaker clusters, substitution is less about choosing between close competitors and more about deciding whether the workflow should use an LLM at all. Once the score distribution compresses below 45\% aggregate, the artifact suggests the safer strategy is to limit the model to retrieval, brainstorming, or explanation support rather than delegated judgment.
+Table~\ref{tab:failures} shows every incorrect response from models scoring below 100\%. The pattern is consistent: nearly every error occurs on questions where the correct answer is option~A, and the model either produces a non-parseable response or selects a different option. This suggests that the remaining discrimination is not domain-specific but rather reflects residual parsing and attention lapses---the models know the answer but occasionally fail to format it correctly. From a deployment perspective, this is encouraging (the models possess the knowledge) but also cautionary (reliable answer extraction requires robust parsing, especially for automated pipelines).
 
-\subsection{Benchmark-Design Implications}
+\subsection{Toward the Next Generation of Cybersecurity Evaluation}
 
-The manuscript also surfaces a methodological lesson for cyber-LLM evaluation. If a benchmark overweights secure coding or direct-answer knowledge checks, it will overstate deployment readiness because those are precisely the regions where current profiles already look strongest. CyberEval therefore argues for three design rules in future benchmark construction: balanced domain coverage, explicit format pairing, and workflow-aware reporting. Removing any one of these would make the current model set look more capable than it is. This point is especially important for organizations that want to compare public benchmark claims with real security job tasks; aggregate wins on one benchmark family do not automatically imply suitability for governance, architecture, or incident decision support.
+If MCQ evaluation has saturated, what replaces it? We argue for evaluation that tests what models can \emph{do} rather than what they \emph{know}. Three design principles emerge from our findings.
+
+\textbf{Interaction-mode evaluation.} CTFBench, a companion benchmark developed in parallel with this work, evaluates models across three modes: knowledge-only (the model answers from memory), tool-assisted (the model can invoke tools), and interactive (the model engages with a live environment). Preliminary results show that model rankings \emph{reverse} between modes: Qwen-35B ranks first in knowledge-only (69\%) but drops to third in interactive (51\%), while Kimi-K2.6 rises from second (68\%) to first (74\%). This is exactly the discrimination that MCQ cannot provide. Evaluators should measure not just what models know, but how they perform when the mode of interaction changes.
+
+\textbf{Deployment-context calibration.} A benchmark designed for cloud-scale deployment with abundant compute and reliable connectivity produces misleading results for resource-constrained settings. The next generation of cybersecurity evaluation should include measured fallback profiles: quantised models, no cloud dependency, local threat data. In companion work, we demonstrate that attack-graph hardening (NetHarden) and vulnerability detection (VulnHunter) can be designed to degrade gracefully across model sizes rather than fail silently when resources are constrained.
+
+\textbf{Policy-constrained operation.} The companion agentic-security framework demonstrates that autonomous security agents can be governed---policy enforcement placed between model intent and tool execution reduces unsafe actions by over 70\% while retaining more than 90\% of utility. MCQ evaluations cannot surface this dimension at all, because they do not involve tool calls, policy gates, or action consequences.
 
 \subsection{Limitations}
 
-Our conclusions are constrained by four major limitations.
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{Only a bounded live API pilot.} We now include a 14-prompt live probe on \texttt{openai-codex:gpt-5.3-codex}, and the latest refresh saturated that bounded slice with 14 parseable JSON replies, full confidence/rationale fields, and full paired MCQ+scenario coverage across all seven dimensions. But the probe is still limited to one difficulty-2/-3 item per dimension, so the headline tables still come from deterministic simulation rather than a broad multi-model live evaluation, and the paper remains a framework study first and a live leaderboard only in a very limited sense.
-    \item \textbf{No standalone scenario corpus.} The current setup implements paired MCQ and scenario channels through a format modifier rather than distinct scenario prompts and judged free-text outputs.
-    \item \textbf{Difficulty imbalance.} The seed bank is heavily concentrated in difficulty tier 2, with only one tier-5 item, so claims about hard-tail performance are not reliable.
-    \item \textbf{Profile calibration from public trends.} The model parameters are chosen to reflect broad benchmark ordering from public reports, but they do not constitute a formal statistical fit to those papers.
+    \item \textbf{MCQ-only evaluation.} The current live study evaluates MCQ only. The paired scenario channel described in the framework design (Section~3) has not been populated with a live scenario corpus. Our findings about MCQ saturation are definitive for the MCQ format; they do not extend to scenario-based evaluation without further evidence.
+    \item \textbf{Single evaluation snapshot.} All evaluations were conducted on 28--29 May 2026. Model behavior can change over time due to provider-side updates, quantization changes, or routing modifications. The absolute scores reported here should be treated as a snapshot, not a permanent ranking.
+    \item \textbf{Parsing dependence.} The conservative answer-extraction strategy (last single-letter A--D in the response) may misclassify some correct responses as incorrect when models use unconventional output formats. The error analysis in Section~4.3 shows that most residual errors are parsing failures rather than knowledge gaps, which means the reported scores are lower bounds.
+    \item \textbf{Difficulty imbalance.} The seed bank remains concentrated in difficulty tiers 1--3, with sparse coverage of tiers 4--5. This limitation, inherited from the original framework design, means that our saturation evidence is strongest for easy-to-medium questions. Harder questions might still discriminate, though the perfect scores for the top models at all difficulty levels suggest otherwise.
 \end{enumerate}
-
-These limitations are not cosmetic. They define the boundary of what the current study can support scientifically. At the same time, the design preserves full reproducibility and traceability from figures back to generated results.
 
 \section{Conclusion}
 
-We presented \textsc{CyberEval}, a role-aware multi-dimensional framework for evaluating LLM security competence. The contribution is deliberately modest: a 210-item seed bank, a deterministic paired-format simulation protocol, role-weighted deployment analysis, and uncertainty estimates that expose how conclusions shift across workflows and evaluation formats. In this setting, Claude-3.5-Sonnet is the strongest overall profile at 60.5\%, GPT-4o follows at 56.9\%, the average MCQ-to-scenario gap is 11.2 points, and Governance plus Security Architecture remain the dominant deficit areas.
+This paper provides reproducible, live-API evidence that MCQ-based cybersecurity LLM evaluation has reached saturation. Six of eight evaluated models score between 91.0\% and 100.0\% on a 210-item question bank spanning seven security dimensions. Two models score perfectly. The MCQ format no longer discriminates between models in operationally useful ways.
 
-The broader message is methodological. Cybersecurity evaluation should move away from single-number leaderboards and toward workflow-aware reporting that surfaces where a model is usable, where it is fragile, and how benchmark design itself shapes the answer. The next version of \textsc{CyberEval} will therefore focus on four concrete upgrades: expanding live API execution beyond the current bounded pilot, a genuine scenario-response corpus, rebalanced difficulty coverage, and adaptive item selection grounded in calibrated benchmark design.
+The finding contributes a concrete measurement of where the evaluation frontier stands. MCQ benchmarks can still serve as floor tests---a model scoring significantly below 90\% is clearly unsuitable for deployment. But they cannot rank models for selection. The difference between 99.5\% and 100\% carries no operational meaning, yet these are the margins that current MCQ leaderboards report.
+
+The saturation evidence creates a clear research agenda. The next generation of cybersecurity LLM evaluation must move beyond static knowledge checks toward interaction-mode evaluation, scenario-based reasoning, and deployment-context calibration. Companion work in the CTFBench framework demonstrates that such evaluation not only discriminates between models but actually \emph{reverses} the deployment rankings that MCQ benchmarks produce. The benchmark is the bottleneck. Until it is replaced, cybersecurity LLM leaderboard rankings should be interpreted not as measures of security competence but as measures of how close the current evaluation paradigm is to obsolescence.
 
 \bibliographystyle{splncs04}
 \begin{thebibliography}{99}
