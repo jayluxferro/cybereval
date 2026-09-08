@@ -1,0 +1,28 @@
+{
+  "reference_model": "DeepSeek-V4-Flash",
+  "recalibrated_base": {
+    "VK": 1.0,
+    "TI": 0.9714285714285714,
+    "SC": 0.9736842105263158,
+    "IR": 0.9714285714285714,
+    "CG": 1.0,
+    "FA": 1.0,
+    "SA": 1.0
+  },
+  "recalibrated_diff_decay": 0.019883851780403528,
+  "prior_profile_predicted_score": 58.8,
+  "recalibrated_predicted_score": 96.0,
+  "live_reference_model_score": 98.8,
+  "prior_gap_pp": 40.0,
+  "recalibrated_gap_pp": 2.8,
+  "live_scores_by_model": {
+    "Nemotron-Super-120B": 73.2,
+    "DeepSeek-V4-Flash": 98.8,
+    "Gemma-4-31B": 99.2,
+    "Qwen-3.6-35B": 99.2,
+    "Claude-Sonnet-4.6": 100.0,
+    "DeepSeek-V4-Pro": 100.0,
+    "Qwen-3.5-9B": 98.4,
+    "Kimi-K2.6": 89.6
+  }
+}

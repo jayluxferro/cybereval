@@ -1,184 +1,120 @@
+"""Consistency checks between the revised manuscript and the v2 evaluation data.
+
+Rewritten for the ARRAY revision: the manuscript's live results must match the
+clean 250-item v2 run (balanced answer positions), and the bibliography must be
+free of placeholder entries.
+"""
+
 import json
-import math
+import re
 import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-RESULTS_PATH = ROOT / "experiments" / "results" / "real_results.json"
 MANUSCRIPT_PATH = ROOT / "paper" / "main.tex"
 PDF_PATH = ROOT / "paper" / "main.pdf"
-LATEST_LIVE_SUMMARY_PATH = (
-    ROOT / "paper" / "artifacts" / "live_llm" / "latest_summary.json"
-)
-LATEST_LIVE_NOTE_PATH = ROOT / "paper" / "artifacts" / "live_llm" / "latest_note.json"
+BIB_PATH = ROOT / "paper" / "references.bib"
+LIVE_PATH = ROOT / "experiments" / "results" / "live_mcq" / "v2_results.jsonl"
+BANK_PATH = ROOT / "experiments" / "results" / "question_bank.json"
+
+MODEL_LABELS = [
+    "Kimi-K2.6",
+    "Claude-Sonnet-4.6",
+    "Gemma-4-31B",
+    "DeepSeek-V4-Pro",
+    "Qwen-3.5-9B",
+    "DeepSeek-V4-Flash",
+    "Qwen-3.6-35B",
+    "Nemotron-Super-120B",
+]
 
 
-def _distance(results: dict, model_a: str, model_b: str) -> float:
-    dims = list(results["dimensions"].keys())
-    scores = results["model_scores"]
-    return math.sqrt(
-        sum(
-            (
-                scores[model_a]["dimensions"][dim]["overall"]
-                - scores[model_b]["dimensions"][dim]["overall"]
-            )
-            ** 2
-            for dim in dims
-        )
-    )
+def _manuscript():
+    return MANUSCRIPT_PATH.read_text()
 
 
-def _oxford_join(items: list[str]) -> str:
-    if len(items) == 1:
-        return items[0]
-    if len(items) == 2:
-        return f"{items[0]} and {items[1]}"
-    return f"{', '.join(items[:-1])}, and {items[-1]}"
+def _live_rows():
+    return [json.loads(l) for l in LIVE_PATH.read_text().splitlines() if l.strip()]
 
 
-def test_manuscript_tracks_key_scores_profiles_and_figures():
-    results = json.loads(RESULTS_PATH.read_text())
-    manuscript = MANUSCRIPT_PATH.read_text()
-
-    ranking = results["model_ranking"]
-    leader = ranking[0]
-    runner_up = ranking[1]
-    leader_score = results["model_scores"][leader]["aggregate"] * 100
-    runner_up_score = results["model_scores"][runner_up]["aggregate"] * 100
-    average_gap = results["avg_format_gap"] * 100
-    frontier_distance = _distance(results, leader, runner_up)
-    weakest_distance = _distance(results, leader, ranking[-1])
-
-    dims = list(results["dimensions"].keys())
-    coverage = [
-        dim
-        for dim in dims
-        if results["model_scores"][leader]["dimensions"][dim]["overall"]
-        >= results["deployment_threshold"]
-    ]
-
-    assert f"{leader_score:.1f}\\%" in manuscript
-    assert f"{runner_up_score:.1f}\\%" in manuscript
-    assert f"{average_gap:.1f} points" in manuscript
-    assert f"$D={frontier_distance:.3f}$" in manuscript
-    assert f"$D={weakest_distance:.3f}$" in manuscript
-    assert "four of the seven dimensions" in manuscript
-    assert ", ".join(coverage) in manuscript
-
-    for figure_ref in [
-        "figures/aggregate_ranking.pdf",
-        "figures/radar_profiles.pdf",
-        "figures/profile_distance_heatmap.pdf",
-        "figures/irt_distribution.pdf",
-        "figures/dimension_boxplot.pdf",
-    ]:
-        assert figure_ref in manuscript
+def _bank():
+    return json.loads(BANK_PATH.read_text())
 
 
-def test_manuscript_tracks_role_weighted_margins():
-    results = json.loads(RESULTS_PATH.read_text())
-    manuscript = MANUSCRIPT_PATH.read_text()
-
-    appsec = results["role_scores"]["appsec_engineer"]
-    appsec_ranked = sorted(appsec, key=appsec.get, reverse=True)
-    leader = appsec_ranked[0]
-    runner_up = appsec_ranked[1]
-    margin = (appsec[leader] - appsec[runner_up]) * 100
-    leader_risk = results["role_risks"]["appsec_engineer"][leader]
-    runner_up_risk = results["role_risks"]["appsec_engineer"][runner_up]
-
-    grc = results["role_scores"]["grc_analyst"]
-    grc_ranked = sorted(grc, key=grc.get, reverse=True)
-    grc_margin = (grc[grc_ranked[0]] - grc[grc_ranked[1]]) * 100
-    grc_leader_risk = results["role_risks"]["grc_analyst"][grc_ranked[0]]
-    grc_runner_up_risk = results["role_risks"]["grc_analyst"][grc_ranked[1]]
-
-    assert f"{margin:.1f} points" in manuscript
-    assert f"{runner_up_risk:.4f} to {leader_risk:.4f}" in manuscript
-    assert f"{grc_margin:.1f} points" in manuscript
-    assert f"{grc_leader_risk:.4f} versus {grc_runner_up_risk:.4f}" in manuscript
+def test_live_dataset_is_complete():
+    rows = _live_rows()
+    assert len(rows) == 2000, f"expected 2000 rows, got {len(rows)}"
+    per_model = {}
+    for r in rows:
+        per_model.setdefault(r["model"], 0)
+        per_model[r["model"]] += 1
+    assert per_model == {m: 250 for m in MODEL_LABELS}, per_model
+    assert all(r["ts_utc"] for r in rows), "missing timestamps"
 
 
-def test_manuscript_tracks_latest_live_pilot_summary():
-    manuscript = MANUSCRIPT_PATH.read_text()
-    latest = json.loads(LATEST_LIVE_SUMMARY_PATH.read_text())
-    note = json.loads(LATEST_LIVE_NOTE_PATH.read_text())
-    ranking = latest["metrics"]["ranking"][0]
+def test_bank_is_balanced_and_sized():
+    bank = _bank()
+    assert len(bank) == 250
+    positions = [q["correct"] for q in bank]
+    counts = sorted(positions.count(i) for i in range(4))
+    assert counts == [62, 62, 63, 63], counts
 
-    model = ranking["model"]
-    overall = ranking["accuracy"] * 100
-    mcq = ranking["mcq_accuracy"] * 100
-    scenario = ranking["scenario_accuracy"] * 100
-    parsed = note["parsed_prompt_count"]
-    expected = note["expected_prompt_count"]
-    valid_response_rate = note["valid_response_rate"] * 100
-    below_threshold_dims = _oxford_join(note["saturated_below_threshold_dimensions"])
-    fully_covered = len(note["fully_covered_dimensions"])
 
-    assert model in manuscript
-    assert f"{overall:.1f}\\%" in manuscript
-    assert f"{mcq:.1f}\\%" in manuscript
-    assert f"{scenario:.1f}\\%" in manuscript
-    assert f"{valid_response_rate:.1f}\\%" in manuscript
-    assert f"{note['scenario_ok_count']} parseable scenario prompts" in manuscript
+def test_manuscript_reports_live_scores():
+    ms = _manuscript()
+    rows = _live_rows()
+    per_model = {}
+    for r in rows:
+        per_model.setdefault(r["model"], [0, 0])
+        per_model[r["model"]][1] += 1
+        if r["correct"]:
+            per_model[r["model"]][0] += 1
+    for m in MODEL_LABELS:
+        acc = per_model[m][0] / per_model[m][1] * 100
+        # Table rows are formatted "99.2 & 248/250"; prose uses "98.4\%".
+        assert (f"{acc:.1f} & {per_model[m][0]}/250" in ms
+                or f"{acc:.1f}\\%" in ms), f"missing {acc:.1f}% for {m}"
 
-    if parsed == expected:
-        assert f"all {expected} prompts produced parseable JSON" in manuscript
-    else:
-        assert f"{parsed}/{expected}" in manuscript
 
-    if note["rationale_like_count"] == parsed:
-        assert f"all {parsed} parseable replies" in manuscript
-    else:
-        assert f"{note['rationale_like_count']} parseable replies" in manuscript
+def test_manuscript_reports_bank_composition():
+    ms = _manuscript()
+    assert "250-item" in ms or "250 cybersecurity questions" in ms
+    assert "62, 62, 63" in ms
+    assert "39 at tier 4" in ms
+    assert "11 at tier 5" in ms
 
-    assert "all seven dimensions" in manuscript
-    if below_threshold_dims:
-        assert below_threshold_dims in manuscript
 
-    if note["parse_error_count"]:
-        parse_error = note["parse_error_examples"][0]
-        assert f"{parse_error['dimension']} {parse_error['format']} cell" in manuscript
-        assert (
-            f"only {fully_covered} dimensions retain full paired MCQ+scenario coverage"
-            in manuscript
-        )
-    else:
-        assert (
-            "full paired MCQ+scenario coverage across all seven dimensions"
-            in manuscript
-        )
+def test_manuscript_uses_paired_statistics():
+    ms = _manuscript()
+    assert "McNemar" in ms
+    # CI-overlap must not be presented as a significance test.
+    assert "overlapping confidence intervals, meaning" not in ms
+    assert "statistically indistinguishable at this sample size" not in ms
 
-    if note["confidence_field_count"] == parsed:
-        assert (
-            f"All {parsed} parseable replies supplied the requested numeric confidence field"
-            in manuscript
-        )
-    elif note["confidence_field_count"] == 0:
-        assert (
-            f"none of the {parsed} parseable replies supplied the requested numeric confidence field"
-            in manuscript
-        )
-    else:
-        assert (
-            f"{note['confidence_field_count']} of the {parsed} parseable replies supplied the requested numeric confidence field"
-            in manuscript
-        )
 
-    rationale_keys = note["rationale_key_variants"]
-    if rationale_keys == {"rationale": parsed}:
-        assert (
-            f"all {parsed} parseable replies used the requested \\texttt{{rationale}} key"
-            in manuscript
-        )
-    else:
-        for key in rationale_keys:
-            tex_key = key.replace("_", "\\_")
-            assert f"\\texttt{{{tex_key}}}" in manuscript
+def test_manuscript_has_no_position_bias_typo():
+    ms = _manuscript()
+    assert "easyto" not in ms
+
+
+def test_bibliography_has_no_placeholder_entries():
+    bib = BIB_PATH.read_text()
+    # The three reviewer-flagged fabricated IDs ended in ".12345".
+    assert re.search(r"arXiv[: ]*\d{4}\.\d{5}\b", bib) is not None  # normal IDs exist
+    for bad in ["2407.12345", "2406.12345", "2405.12345"]:
+        assert bad not in bib, f"placeholder arXiv ID still present: {bad}"
+    # All \cite keys in the manuscript must exist in the bibliography.
+    cited = set()
+    for group in re.findall(r"\\cite\{([^}]+)\}", _manuscript()):
+        cited.update(k.strip() for k in group.split(","))
+    for key in cited:
+        assert f"@article{{{key}," in bib or f"@inproceedings{{{key}," in bib or \
+               f"@techreport{{{key}," in bib or f"@misc{{{key}," in bib, \
+               f"cited key missing from bib: {key}"
 
 
 def test_manuscript_avoids_internal_validation_prose():
-    manuscript = MANUSCRIPT_PATH.read_text()
+    ms = _manuscript()
     banned_fragments = [
         "real_results.json",
         "pytest",
@@ -189,7 +125,7 @@ def test_manuscript_avoids_internal_validation_prose():
         "Publication artifact provenance",
     ]
     for fragment in banned_fragments:
-        assert fragment not in manuscript
+        assert fragment not in ms
 
 
 def test_pdf_stays_in_publication_window():
@@ -198,7 +134,6 @@ def test_pdf_stays_in_publication_window():
         check=True,
         capture_output=True,
         text=True,
-    ).stdout
-    pages_line = next(line for line in output.splitlines() if line.startswith("Pages:"))
-    pages = int(pages_line.split(":", 1)[1].strip())
-    assert 20 <= pages <= 40
+    )
+    pages = int(re.search(r"Pages:\s+(\d+)", output.stdout).group(1))
+    assert pages <= 30, f"PDF grew to {pages} pages"

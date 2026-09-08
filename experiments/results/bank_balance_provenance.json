@@ -1,0 +1,11 @@
+{
+  "note": "Correct-answer positions balanced with deterministic seeded shuffle; original 210 items all had correct answer at position 0 (option A).",
+  "seed": 13,
+  "n_items": 250,
+  "position_counts": {
+    "1": 63,
+    "2": 63,
+    "0": 62,
+    "3": 62
+  }
+}

