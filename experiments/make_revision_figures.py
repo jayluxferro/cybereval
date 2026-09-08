@@ -35,15 +35,28 @@ MODEL_ORDER = [
     "Claude-Sonnet-4.6", "Gemma-4-31B", "DeepSeek-V4-Flash", "Nemotron-Super-120B",
     "DeepSeek-V4-Pro", "Kimi-K2.6", "Qwen-3.6-35B", "Qwen-3.5-9B",
 ]
+# Compact axis labels (full names appear in the tables).
 SHORT = {
-    "Claude-Sonnet-4.6": "Claude-Sonnet-4.6",
-    "Gemma-4-31B": "Gemma-4-31B",
-    "DeepSeek-V4-Flash": "DeepSeek-V4-Flash",
-    "Nemotron-Super-120B": "Nemotron-Super-120B",
-    "DeepSeek-V4-Pro": "DeepSeek-V4-Pro",
-    "Kimi-K2.6": "Kimi-K2.6",
-    "Qwen-3.6-35B": "Qwen-3.6-35B",
-    "Qwen-3.5-9B": "Qwen-3.5-9B",
+    "Claude-Sonnet-4.6": "Claude",
+    "Gemma-4-31B": "Gemma",
+    "DeepSeek-V4-Flash": "DS-Flash",
+    "Nemotron-Super-120B": "Nemotron",
+    "DeepSeek-V4-Pro": "DS-Pro",
+    "Kimi-K2.6": "Kimi",
+    "Qwen-3.6-35B": "Qwen-35B",
+    "Qwen-3.5-9B": "Qwen-9B",
+}
+# Per-model annotation offsets (points) for the token-efficiency scatter,
+# hand-placed so no label collides with another point or label.
+TOKEN_OFFSETS = {
+    "Claude-Sonnet-4.6": (-44, 7),
+    "Gemma-4-31B": (-4, -14),
+    "DeepSeek-V4-Flash": (16, 5),
+    "DeepSeek-V4-Pro": (-38, 7),
+    "Nemotron-Super-120B": (12, 8),
+    "Kimi-K2.6": (10, 8),
+    "Qwen-3.6-35B": (10, -14),
+    "Qwen-3.5-9B": (-40, -13),
 }
 COLORS = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f"]
 
@@ -85,10 +98,10 @@ def fig_main(per_model):
     bars = ax.bar(x, accs, yerr=([e[0] for e in errs], [e[1] for e in errs]),
                   capsize=3, color=COLORS[:len(models)], edgecolor="black", linewidth=0.4)
     ax.axhline(90, color="black", linestyle="--", linewidth=1)
-    ax.text(len(models) - 0.35, 90.7, "illustrative floor-test threshold (90%)",
-            fontsize=8, ha="right", va="bottom")
+    ax.text(0.2, 90.6, "illustrative floor-test threshold (90%)",
+            fontsize=8, ha="left", va="bottom")
     ax.set_xticks(list(x))
-    ax.set_xticklabels(models, rotation=25, ha="right", fontsize=8)
+    ax.set_xticklabels([SHORT[m] for m in models], rotation=25, ha="right", fontsize=8)
     ax.set_ylabel("Accuracy (%)")
     ax.set_ylim(0, 105)
     ax.set_title("Live MCQ accuracy on 250 cybersecurity questions (Wilson 95% CI)")
@@ -134,11 +147,11 @@ def fig_tokens(per_model):
     for i, m in enumerate(models):
         ax.scatter(tpq[i], accs[i], s=60, color=COLORS[i], edgecolor="black",
                    linewidth=0.4, label=SHORT[m])
-        ax.annotate(SHORT[m], (tpq[i], accs[i]), fontsize=7,
-                    xytext=(4, 3), textcoords="offset points")
+    ax.legend(fontsize=7, ncol=4, loc="lower right", framealpha=0.9,
+              handletextpad=0.3, columnspacing=0.8)
     ax.set_xlabel("Tokens per question (provider-reported total)")
     ax.set_ylabel("Accuracy (%)")
-    ax.set_ylim(0, 105)
+    ax.set_ylim(65, 106)
     ax.set_title("Accuracy vs. token consumption")
     fig.tight_layout()
     for ext in ("pdf", "png"):
@@ -159,7 +172,9 @@ def fig_sim_vs_live():
         ax.text(b.get_x() + b.get_width() / 2, v + 1, f"{v:.1f}", ha="center", fontsize=9)
     ax.set_ylabel("Predicted / observed top score (%)")
     ax.set_ylim(0, 110)
-    ax.set_title("Simulation recalibration: gap closes when calibrated on current data")
+    ax.set_yticks([0, 20, 40, 60, 80, 100])
+    ax.set_title("Simulation recalibration: gap closes when calibrated on current data",
+                 pad=14)
     fig.tight_layout()
     for ext in ("pdf", "png"):
         fig.savefig(FIG / f"live_sim_vs_live.{ext}", dpi=150 if ext == "png" else None)
@@ -192,18 +207,19 @@ def fig_mcnemar(rows):
                    cmap="RdYlGn_r", vmin=0, vmax=0.05)
     ax.set_xticks(range(n))
     ax.set_yticks(range(n))
-    short = [m.replace("Super-", "S-") for m in models]
-    ax.set_xticklabels(short, rotation=45, ha="right", fontsize=7)
-    ax.set_yticklabels(short, fontsize=7)
+    short = [SHORT[m] for m in models]
+    ax.set_xticklabels(short, rotation=45, ha="right", fontsize=8)
+    ax.set_yticklabels(short, fontsize=8)
     for i in range(n):
         for j in range(n):
             p = mat[i][j]
             if i != j:
+                # dark cells (small p) get white text, light cells get black
                 ax.text(j, i, "<0.0018" if p < 0.0018 else f"{p:.3f}",
                         ha="center", va="center", fontsize=7,
-                        color="black" if p < 0.01 else "white")
+                        color="white" if p < 0.02 else "black")
     ax.set_title("Exact McNemar p-values (paired items)\n"
-                 "row vs column; <0.0018 = significant after Bonferroni")
+                 "row vs column; <0.0018 = significant after Bonferroni", pad=10)
     fig.colorbar(im, ax=ax, label="p (capped at 0.05)")
     fig.tight_layout()
     for ext in ("pdf", "png"):
