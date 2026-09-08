@@ -176,10 +176,12 @@ seed 13). New clean runner `experiments/run_live_mcq_v2.py` → `v2_results.json
 with per-call `ts_utc` and `served_model`. This supersedes the separate T4/5-only run
 (`t45_results.jsonl` kept only as provenance).
 
-### B. DoubleWordAI account 402 (fixed)
-First T4/5 attempt failed with 402 Payment Required on all 7 DW models (OpenRouter
-Claude succeeded 40/40). User topped up the DW account; v2 re-run is live and
-error-free as of 2026-09-08.
+### B. Provider serving change: reasoning-mode models (handled)
+Between the original evaluation and the revision, several models began to be
+served in reasoning mode; under the original 50-token budget they consumed the
+entire budget mid-reasoning and returned empty responses. Fixed by raising the
+protocol budget uniformly to 2,048 tokens (documented in paper §4.2); the
+affected intermediate run is retained as provenance (`v2_max50_provenance.jsonl`).
 
 ### C. References audit complete (WS-4)
 57 → 61 entries, zero fabricated entries remain, every citation key preserved.
