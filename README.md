@@ -1,83 +1,46 @@
-# CyberEval
+# CyberEval — Reproducibility Repository
 
-**Measuring the Ceiling: Evidence That Easy-to-Medium Cybersecurity MCQ Benchmarks Have Saturated for Current-Generation LLMs**
+Companion data-and-code repository for the paper *Measuring the Ceiling: Evidence That Easy-to-Medium Cybersecurity MCQ Benchmarks Have Saturated for Current-Generation LLMs*. The manuscript is under review and is submitted directly to the journal; it is not hosted here. This repository exists so that every number in the paper can be independently re-derived.
 
-CyberEval evaluates LLM cybersecurity competence across 7 dimensions using a 250-item MCQ question bank with balanced answer positions. It provides reproducible, live-API evidence that easy-to-medium cybersecurity MCQs have saturated for current-generation models, and documents how answer-extraction artifacts can masquerade as capability gaps on reasoning-mode models.
+## What's here
 
-## Validated Live Evaluation Results (2026-10-01 re-measurement)
+- `experiments/results/` — the measurement data:
+  - `question_bank.json` — the 250-item bank (7 dimensions, tiers 1–5, balanced answer positions 62/63/63/62) plus `bank_balance_provenance.json`
+  - `round2_validated/` — the validated single-day re-measurement (2,000 calls, 2026-10-01): complete answer and reasoning content, finish reasons, served-model identifiers, per-call UTC timestamps (`full_run.jsonl`); the adjudication docket (`docket.jsonl`); the validated answer set with per-row four-extractor values (`validated_answers.json`); per-item IRT/discrimination statistics (`item_stats.json`); the simulation recalibration (`simulation_recalibration.json`); the computed summary (`summary.txt`)
+  - `live_mcq/` — the original 2026-09-08 protocol trace and the superseded 50-token-budget provenance run
+- `experiments/` — the scripts that reproduce the run, every analysis, and every figure:
+  - `run_full_recapture.py` — the validated run (idempotent; 4 in-place retries with 2/4/8 s backoff)
+  - `analyze_validated.py` — re-derives all scores, CIs, McNemar tests, tier statistics, correlations, hard-tail splits, and the docket/answer-set/item-stats artifacts
+  - `simulation_recalibration_validated.py` — reproduces the calibration experiment
+  - `make_round2_figures.py` — regenerates all five data figures
+  - earlier-revision scripts retained as provenance (`run_live_mcq_v2.py`, `analyze_revision_v2.py`, `balance_bank.py`, …)
+- `cybereval-array-release-<date>.zip` — the versioned release (same data + scripts, self-contained; see `RELEASE_NOTES.md` inside for the protocol, dates, served models, and the pre-registered adjudication rubric)
 
-8 models evaluated across 250 questions, validated answers (adjudication docket in `experiments/results/round2_validated/`):
-
-| Model | Score | Provider |
-|-------|-------|----------|
-| Claude-Sonnet-4.6 | 100.0% | Anthropic (via OpenRouter) |
-| Gemma-4-31B | 99.6% | Google (via DoubleWordAI) |
-| Qwen-3.6-35B | 99.6% | Alibaba (via DoubleWordAI) |
-| DeepSeek-V4-Pro | 99.2% | DeepSeek (via DoubleWordAI) |
-| Nemotron-Super-120B | 98.8% | NVIDIA (via DoubleWordAI) |
-| Kimi-K2.6 | 98.4% | Moonshot AI (via DoubleWordAI) |
-| DeepSeek-V4-Flash | 98.0% | DeepSeek (via DoubleWordAI) |
-| Qwen-3.5-9B | 97.6% | Alibaba (via DoubleWordAI) |
-
-**Key findings:** all 8 models score at or above 97.6% (top-to-bottom spread 2.4 points); no model pair is significant after Bonferroni correction (1 of 28 pairs nominally significant at α=0.05). On the 40 new hard items (tiers 4–5) scores span 87.5–100% — discrimination survives only on the hard tail. An earlier protocol run's apparent stragglers (Kimi 89.6%, Nemotron 73.2%) were answer-extraction artifacts: the strict first-letter parser mis-read reasoning-mode responses, as the re-parsed original traces and the validated re-run show (Section 5.3 of the paper). The easy-to-medium MCQ format no longer discriminates between competent models — it can only flag clearly unsuitable ones (floor test).
-
-## Reproducibility release
-
-`cybereval-array-release-<date>.zip` (built by `scripts/package_release.sh`, notes in `scripts/RELEASE_NOTES.md`) contains the 250-item bank, the complete validated trace (2,000 calls with timestamps and served-model identifiers), the original protocol trace as provenance, the adjudication docket, and the scripts that reproduce every number and figure in the paper.
-
-## 7 Security Dimensions
-
-1. Vulnerability Knowledge (VK)
-2. Threat Intelligence (TI)
-3. Secure Coding (SC)
-4. Incident Response (IR)
-5. Compliance & Governance (CG)
-6. Forensic Analysis (FA)
-7. Security Architecture (SA)
-
-## Repository Structure
-
-```
-paper/
-  main.tex          — Elsevier Array paper (elsarticle, 57 refs)
-  main.pdf          — compiled paper
-  figures/          — data figures regenerated from the validated run (main results, difficulty tiers, McNemar, sim vs live, token efficiency)
-experiments/
-  run_live_mcq.py   — live evaluation runner (8 models × 210 questions)
-  run_real_evaluation.py — original simulation runner (210-item question bank source)
-  run_simulation.py — paper figure generator (simulation-based)
-  results/
-    live_mcq/results.jsonl — full response trace (1,680 API calls)
-src/
-  evaluator.py      — model evaluation engine
-  framework.py      — CyberEval framework core
-  profiler.py       — deployment profiling
-tests/
-  test_manuscript_consistency.py
-```
-
-## Quick Start
+## Quick validation
 
 ```bash
-# Install dependencies
-uv sync
-
-# Run the simulation (original framework)
-python experiments/run_simulation.py
-
-# Run the live MCQ evaluation (requires API keys)
-python experiments/run_live_mcq.py
+# from the repo (or extract the release zip and run from its root):
+python3 experiments/analyze_validated.py          # all statistics in the paper
+python3 experiments/simulation_recalibration_validated.py   # 58.8 / 93.6 / 98.0
+CYBEREVAL_FIG_DIR=figs python3 experiments/make_round2_figures.py  # all figures
 ```
 
-## Paper
+Only the raw model inference cannot be bit-reproduced (temperature 0.0 does not guarantee repeatability of hosted outputs); all post-inference processing is deterministic, which is why the complete traces are released.
 
-**"Measuring the Ceiling: Evidence That Easy-to-Medium Cybersecurity MCQ Benchmarks Have Saturated for Current-Generation LLMs"**
+## Validated headline results (2026-10-01 re-measurement, validated answers)
 
-- Justice Owusu Agyemang, Kwame Opuni-Boachie Obour Agyekum, Kwame Agyeman-Prempeh Agyekum, Francisca Adoma Acheampong, Jerry John Kponyo
-- VIA Cybersecurity Lab & Quantum and Assistive Technologies Lab, KNUST, Ghana
-- Targeted at IEEE Access
-- 11 pages, 57 references, reproducible artifact
+| Model | Score | Wilson 95% CI |
+|-------|-------|---------------|
+| Claude-Sonnet-4.6 | 100.0% (250/250) | [98.5, 100.0] |
+| Gemma-4-31B | 99.6% (249/250) | [97.8, 99.9] |
+| Qwen-3.6-35B | 99.6% (249/250) | [97.8, 99.9] |
+| DeepSeek-V4-Pro | 99.2% (248/250) | [97.1, 99.8] |
+| Nemotron-Super-120B | 98.8% (247/250) | [96.5, 99.6] |
+| Kimi-K2.6 | 98.4% (246/250) | [96.0, 99.4] |
+| DeepSeek-V4-Flash | 98.0% (245/250) | [95.4, 99.1] |
+| Qwen-3.5-9B | 97.6% (244/250) | [94.9, 98.9] |
 
-## License
-
-MIT License
+- Paired exact McNemar tests over the 28 model pairs: one nominally significant at α = 0.05 (Claude-Sonnet-4.6 vs. Qwen-3.5-9B, p = 0.031); none at the Bonferroni-corrected level.
+- Hard tail (50 tier-4/5 items): scores span 90.0–100%; on the 40 new hard items: 87.5–100%; on the original 210: 99.0–100%.
+- 22 incorrect responses in 2,000: 21 generation-budget exhaustions (`finish_reason = length`) and one committed wrong letter.
+- An earlier protocol run's apparent stragglers (Kimi 89.6%, Nemotron 73.2% recorded) were answer-extraction artifacts: re-parsing that run's own stored text yields 88.0% for Nemotron, and the validated re-measurement yields 98.4%/98.8%.

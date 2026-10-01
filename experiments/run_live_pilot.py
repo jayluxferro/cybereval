@@ -3,7 +3,7 @@
 
 The pilot intentionally stays bounded: one stratified question per dimension, each
 asked in both MCQ and scenario-reframed formats. It writes a full reproducibility
-artifact bundle under ``paper/artifacts/live_llm/<timestamp>/``.
+artifact bundle under ``artifacts/live_llm/<timestamp>/``.
 
 The preferred transport is direct provider APIs, but the script also supports the
 authenticated Hermes CLI as a live model transport so the repo can refresh evidence
