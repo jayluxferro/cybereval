@@ -1,0 +1,1502 @@
+{
+  "0": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "1": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "2": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "3": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "4": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "5": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "6": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "7": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "8": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "9": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "10": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "11": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "12": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "13": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "14": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "15": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "16": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "17": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "18": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "19": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "20": {
+    "tier": 5,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "21": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "22": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "23": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "24": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "25": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "26": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "27": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "28": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "29": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "30": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "31": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "32": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "33": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "34": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "35": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "36": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "37": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "38": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "39": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "40": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "41": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "42": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "43": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "44": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "45": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "46": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "47": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "48": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "49": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "50": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "51": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "52": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "53": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "54": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "55": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "56": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "57": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "58": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "59": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "60": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "61": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "62": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "63": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "64": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "65": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "66": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "67": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "68": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "69": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "70": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "71": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "72": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "73": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "74": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "75": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "76": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "77": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "78": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "79": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "80": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "81": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "82": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "83": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "84": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "85": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "86": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "87": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "88": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "89": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "90": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "91": {
+    "tier": 2,
+    "error_rate": 0.25,
+    "irt_logit_difficulty": -1.098612,
+    "point_biserial": 0.218218
+  },
+  "92": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "93": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "94": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "95": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "96": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "97": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "98": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "99": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "100": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "101": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "102": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "103": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "104": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "105": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "106": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "107": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "108": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "109": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "110": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "111": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "112": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "113": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "114": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "115": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "116": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "117": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "118": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "119": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "120": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "121": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "122": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "123": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "124": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "125": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "126": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "127": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "128": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "129": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "130": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "131": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "132": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "133": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "134": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "135": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "136": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "137": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "138": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "139": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "140": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "141": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "142": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "143": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "144": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "145": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "146": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "147": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "148": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "149": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "150": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "151": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "152": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "153": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "154": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "155": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "156": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "157": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "158": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "159": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "160": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "161": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "162": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "163": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "164": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "165": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "166": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "167": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "168": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "169": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "170": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "171": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "172": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "173": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "174": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "175": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "176": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "177": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "178": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "179": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "180": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "181": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "182": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "183": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "184": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "185": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "186": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "187": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "188": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "189": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "190": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "191": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "192": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "193": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "194": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "195": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "196": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "197": {
+    "tier": 1,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "198": {
+    "tier": 3,
+    "error_rate": 0.375,
+    "irt_logit_difficulty": -0.510826,
+    "point_biserial": 0.35783
+  },
+  "199": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "200": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "201": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "202": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "203": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "204": {
+    "tier": 2,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "205": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "206": {
+    "tier": 3,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "207": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "208": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "209": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "210": {
+    "tier": 4,
+    "error_rate": 0.5,
+    "irt_logit_difficulty": -0.0,
+    "point_biserial": 0.881917
+  },
+  "211": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "212": {
+    "tier": 4,
+    "error_rate": 0.25,
+    "irt_logit_difficulty": -1.098612,
+    "point_biserial": 0.509175
+  },
+  "213": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "214": {
+    "tier": 5,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "215": {
+    "tier": 4,
+    "error_rate": 0.75,
+    "irt_logit_difficulty": 1.098612,
+    "point_biserial": 0.654654
+  },
+  "216": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "217": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "218": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "219": {
+    "tier": 5,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "220": {
+    "tier": 4,
+    "error_rate": 0.125,
+    "irt_logit_difficulty": -1.94591,
+    "point_biserial": 0.428571
+  },
+  "221": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "222": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "223": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "224": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "225": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "226": {
+    "tier": 5,
+    "error_rate": 0.125,
+    "irt_logit_difficulty": -1.94591,
+    "point_biserial": 0.428571
+  },
+  "227": {
+    "tier": 5,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "228": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "229": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "230": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "231": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "232": {
+    "tier": 5,
+    "error_rate": 0.125,
+    "irt_logit_difficulty": -1.94591,
+    "point_biserial": 0.238095
+  },
+  "233": {
+    "tier": 4,
+    "error_rate": 0.125,
+    "irt_logit_difficulty": -1.94591,
+    "point_biserial": 0.619048
+  },
+  "234": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "235": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "236": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "237": {
+    "tier": 5,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "238": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "239": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "240": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "241": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "242": {
+    "tier": 5,
+    "error_rate": 0.125,
+    "irt_logit_difficulty": -1.94591,
+    "point_biserial": 0.619048
+  },
+  "243": {
+    "tier": 5,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "244": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "245": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "246": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "247": {
+    "tier": 4,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "248": {
+    "tier": 5,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  },
+  "249": {
+    "tier": 5,
+    "error_rate": 0.0,
+    "irt_logit_difficulty": -4.59512,
+    "point_biserial": 0.0
+  }
+}

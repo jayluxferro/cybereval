@@ -1,0 +1,23 @@
+{
+  "prior_profile_predicted_score": 58.8,
+  "recalibrated_predicted_score": 93.6,
+  "live_reference_model_score": 98.0,
+  "source": "round2_validated full_run.jsonl, adjudicated answers, DeepSeek-V4-Flash reference",
+  "prior_profile": {
+    "base": {
+      "VK": 0.79,
+      "TI": 0.76,
+      "SC": 0.83,
+      "IR": 0.7,
+      "CG": 0.6,
+      "FA": 0.72,
+      "SA": 0.56
+    },
+    "diff_decay": 0.07,
+    "format_mod": {
+      "mcq": 0.04,
+      "scenario": -0.06
+    },
+    "noise_std": 0.0
+  }
+}
