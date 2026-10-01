@@ -22,3 +22,9 @@ tmp/
 reviews/
 paper/
 cybereval-array-release-*.zip
+
+cybereval-array-*.zip
+SPEC.md
+experiments/make_revision_figures.py
+scripts/package.sh
+scripts/package_array.sh
