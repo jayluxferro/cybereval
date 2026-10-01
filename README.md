@@ -14,12 +14,12 @@ Companion data-and-code repository for the paper *Measuring the Ceiling: Evidenc
   - `simulation_recalibration_validated.py` — reproduces the calibration experiment
   - `make_round2_figures.py` — regenerates all five data figures
   - earlier-revision scripts retained as provenance (`run_live_mcq_v2.py`, `analyze_revision_v2.py`, `balance_bank.py`, …)
-- `cybereval-array-release-<date>.zip` — the versioned release (same data + scripts, self-contained; see `RELEASE_NOTES.md` inside for the protocol, dates, served models, and the pre-registered adjudication rubric)
+- GitHub Release [`cybereval-array-release-20261001`](https://github.com/jayluxferro/cybereval/releases/tag/cybereval-array-release-20261001) — the versioned self-contained archive (same data + scripts, zip-tested); see `scripts/RELEASE_NOTES.md` for the protocol, dates, served models, and the pre-registered adjudication rubric
 
 ## Quick validation
 
 ```bash
-# from the repo (or extract the release zip and run from its root):
+# from the repo (or download the Release archive and run from its root):
 python3 experiments/analyze_validated.py          # all statistics in the paper
 python3 experiments/simulation_recalibration_validated.py   # 58.8 / 93.6 / 98.0
 CYBEREVAL_FIG_DIR=figs python3 experiments/make_round2_figures.py  # all figures
